@@ -6,15 +6,15 @@
   "private": true,
   "scripts": {
     "start": "concurrently -k \"npm:start-service-*\"",
-    "start-service-accounts": "nodemon --require dotenv/config dist/services/accounts.js",
-    "start-service-tickets": "nodemon --require dotenv/config dist/services/tickets.js",
-    "start-service-graphql": "nodemon --require dotenv/config dist/server.js",
+    "start-service-accounts": "nodemon -r dotenv/config dist/services/accounts.js",
+    "start-service-tickets": "nodemon -r dotenv/config dist/services/tickets.js",
+    "start-service-graphql": "nodemon -r dotenv/config dist/server.js",
     "watcher": "tsc-watch --onSuccess \"node --require dotenv/config ./dist/server.js\"",
     "dev": "concurrently -k  \"tsc -w\"  \"npm:start-service-*\"",
     "build": "webpack --config webpack.$NODE_ENV.js",
     "build-prod": "webpack --config webpack.production.js",
     "build-dev": "webpack --config webpack.development.js",
-    "start-env": "node --require dotenv/config dist/server"
+    "start-env": "node -r dotenv/config dist/server"
   },
   "author": "brechtgijbels@gmail.com",
   "license": "ISC",

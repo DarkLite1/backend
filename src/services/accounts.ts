@@ -13,11 +13,11 @@ interface UserInterface {
 const typeDefs = gql`
   # type Query {
   #   _: Boolean
-  # }
+  # }.
 
   # extend type Query {
   #   me: User
-  # }
+  # }.
   type Query {
     me: User
   }

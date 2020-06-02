@@ -1,31 +1,21 @@
-const defaultValue = {
-  port: {
-    gateway: 4000,
-    accounts: 4001,
-    tickets: 4002,
-  },
-}
-
 interface Environment {
+  port: {
+    [key: string]: number | string
+  }
   apollo: {
     introspection: boolean
     playground: boolean
   }
-  port: {
-    [key: string]: number | string
-  }
 }
 
-const ports = Object.fromEntries(
-  Object.entries(defaultValue.port).map(([key, value]) => {
-    return [key, process.env[key] || value]
-  })
-)
-
 export const environment: Environment = {
+  port: {
+    gateway: process.env.PORT_GATEWAY || 4000,
+    accounts: process.env.PORT_ACCOUNTS || 4001,
+    tickets: process.env.PORT_TICKETS || 4002,
+  },
   apollo: {
     introspection: process.env.APOLLO_INTROSPECTION === 'true',
     playground: process.env.APOLLO_PLAYGROUND === 'true',
   },
-  port: ports,
 }
