@@ -6,9 +6,9 @@
   "private": true,
   "scripts": {
     "start": "concurrently -k \"npm:start-service-*\"",
-    "start-service-accounts": "nodemon dist/services/accounts.js",
-    "start-service-tickets": "nodemon dist/services/tickets.js",
-    "start-service-graphql": "nodemon dist/server.js",
+    "start-service-accounts": "nodemon --require dotenv/config dist/services/accounts.js",
+    "start-service-tickets": "nodemon --require dotenv/config dist/services/tickets.js",
+    "start-service-graphql": "nodemon --require dotenv/config dist/server.js",
     "watcher": "tsc-watch --onSuccess \"node --require dotenv/config ./dist/server.js\"",
     "dev": "concurrently -k  \"tsc -w\"  \"npm:start-service-*\"",
     "build": "webpack --config webpack.$NODE_ENV.js",

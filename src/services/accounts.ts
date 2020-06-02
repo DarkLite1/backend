@@ -3,8 +3,22 @@ import { buildFederatedSchema } from '@apollo/federation'
 
 import { environment } from '../environment'
 
+interface UserInterface {
+  id: string
+  name: string
+  username: string
+  birthDate: string
+}
+
 const typeDefs = gql`
-  extend type Query {
+  # type Query {
+  #   _: Boolean
+  # }
+
+  # extend type Query {
+  #   me: User
+  # }
+  type Query {
     me: User
   }
 
@@ -22,7 +36,7 @@ const resolvers = {
     },
   },
   User: {
-    __resolveReference(object) {
+    __resolveReference(object: UserInterface) {
       return users.find((user) => user.id === object.id)
     },
   },
@@ -42,7 +56,7 @@ server
   .then(({ url }) => console.log(`Server ready at ${url}`))
   .catch((error) => console.log(`Failed to start server: ${error}`))
 
-const users = [
+const users: UserInterface[] = [
   {
     id: '1',
     name: 'Ada Lovelace',
