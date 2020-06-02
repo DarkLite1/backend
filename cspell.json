@@ -1,0 +1,56 @@
+// cSpell Settings
+{
+    // Version of the setting file.  Always 0.1
+    "version": "0.1",
+    // language - current active spelling language
+    "language": "en",
+    "enabledLanguageIds": [
+        "asciidoc",
+        "css",
+        "git-commit",
+        "html",
+        "javascript",
+        "javascriptreact",
+        "json",
+        "less",
+        "markdown",
+        "plaintext",
+        "restructuredtext",
+        "scss",
+        "text",
+        "typescript",
+        "typescriptreact",
+        "yaml",
+        "yml",
+        "vue"
+    ],
+    // words - list of words to be always considered correct
+    "words": [
+        "API's",
+        "githubusercontent",
+        "mkdirp",
+        "SSSD",
+        "streetsidesoftware",
+        "tsmerge",
+        "visualstudio",
+        "vsmarketplacebadge"
+    ],
+    // flagWords - list of words to be always considered incorrect
+    // This is useful for offensive words and common spelling errors.
+    // For example "hte" should be "the"
+    "flagWords": [
+        "hte"
+    ],
+    "ignorePaths": [
+        "**/package-lock.json",
+        "**/node_modules/**",
+        "**/vscode-extension/**",
+        "**/.git/objects/**",
+        ".vscode",
+        "cspell.json",
+        // "src/i18n/**/*.ts", keep en-US check
+        "src/i18n/de-de/*.ts",
+        "src/i18n/fr-be/*.ts",
+        "src/i18n/nl-be/*.ts"
+    ]
+}
