@@ -4,7 +4,9 @@ import { ApolloGateway } from '@apollo/gateway'
 import { environment } from './environment'
 
 const gateway = new ApolloGateway({
-  serviceList: [{ name: 'accounts', url: 'http://localhost:6001' }],
+  serviceList: [
+    { name: 'accounts', url: `http://localhost:${environment.port.accounts}` },
+  ],
 })
 
 const server = new ApolloServer({
