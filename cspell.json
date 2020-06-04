@@ -29,9 +29,11 @@
         "API's",
         "githubusercontent",
         "mkdirp",
+        "respawn",
         "SSSD",
         "streetsidesoftware",
         "tsmerge",
+        "typeorm",
         "visualstudio",
         "vsmarketplacebadge"
     ],
