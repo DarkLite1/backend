@@ -8,8 +8,9 @@
 //   }
 // }
 
-export const ENVIRONMENT: Environment = {
-  port: process.env.PORT_GATEWAY || 4000,
+// export const ENVIRONMENT: Environment = {
+  export const ENVIRONMENT = {
+  port: process.env.PORT || 4000,
   host: 'localhost'
   // },
   // apollo: {

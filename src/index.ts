@@ -4,6 +4,7 @@ import express from 'express'
 import { ApolloServer } from 'apollo-server-express'
 import { buildSchema } from 'type-graphql'
 import { HelloWorldResolver } from './resolvers/HelloWorldResolver'
+// import { MovieResolver } from '@resolvers/MovieResolver'
 import { MovieResolver } from './resolvers/MovieResolver'
 import { ENVIRONMENT } from './environment'
 ;(async () => {
@@ -20,12 +21,13 @@ import { ENVIRONMENT } from './environment'
 
   apolloServer.applyMiddleware({ app, cors: false })
 
-  app.listen(ENVIRONMENT.port, ENVIRONMENT.host, (err) => {
-    if (err) {
-      console.log(err)
-      return
-    }
-
-    console.log(`Listening at http://${ENVIRONMENT.host}:${ENVIRONMENT.port}`)
-  })
+  app
+    .listen(ENVIRONMENT.port, () => {
+      console.log(
+        `Server ready at http://${ENVIRONMENT.host}:${ENVIRONMENT.port}/graphql`
+      )
+    })
+    .on('error', function (error) {
+      console.log(`Failed starting server: ${error}`)
+    })
 })()
