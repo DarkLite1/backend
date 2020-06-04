@@ -1,6 +1,6 @@
 # Backend
 
-Backend server that can be used with Graphql queries and mutations to consume the exposed API's, databases, ...
+Backend server that can be used with Graphql queries and mutations to consume the exposed services (API's, databases, ...).
 
 ## Install the dependencies
 ```bash
@@ -14,5 +14,5 @@ npm run dev
 
 ### Build the app for production
 ```bash
-npm run build-prod
+npm run build
 ```
