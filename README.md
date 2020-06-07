@@ -16,3 +16,8 @@ npm run dev
 ```bash
 npm run build
 ```
+
+### Generate migrations for database changes
+```bash
+npm run typeorm-migration-generate
+```

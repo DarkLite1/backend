@@ -1,14 +1,68 @@
-{
-  "type": "sqlite",
-  "database": "database.sqlite",
-  "synchronize": true,
-  "logging": true,
-  "entities": ["src/entity/**/*.ts"],
-  "migrations": ["src/migration/**/*.ts"],
-  "subscribers": ["src/subscriber/**/*.ts"],
-  "cli": {
-    "entitiesDir": "src/entity",
-    "migrationsDir": "src/migration",
-    "subscribersDir": "src/subscriber"
+[
+  {
+    "name": "local-test",
+    "type": "sqlite",
+    "database": "database.sqlite",
+    "synchronize": true,
+    "logging": true,
+    "entities": ["src/entity/**/*.ts"],
+    "migrations": ["src/migration/**/*.ts"],
+    "subscribers": ["src/subscriber/**/*.ts"],
+    "cli": {
+      "entitiesDir": "src/entity",
+      "migrationsDir": "src/migration",
+      "subscribersDir": "src/subscriber"
+    }
+  },
+  {
+    "name": "it-portal",
+    "host": "GRPSDFRAN0049",
+    "username": "itportaladmin",
+    "password": "eQnG0xzbfKgPbdkf01xQ",
+    "type": "mssql",
+    "database": "IT-Portal",
+    "synchronize": false,
+    "logging": true,
+    "entities": ["src/it-portal/entity/**/*.ts"],
+    "migrations": ["src/it-portal/migration/**/*.ts"],
+    "subscribers": ["src/it-portal/subscriber/**/*.ts"],
+    "cli": {
+      "entitiesDir": "src/it-portal/entity",
+      "migrationsDir": "src/it-portal/migration",
+      "subscribersDir": "src/it-portal/subscriber"
+    }
+  },
+  {
+    "name": "it-portal-test",
+    "host": "GRPSDFRAN0049",
+    "username": "itportaltestadmin",
+    "password": "ySH56TFuAADpy7GCMA3L",
+    "type": "mssql",
+    "database": "IT-Portal-TEST",
+    "synchronize": true,
+    "logging": true,
+    "entities": ["src/entity/**/*.ts"],
+    "migrations": ["src/migration/**/*.ts"],
+    "subscribers": ["src/subscriber/**/*.ts"],
+    "cli": {
+      "entitiesDir": "src/entity",
+      "migrationsDir": "src/migration",
+      "subscribersDir": "src/subscriber"
+    }
+  },
+  {
+    "name": "default",
+    "type": "sqlite",
+    "database": "database.sqlite",
+    "synchronize": true,
+    "logging": true,
+    "entities": ["src/entity/**/*.ts"],
+    "migrations": ["src/migration/**/*.ts"],
+    "subscribers": ["src/subscriber/**/*.ts"],
+    "cli": {
+      "entitiesDir": "src/entity",
+      "migrationsDir": "src/migration",
+      "subscribersDir": "src/subscriber"
+    }
   }
-}
+]
