@@ -12,12 +12,14 @@ npm install
 npm run dev
 ```
 
-### Build the app for production
+### Start the app for production
 ```bash
-npm run build
+npm run start
 ```
 
 ### Generate migrations for database changes
+
+After making a single database change
 ```bash
 npm run typeorm-migration-generate
 ```
