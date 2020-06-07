@@ -25,6 +25,7 @@
     "start": "ts-node --transpile-only src/index.ts",
     "dev": "ts-node-dev --respawn -r dotenv/config src/index.ts",
     "typeorm-migration-generate": "./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:generate -n MigrationName -c it-portal",
-    "typeorm-migration-run": "./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:run -c it-portal"
+    "typeorm-migration-run": "./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:run -c it-portal",
+    "typeorm-migration-revert": "./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:revert -c it-portal"
   }
 }

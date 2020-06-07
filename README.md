@@ -17,17 +17,29 @@ npm run dev
 npm run start
 ```
 
-### Generate migrations for database changes
+### Handle database changes
+
+When adding, removing or modifying fields or tables in the code this needs to be reflected in the database too. For every single change made to a database with the ormconfig set to `"synchronize": false` follow the steps below.
+
+## Commit a change to the database
 
 After making a single change to the database structure create a migration file for it:
 
 ```bash
 npm run typeorm-migration-generate
 ```
-Then apply the changes in the migration file:
+Then apply the changes in the migration file to the database:
 
 ```bash
 npm run typeorm-migration-run
 ```
 
 Removing the migration file it not required, It will not be applied again on a next run.
+
+## Revert a change in the database
+
+Undo a change made to the database:
+
+```bash
+npm run typeorm-migration-revert
+```
