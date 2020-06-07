@@ -19,7 +19,15 @@ npm run start
 
 ### Generate migrations for database changes
 
-After making a single database change
+After making a single change to the database structure create a migration file for it:
+
 ```bash
 npm run typeorm-migration-generate
 ```
+Then apply the changes in the migration file:
+
+```bash
+npm run typeorm-migration-run
+```
+
+Removing the migration file it not required, It will not be applied again on a next run.

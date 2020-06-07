@@ -22,6 +22,6 @@ export class Test extends BaseEntity {
   title: string
 
   @Field()
-  @Column()
+  @Column({default: 60})
   duration: number
 }
