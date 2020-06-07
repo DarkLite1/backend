@@ -15,7 +15,6 @@ import { ENVIRONMENT } from './environment'
   console.log('start connection')
 
   try {
-    // const connectionProd: Connection = await createConnection({
     await createConnection({
       name: 'it-portal',
       host: 'GRPSDFRAN0049',
@@ -40,7 +39,6 @@ import { ENVIRONMENT } from './environment'
   }
 
   try {
-    // const connectionTest: Connection = await createConnection({
     await createConnection({
       name: 'it-portal-test',
       host: 'GRPSDFRAN0049',
