@@ -6,7 +6,7 @@
     "password": "eQnG0xzbfKgPbdkf01xQ",
     "type": "mssql",
     "database": "IT-Portal",
-    "synchronize": false,
+    "synchronize": true,
     "logging": true,
     "entities": ["src/it-portal/entity/**/*.ts"],
     "migrations": ["src/it-portal/migration/**/*.ts"],

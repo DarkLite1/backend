@@ -1,18 +1,14 @@
 import 'reflect-metadata'
 import express from 'express'
 import { createConnections } from 'typeorm'
-// import { createConnection, Connection, createConnections } from 'typeorm'
 import { ApolloServer } from 'apollo-server-express'
 import { buildSchema } from 'type-graphql'
 import { HelloWorldResolver } from './resolvers/HelloWorldResolver'
 import { MovieResolver } from './resolvers/MovieResolver'
 import { ENVIRONMENT } from './environment'
-// import connections from './config/ormconfig.json'
 
 ;(async () => {
   const app = express()
-
-  console.log('start connection')
 
   await createConnections()
 
@@ -61,7 +57,7 @@ import { ENVIRONMENT } from './environment'
   //   })
   //   console.log('connectionTest is ok')
   // } catch (error) {
-  //   console.log('Fialed connecting to connectionTest: ', error)
+  //   console.log('Failed connecting to connectionTest: ', error)
   // }
 
   // if (ENVIRONMENT.mode === 'production') {

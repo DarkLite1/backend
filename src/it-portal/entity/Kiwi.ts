@@ -3,20 +3,12 @@ import { Field, Int, ObjectType } from 'type-graphql'
 
 @ObjectType()
 @Entity()
-export class User extends BaseEntity {
+export class Kiwi extends BaseEntity {
   @Field(() => Int)
   @PrimaryGeneratedColumn()
   id: number
 
   @Field()
   @Column()
-  firstName: string
-
-  @Field()
-  @Column()
-  lastName: string
-
-  @Field(() => Int)
-  @Column()
-  age: number
+  size: string
 }
