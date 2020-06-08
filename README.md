@@ -17,11 +17,16 @@ npm run dev
 npm run start
 ```
 
+### Run the test suite
+```bash
+npm run test
+```
+
 ### Handle database changes
 
 When adding, removing or modifying fields or tables in the code this needs to be reflected in the database too. For every single change made to a database with the ormconfig set to `"synchronize": false` follow the steps below.
 
-## Commit a change to the database
+## Make a change in the database
 
 After making a single change to the database structure create a migration file for it:
 
