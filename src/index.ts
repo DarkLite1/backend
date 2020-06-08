@@ -7,9 +7,7 @@ import { getApolloServer } from './apolloServer'
 
   const server = await getApolloServer()
 
-  server
-    .listen({ port: ENVIRONMENT.port })
-    .then(({ url }) => {
-      console.log(`🚀  Server ready at ${url}`)
-    })
+  server.listen({ port: ENVIRONMENT.port }).then(({ url }) => {
+    console.log(`Server ready at ${url}`)
+  })
 })()
