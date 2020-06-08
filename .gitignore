@@ -1,4 +1,4 @@
 node_modules
 database.sqlite
-*.env
 /dest
+.env-cmdrc.json
