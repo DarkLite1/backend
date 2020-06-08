@@ -6,9 +6,6 @@ import { getApolloServer } from './apolloServer'
 ;(async () => {
   const app = express()
 
-  console.log('secret: ', process.env.SECRET);
-  
-
   await createConnections()
   ;(await getApolloServer()).applyMiddleware({ app, cors: false })
 
