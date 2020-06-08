@@ -24,6 +24,6 @@
     "resolveJsonModule": true,
     "pretty": true
   },
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"],
   "include": ["./src/**/*.tsx", "./src/**/*.ts", "./ormconfig.json"]
 }

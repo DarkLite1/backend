@@ -38,8 +38,16 @@ Removing the migration file it not required, It will not be applied again on a n
 
 ## Revert a change in the database
 
-Undo a change made to the database:
+Revert the last executed migration:
 
 ```bash
 npm run typeorm-migration-revert
+```
+
+## List migrations
+
+Show all migrations and whether they have been run or not
+
+```bash
+npm run typeorm-migration-show
 ```
