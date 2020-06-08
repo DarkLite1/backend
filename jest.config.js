@@ -1,11 +1,13 @@
 module.exports = {
   preset: 'ts-jest',
+  globalSetup: './tests/config/globalSetup.ts',
+  globalTeardown: './tests/config/globalTeardown.ts',
   globals: {
     'ts-jest': {
+      // diagnostics: false
       diagnostics: {
         warnOnly: true,
       },
-      // diagnostics: false
     },
   },
 
