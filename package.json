@@ -12,7 +12,7 @@
     "ts-node": "^8.10.2",
     "ts-node-dev": "^1.0.0-pre.44",
     "tsc-watch": "^4.2.8",
-    "typescript": "3.7.2"
+    "typescript": "^3.9.5"
   },
   "dependencies": {
     "apollo-server-express": "^2.14.2",
@@ -27,7 +27,7 @@
   "scripts": {
     "start": "ts-node --transpile-only src/index.ts",
     "test": "jest",
-    "dev": "ts-node-dev --respawn -r dotenv/config src/index.ts",
+    "dev": "ts-node-dev --type-check --respawn -r dotenv/config src/index.ts",
     "typeorm-migration-generate": "./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:generate -n MigrationName -c it-portal",
     "typeorm-migration-run": "./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:run -c it-portal",
     "typeorm-migration-revert": "./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:revert -c it-portal",
