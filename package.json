@@ -30,7 +30,7 @@
     "typeorm-migration-generate": "env-cmd -e dev ts-node ./node_modules/typeorm/cli.js migration:generate",
     "typeorm-migration-run": "env-cmd -e dev ts-node ./node_modules/typeorm/cli.js migration:run",
     "typeorm-migration-run-prod": "env-cmd -e prod ts-node ./node_modules/typeorm/cli.js migration:run",
-    "typeorm-migration-revert": "env-cmd -e dev ts-node ./node_modules/typeorm/cli.js migration:revert -c it-portal",
+    "typeorm-migration-revert": "env-cmd -e dev ts-node ./node_modules/typeorm/cli.js migration:revert",
     "typeorm-migration-show": "env-cmd -e dev ts-node ./node_modules/typeorm/cli.js migration:show"
   }
 }
