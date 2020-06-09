@@ -1,4 +1,7 @@
 import { getApolloServer } from '../../src/apolloServer'
+import { GlobalInterface } from '../Interfaces/global'
+
+declare let global: GlobalInterface
 
 module.exports = async () => {
   console.log('jest setup')
