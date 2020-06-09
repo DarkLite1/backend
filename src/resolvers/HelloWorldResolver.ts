@@ -1,6 +1,6 @@
 import { Query, Resolver } from 'type-graphql'
-import { Kiwi } from '../it-portal/entity/Kiwi'
-import { getRepository } from 'typeorm'
+// import { Kiwi } from '../it-portal/entity/Kiwi'
+// import { getRepository } from 'typeorm'
 
 @Resolver()
 export class HelloWorldResolver {
@@ -9,10 +9,10 @@ export class HelloWorldResolver {
     return 'hi!'
   }
 
-  @Query(() => [Kiwi])
-  async kiwi() {
-    return await getRepository(Kiwi, 'it-portal').find()
-  }
+  // @Query(() => [Kiwi])
+  // async kiwi() {
+  //   return await getRepository(Kiwi, 'it-portal').find()
+  // }
   // @Query(() => [Kiwi])
   // kiwi() {
   //   return async () => await getRepository(Kiwi).find()

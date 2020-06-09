@@ -7,7 +7,7 @@ import {
   InputType,
   Field,
 } from 'type-graphql'
-import { Movie } from '../entity/Movie'
+import { Movie } from '../it-portal/entity/Movie'
 
 @InputType()
 class MovieInput {

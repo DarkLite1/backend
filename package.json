@@ -26,9 +26,11 @@
     "start": "ts-node --transpile-only src/index.ts",
     "test": "env-cmd -e dev,test jest --runInBand",
     "dev": "env-cmd -e dev ts-node-dev --type-check --respawn src/index.ts",
-    "typeorm-migration-generate": "./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:generate -n MigrationName -c it-portal",
-    "typeorm-migration-run": "./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:run -c it-portal",
-    "typeorm-migration-revert": "./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:revert -c it-portal",
-    "typeorm-migration-show": "./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:show"
+    "prod": "env-cmd -e prod ts-node --transpile-only src/index.ts",
+    "typeorm-migration-generate": "env-cmd -e dev ts-node ./node_modules/typeorm/cli.js migration:generate -n MigrationName",
+    "typeorm-migration-run": "env-cmd -e dev ts-node ./node_modules/typeorm/cli.js migration:run",
+    "typeorm-migration-run-prod": "env-cmd -e prod ts-node ./node_modules/typeorm/cli.js migration:run",
+    "typeorm-migration-revert": "env-cmd -e dev ts-node ./node_modules/typeorm/cli.js migration:revert -c it-portal",
+    "typeorm-migration-show": "env-cmd -e dev ts-node ./node_modules/typeorm/cli.js migration:show"
   }
 }

@@ -1,57 +1,80 @@
 # Backend
 
-Backend server that can be used with Graphql queries and mutations to consume the exposed services (API's, databases, ...).
+This is a backend server that can be used with Graphql queries and mutations to consume the exposed services (API's, databases, ...). It is intended to be the single backend gateway that can be used with multiple frontends.
 
-## Install the dependencies
+## Setup
+
+### Install the dependencies
 ```bash
 npm install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+## Different modes
+
+### Start the app in development mode
+
+Connect to the test database and run the graphql server in development mode.
+
 ```bash
 npm run dev
 ```
 
 ### Start the app for production
+
+Start the application in production mode. This will read the environment variables and use them to start up the graphql server on the correct port and the connections to the production databases.
+
 ```bash
 npm run start
 ```
 
+## Running tests
+
 ### Run the test suite
+
+Run all the test cases that will check if the graphql endpoints, aka resolvers, are working correctly.
+
 ```bash
 npm run test
 ```
 
-### Handle database changes
 
-When adding, removing or modifying fields or tables in the code this needs to be reflected in the database too. For every single change made to a database with the ormconfig set to `"synchronize": false` follow the steps below.
+## Handle database changes
 
-## Make a change in the database
+When working in development mode with `npm run dev` changes to the database structure might be required. Every change to the database schema within the code needs to be applied to the database as well. 
 
-After making a single change to the database structure create a migration file for it:
+As a first step, changes are applied to the test database only (step 1 & 2). When they seem to be correct they can then be applied to the production database (step 3).
 
-```bash
-npm run typeorm-migration-generate
-```
-Then apply the changes in the migration file to the database:
+It is best practice to run the procedure below for every single change to the database (i.e. rename a column, add a table, ...). This will create a migration file for each change and allows an easy rollback process. Do not delete the migration files afterwards as they can be used to rebuild a complete database when needed.
 
-```bash
-npm run typeorm-migration-run
-```
+### Update the databases
 
-Removing the migration file it not required, It will not be applied again on a next run.
+1. Generate a migration file
 
-## Revert a change in the database
+    ```bash
+    npm run typeorm-migration-generate
+    ```
 
-Revert the last executed migration:
+2. Apply the changes to the test database
+
+   ```bash
+   npm run typeorm-migration-run
+   ```
+
+3. Apply the changes to the production database
+
+   ```bash
+   npm run typeorm-migration-run-prod
+   ```
+
+### Other database actions
+
+- Revert the last executed migration:
 
 ```bash
 npm run typeorm-migration-revert
 ```
 
-## List migrations
-
-Show all migrations and whether they have been run or not
+- Show all migrations and whether they have been run or not
 
 ```bash
 npm run typeorm-migration-show
