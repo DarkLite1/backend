@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start": "ts-node --transpile-only src/index.ts",
-    "test": "env-cmd -e test jest --runInBand",
+    "test": "env-cmd -e dev,test jest --runInBand",
     "dev": "env-cmd -e dev ts-node-dev --type-check --respawn src/index.ts",
     "typeorm-migration-generate": "./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:generate -n MigrationName -c it-portal",
     "typeorm-migration-run": "./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:run -c it-portal",
