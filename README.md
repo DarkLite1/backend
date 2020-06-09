@@ -48,10 +48,10 @@ It is best practice to run the procedure below for every single change to the da
 
 ### Update the databases
 
-1. Generate a migration file
+1. Generate a migration file with the name of the change
 
     ```bash
-    npm run typeorm-migration-generate
+    npm run typeorm-migration-generate -- --n="removeColumnTitle"
     ```
 
 2. Apply the changes to the test database

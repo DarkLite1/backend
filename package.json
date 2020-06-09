@@ -27,7 +27,7 @@
     "test": "env-cmd -e dev,test jest --runInBand",
     "dev": "env-cmd -e dev ts-node-dev --type-check --respawn src/index.ts",
     "prod": "env-cmd -e prod ts-node --transpile-only src/index.ts",
-    "typeorm-migration-generate": "env-cmd -e dev ts-node ./node_modules/typeorm/cli.js migration:generate -n MigrationName",
+    "typeorm-migration-generate": "env-cmd -e dev ts-node ./node_modules/typeorm/cli.js migration:generate",
     "typeorm-migration-run": "env-cmd -e dev ts-node ./node_modules/typeorm/cli.js migration:run",
     "typeorm-migration-run-prod": "env-cmd -e prod ts-node ./node_modules/typeorm/cli.js migration:run",
     "typeorm-migration-revert": "env-cmd -e dev ts-node ./node_modules/typeorm/cli.js migration:revert -c it-portal",
