@@ -4,7 +4,7 @@ module.exports = {
   globalTeardown: './tests/config/globalTeardown.ts',
   globals: {
     'ts-jest': {
-      // tsConfig: 'tsconfig.json',
+      tsConfig: 'tsconfig.json',
       // tsConfig: false,
       // diagnostics: false
       diagnostics: {

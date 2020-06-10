@@ -1,7 +1,8 @@
 import 'reflect-metadata'
+import { ENVIRONMENT } from './environment'
 import { createConnections } from 'typeorm'
 import { getApolloServer } from './apolloServer'
-import { ENVIRONMENT } from './environment'
+
 ;(async () => {
   try {
     await createConnections()
