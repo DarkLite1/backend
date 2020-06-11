@@ -31,12 +31,19 @@ npm run start
 
 ### Run the test suite
 
-Run all the test cases that will check if the graphql endpoints, aka resolvers, are working correctly.
+Run all the test cases that will check if the graphql endpoints, also known as resolvers, are working correctly.
 
-```bash
-npm run test
-```
+1. Start the development server
 
+   ```bash
+   npm run dev
+   ```
+
+2. Run the tests
+
+   ```bash
+   npm run test
+   ```
 
 ## Handle database changes
 
