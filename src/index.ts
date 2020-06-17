@@ -1,7 +1,11 @@
 import 'reflect-metadata'
 import { ENVIRONMENT } from './environment'
+import { ApolloServer } from 'apollo-server'
+import { buildSchema } from 'type-graphql'
 import { createConnections } from 'typeorm'
-import { getApolloServer } from './apolloServer'
+
+import { HelloWorldResolver } from './resolvers/HelloWorldResolver'
+import { MovieResolver } from './resolvers/MovieResolver'
 
 ;(async () => {
   try {
@@ -11,7 +15,13 @@ import { getApolloServer } from './apolloServer'
   }
 
   try {
-    const server = await getApolloServer()
+    const server = new ApolloServer({
+      schema: await buildSchema({
+        resolvers: [HelloWorldResolver, MovieResolver],
+      }),
+      context: ({ req, res }) => ({ req, res }),
+    })
+
     const response = await server.listen({ port: ENVIRONMENT.port })
     console.log(`Server ready at ${response.url}`)
   } catch (error) {

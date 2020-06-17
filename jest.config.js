@@ -1,7 +1,10 @@
 module.exports = {
+  // roots: ['./src'],
   preset: 'ts-jest',
-  globalSetup: './tests/config/globalSetup.ts',
-  globalTeardown: './tests/config/globalTeardown.ts',
+  globalSetup: './src/tests/config/globalSetup.ts',
+  globalTeardown: './src/tests/config/globalTeardown.ts',
+  setupFiles: ['./src/tests/config/setupFiles.ts'],
+  moduleDirectories: ['node_modules', 'src'],
   globals: {
     'ts-jest': {
       tsConfig: 'tsconfig.json',
@@ -12,11 +15,13 @@ module.exports = {
       },
     },
   },
-
-  //   roots: ['<rootDir>/src'],
-  //   transform: {
-  //     '^.+\\.tsx?$': 'ts-jest',
-  //   },
-  //   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
-  //   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: 80,
+    },
+  },
+  coverageReporters: ['json', 'lcov', 'text', 'clover'],
 }
