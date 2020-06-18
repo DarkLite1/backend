@@ -8,7 +8,7 @@ export = [
     username: ENVIRONMENT.database['it-portal'].username,
     password: ENVIRONMENT.database['it-portal'].password,
     type: 'mssql',
-    synchronize: false,
+    synchronize: true,
     logging: false,
     options: {
       enableArithAbort: true,

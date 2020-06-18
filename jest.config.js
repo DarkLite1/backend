@@ -1,9 +1,9 @@
 module.exports = {
   // roots: ['./src'],
   preset: 'ts-jest',
-  globalSetup: './src/tests/config/globalSetup.ts',
-  globalTeardown: './src/tests/config/globalTeardown.ts',
-  setupFiles: ['./src/tests/config/setupFiles.ts'],
+  globalSetup: './src/test-utils/config/globalSetup.ts',
+  globalTeardown: './src/test-utils/config/globalTeardown.ts',
+  setupFiles: ['./src/test-utils/config/setupFiles.ts'],
   moduleDirectories: ['node_modules', 'src'],
   globals: {
     'ts-jest': {
