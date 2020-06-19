@@ -1,15 +1,24 @@
 import { callGraphql } from '../test-utils/helpers/axios'
-import { clearTable } from '../test-utils/helpers/database'
+import {
+  connectDatabase,
+  closeDatabaseConnection,
+  clearTable,
+} from '../test-utils/helpers/database'
 
-beforeEach( async()=> {
-  await clearTable('User')
+beforeAll(async () => {
+  await connectDatabase()
+})
+
+afterAll(async () => {
+  await closeDatabaseConnection()
 })
 
 describe('Account entity', () => {
   it('add account', async () => {
+    await clearTable('Account')
     const actual = await callGraphql(
       `mutation {
-        addAccount(options: { 
+        addAccount(options: {
           accountIdentifier: "7csdcd8-8a5f-49c3-ab9a-0198d42dd253"
           name: "Jake, Bob (Braine-l’Alleud) JAM"
           userName: "Bob.Marley@contoso.com"
@@ -30,6 +39,7 @@ describe('Account entity', () => {
         },
       },
     })
+    await clearTable('Account')
   })
 })
 

@@ -1,3 +1,4 @@
+// require('ts-node/register')
 import { GlobalInterface } from '../Interfaces/global'
 
 declare let global: GlobalInterface

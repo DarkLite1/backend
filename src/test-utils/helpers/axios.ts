@@ -8,7 +8,6 @@ export const callGraphql = (request: string) => {
     method: 'post',
     data: {
       query: request,
-      //   query:`\`${request}\``,
     },
   })
 }
