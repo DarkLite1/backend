@@ -1,12 +1,12 @@
 import { callGraphql } from '../test-utils/helpers/axios'
 import {
-  connectDatabase,
+  openDatabaseConnection,
   closeDatabaseConnection,
   clearTable,
 } from '../test-utils/helpers/database'
 
 beforeAll(async () => {
-  await connectDatabase()
+  await openDatabaseConnection()
 })
 
 afterAll(async () => {
