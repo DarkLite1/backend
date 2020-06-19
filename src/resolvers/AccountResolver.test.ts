@@ -1,4 +1,9 @@
 import { callGraphql } from '../test-utils/helpers/axios'
+import { clearTable } from '../test-utils/helpers/database'
+
+beforeEach( async()=> {
+  await clearTable('User')
+})
 
 describe('Account entity', () => {
   it('add account', async () => {

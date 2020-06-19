@@ -15,6 +15,7 @@ import { AccountResolver } from './resolvers/AccountResolver'
   try {
     const server = new ApolloServer({
       schema: await buildSchema({
+        validate: false,
         resolvers: [AccountResolver],
       }),
       context: ({ req, res }) => ({ req, res }),
