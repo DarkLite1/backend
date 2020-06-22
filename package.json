@@ -4,7 +4,7 @@
   "devDependencies": {
     "@types/express": "^4.17.6",
     "@types/jest": "^26.0.0",
-    "@types/node": "^12.12.44",
+    "@types/node": "^12.12.47",
     "apollo-boost": "^0.4.9",
     "axios": "^0.19.2",
     "env-cmd": "^10.1.0",
@@ -15,7 +15,7 @@
     "typescript": "^3.9.5"
   },
   "dependencies": {
-    "apollo-server": "^2.14.2",
+    "apollo-server": "^2.15.0",
     "graphql": "^14.5.8",
     "mssql": "^6.2.0",
     "reflect-metadata": "^0.1.10",
