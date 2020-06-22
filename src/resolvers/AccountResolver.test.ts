@@ -1,17 +1,5 @@
 import { callGraphql } from '../test-utils/helpers/axios'
-import {
-  openDatabaseConnection,
-  closeDatabaseConnection,
-  clearTable,
-} from '../test-utils/helpers/database'
-
-beforeAll(async () => {
-  await openDatabaseConnection()
-})
-
-afterAll(async () => {
-  await closeDatabaseConnection()
-})
+import { clearTable } from '../test-utils/helpers/database'
 
 describe('Account entity', () => {
   it('add account', async () => {

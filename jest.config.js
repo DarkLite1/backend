@@ -4,6 +4,7 @@ module.exports = {
   globalSetup: './src/test-utils/config/globalSetup.ts',
   globalTeardown: './src/test-utils/config/globalTeardown.ts',
   setupFiles: ['./src/test-utils/config/setupFiles.ts'],
+  setupFilesAfterEnv: ['./src/test-utils/config/setupFilesAfterEnv.ts'],
   moduleDirectories: ['node_modules', 'src'],
   globals: {
     'ts-jest': {
