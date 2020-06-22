@@ -1,4 +1,5 @@
 import 'reflect-metadata'
+import 'tsconfig-paths/register'
 import { ENVIRONMENT } from './environment'
 import { ApolloServer } from 'apollo-server'
 import { buildSchema } from 'type-graphql'

@@ -1,7 +1,7 @@
 import {
   openDatabaseConnection,
   closeDatabaseConnection,
-} from '../helpers/database'
+} from '@test-utils/helpers/database'
 
 beforeAll(async () => {
   await openDatabaseConnection()

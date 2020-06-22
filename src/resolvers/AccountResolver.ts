@@ -1,12 +1,5 @@
-import {
-  Resolver,
-  Mutation,
-  Arg,
-  Query,
-  InputType,
-  Field,
-} from 'type-graphql'
-import { Account } from '../it-portal/entity/Account'
+import { Resolver, Mutation, Arg, Query, InputType, Field } from 'type-graphql'
+import { Account } from '@it-portal/entity/Account'
 
 @InputType()
 class AccountInput {

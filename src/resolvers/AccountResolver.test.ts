@@ -1,5 +1,5 @@
-import { callGraphql } from '../test-utils/helpers/axios'
-import { clearTable } from '../test-utils/helpers/database'
+import { callGraphql } from '@test-utils/helpers/axios'
+import { clearTable } from '@test-utils/helpers/database'
 
 describe('Account entity', () => {
   it('add account', async () => {

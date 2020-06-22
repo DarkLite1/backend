@@ -1,11 +1,15 @@
+const { pathsToModuleNameMapper } = require('ts-jest/utils')
+const { compilerOptions } = require('./tsconfig')
+
 module.exports = {
-  // roots: ['./src'],
+  roots: ['<rootDir>'],
   preset: 'ts-jest',
-  globalSetup: './src/test-utils/config/globalSetup.ts',
-  globalTeardown: './src/test-utils/config/globalTeardown.ts',
-  setupFiles: ['./src/test-utils/config/setupFiles.ts'],
-  setupFilesAfterEnv: ['./src/test-utils/config/setupFilesAfterEnv.ts'],
-  moduleDirectories: ['node_modules', 'src'],
+  globalSetup: '<rootDir>/src/test-utils/config/globalSetup.ts',
+  globalTeardown: '<rootDir>/src/test-utils/config/globalTeardown.ts',
+  setupFiles: ['<rootDir>/src/test-utils/config/setupFiles.ts'],
+  setupFilesAfterEnv: ['<rootDir>/src/test-utils/config/setupFilesAfterEnv.ts'],
+  modulePaths: ['<rootDir>'],
+  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths),
   globals: {
     'ts-jest': {
       tsConfig: 'tsconfig.json',

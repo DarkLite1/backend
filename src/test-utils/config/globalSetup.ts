@@ -1,8 +1,7 @@
-// require('ts-node/register')
-import { GlobalInterface } from '../Interfaces/global'
+import { GlobalInterface } from '@test-utils/Interfaces/global'
 
 declare let global: GlobalInterface
 
 module.exports = async () => {
-  // console.log('jest setup')
+  // console.log('jest globalSetup')
 }
