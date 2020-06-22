@@ -1,6 +1,7 @@
 import axios from 'axios'
+import { ENVIRONMENT } from '../../environment'
 
-const uri = 'http://localhost:5000/'
+const uri = `http://localhost:${ENVIRONMENT.port}`
 
 export const callGraphql = (request: string) => {
   return axios({

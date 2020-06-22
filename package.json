@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "ts-node --transpile-only src/index.ts",
-    "test": "env-cmd -e dev,test jest --runInBand",
+    "test": "env-cmd -e dev jest --runInBand",
     "test-watch": "jest --coverage --watchAll",
     "view-coverage": "serve coverage/lcov-report",
     "dev": "env-cmd -e dev ts-node-dev --type-check --respawn src/index.ts",
