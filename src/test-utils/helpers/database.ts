@@ -17,6 +17,20 @@ export const clearTable = async (
     const connection = getConnection(connectionName)
     await connection.query(`DELETE FROM ${tableName}`)
   } catch (error) {
-    throw new Error(`Failed to clear table '${tableName}': ${error}`)
+    throw new Error(`Failed to clear table '${tableName}' on database '${connectionName}': ${error}`)
+  }
+}
+
+export const runQuery = async (
+  query: string,
+  connectionName = 'default'
+) => {
+  try {
+    const connection = getConnection(connectionName)
+    return await connection.query(query)
+  } catch (error) {
+    throw new Error(
+      `Failed to run query '${query}' on database '${connectionName}': ${error}`
+    )
   }
 }

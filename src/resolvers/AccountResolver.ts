@@ -26,7 +26,18 @@ class AccountUpdateInput {
 export class AccountResolver {
   @Mutation(() => Account)
   async addAccount(@Arg('options', () => AccountInput) options: AccountInput) {
-    return await Account.create(options).save()
+    try {
+      return await Account.create(options).save()
+    } catch (error) {
+      
+      if (error.message.includes('Cannot insert duplicate key')) {
+        throw new Error(
+          `Failed adding account: the account already exists. ${error}`
+        )
+      } else {
+        throw new Error(`Failed adding account: ${error}`)
+      }
+    }
   }
 
   @Mutation(() => Boolean)

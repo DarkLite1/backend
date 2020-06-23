@@ -5,7 +5,7 @@
     "@types/jest": "^26.0.0",
     "@types/node": "^12.12.47",
     "apollo-boost": "^0.4.9",
-    "axios": "^0.19.2",
+    "cross-fetch": "^3.0.5",
     "env-cmd": "^10.1.0",
     "graphql-request": "^2.0.0",
     "jest": "^26.0.1",
