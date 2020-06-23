@@ -1,9 +1,27 @@
 import { callGraphql } from '@test-utils/helpers/axios'
 import { clearTable } from '@test-utils/helpers/database'
+// import { gql } from 'apollo-server'
 
 describe('Account entity', () => {
   it('add account', async () => {
     await clearTable('Account')
+
+    // const createAccount = gql`
+    //   mutation {
+    //     addAccount(
+    //       options: {
+    //         accountIdentifier: "7csdcd8-8a5f-49c3-ab9a-0198d42dd253"
+    //         name: "Jake, Bob (Braine-l’Alleud) JAM"
+    //         userName: "Bob.Marley@contoso.com"
+    //       }
+    //     ) {
+    //       accountIdentifier
+    //       name
+    //       userName
+    //     }
+    //   }
+    // `
+
     const actual = await callGraphql(
       `mutation {
         addAccount(options: {
