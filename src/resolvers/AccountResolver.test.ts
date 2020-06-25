@@ -1,6 +1,4 @@
 import { clearTable, runQuery } from '@test-utils/helpers/database'
-import { client } from '@test-utils/helpers/graphql'
-import { gql } from 'apollo-boost'
 import { getSchema } from '@utils/apollo'
 import { graphql, GraphQLSchema } from 'graphql'
 
@@ -14,26 +12,27 @@ beforeAll(async () => {
 
 describe('the addAccount Mutation', () => {
   it('should create an account when it does not exist', async () => {
-    const graphqlResponse = await client.mutate({
-      mutation: gql`
-        mutation {
-          addAccount(
-            options: {
-              accountIdentifier: "agent007"
-              name: "James Bond"
-              userName: "James.Bond@contoso.com"
-            }
-          ) {
-            accountIdentifier
-          }
+    const query = `
+    mutation {
+      addAccount(
+        options: {
+          accountIdentifier: "agent007"
+          name: "James Bond"
+          userName: "James.Bond@contoso.com"
         }
-      `,
-    })
+      ) {
+        accountIdentifier
+      }
+    }
+    `
+    const { data, errors } = await graphql(schema, query)
 
     const databaseResponse = await runQuery(
       `SELECT TOP 1 * FROM ${tableName} 
-      WHERE accountIdentifier = '${graphqlResponse.data.addAccount.accountIdentifier}'`
+      WHERE accountIdentifier = '${data!.addAccount.accountIdentifier}'`
     )
+
+    expect(errors).toBeUndefined()
     expect(databaseResponse).toMatchObject([
       {
         accountIdentifier: 'agent007',
@@ -70,24 +69,31 @@ describe('the addAccount Mutation', () => {
   })
 
   it('should throw an error when the account already exists', async () => {
-    const addAccount = gql`
-      mutation {
-        addAccount(
-          options: {
-            accountIdentifier: "agent007"
-            name: "James Bond"
-            userName: "James.Bond@contoso.com"
-          }
-        ) {
-          accountIdentifier
+    const query = `
+    mutation {
+      addAccount(
+        options: {
+          accountIdentifier: "agent007"
+          name: "James Bond"
+          userName: "James.Bond@contoso.com"
         }
+      ) {
+        accountIdentifier
       }
+    }
     `
+    const { errors } = await graphql(schema, query)
+    // const { data, errors } = await graphql(schema, query)
 
-    await expect(
-      client.mutate({
-        mutation: addAccount,
-      })
-    ).rejects.toThrowError('the account already exists')
+    // console.dir(data)
+    // console.dir(errors)
+
+    // expect(data).toBeUndefined()
+    expect(errors).toMatchObject([
+      {
+        message:
+          "Failed adding account: the account with accountIdentifier 'agent007' already exists.",
+      },
+    ])
   })
 })

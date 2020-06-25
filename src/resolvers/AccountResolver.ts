@@ -31,7 +31,7 @@ export class AccountResolver {
     } catch (error) {
       if (error.message.includes('Cannot insert duplicate key')) {
         throw new Error(
-          `Failed adding account: the account already exists. ${error}`
+          `Failed adding account: the account with accountIdentifier '${options.accountIdentifier}' already exists.`
         )
       } else {
         throw new Error(`Failed adding account: ${error}`)
