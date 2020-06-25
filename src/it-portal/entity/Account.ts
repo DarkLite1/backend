@@ -8,6 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm'
 import { Field, Int, ObjectType } from 'type-graphql'
+import { MaxLength } from "class-validator";
 
 @ObjectType()
 @Entity()
@@ -17,6 +18,7 @@ export class Account extends BaseEntity {
   id: number
 
   @Field()
+  @MaxLength(10)
   @Column({ length: 50, unique: true })
   @Index({ unique: true })
   accountIdentifier: string

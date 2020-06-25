@@ -1,11 +1,9 @@
 import 'reflect-metadata'
 import 'tsconfig-paths/register'
-import { ENVIRONMENT } from './environment'
-import { ApolloServer } from 'apollo-server'
-import { buildSchema } from 'type-graphql'
+import { ENVIRONMENT } from '@environment'
 import { createConnections } from 'typeorm'
+import { getApolloServer } from '@utils/apollo'
 
-import { AccountResolver } from './resolvers/AccountResolver'
 ;(async () => {
   try {
     await createConnections()
@@ -14,13 +12,7 @@ import { AccountResolver } from './resolvers/AccountResolver'
   }
 
   try {
-    const server = new ApolloServer({
-      schema: await buildSchema({
-        validate: false,
-        resolvers: [AccountResolver],
-      }),
-      context: ({ req, res }) => ({ req, res }),
-    })
+    const server = await getApolloServer()
 
     const response = await server.listen({ port: ENVIRONMENT.port })
     console.log(`Server ready at ${response.url}`)

@@ -29,7 +29,6 @@ export class AccountResolver {
     try {
       return await Account.create(options).save()
     } catch (error) {
-      
       if (error.message.includes('Cannot insert duplicate key')) {
         throw new Error(
           `Failed adding account: the account already exists. ${error}`
