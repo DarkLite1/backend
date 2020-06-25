@@ -2,39 +2,17 @@ import { clearTable, runQuery } from '@test-utils/helpers/database'
 import { client } from '@test-utils/helpers/graphql'
 import { gql } from 'apollo-boost'
 import { getSchema } from '@utils/apollo'
-import { graphql } from 'graphql'
+import { graphql, GraphQLSchema } from 'graphql'
 
 const tableName = 'Account'
+let schema: GraphQLSchema
 
 beforeAll(async () => {
   await clearTable(tableName)
+  schema = await getSchema()
 })
 
 describe('the addAccount Mutation', () => {
-  // it('should throw an error when the accountIdentifier is missing', async () => {
-  //   const expectedError = {
-  //     graphQLError: [{ message: 'the accountIdentifier is missing' }],
-  //   }
-
-  //   await expect(
-  //     client.mutate({
-  //       mutation: gql`
-  //         mutation {
-  //           addAccount(
-  //             options: {
-  //               name: "James Bond"
-  //               userName: "James.Bond@contoso.com"
-  //             }
-  //           ) {
-  //             accountIdentifier
-  //           }
-  //         }
-  //       `,
-  //     })
-  //   ).rejects.toMatchObject(expectedError)
-  //   // ).rejects.toThrowError('the accountIdentifier is missing')
-  // })
-
   it('should create an account when it does not exist', async () => {
     const graphqlResponse = await client.mutate({
       mutation: gql`
@@ -66,8 +44,6 @@ describe('the addAccount Mutation', () => {
   })
 
   it('should throw an error when the accountIdentifier is missing', async () => {
-    const schema = await getSchema()
-
     const query = `
     mutation {
       addAccount(
@@ -82,34 +58,15 @@ describe('the addAccount Mutation', () => {
       }
     }    
     `
-    // const query = `
-    // {
-    //   accounts {
-    //     accountIdentifier
-    //     name
-    //     userName
-    //   }
-    // }
-    // `
+    const { data, errors } = await graphql(schema, query)
 
-    const context = {}
-    const variables = {}
-    const { data, errors } = await graphql(
-      schema,
-      query,
-      {},
-      context,
-      variables
-    )
-
-    const expectedError = [
+    expect(data).toBeUndefined()
+    expect(errors).toMatchObject([
       {
         message:
           'Field AccountInput.accountIdentifier of required type String! was not provided.',
       },
-    ]
-
-    expect(errors).toMatchObject(expectedError)
+    ])
   })
 
   it('should throw an error when the account already exists', async () => {

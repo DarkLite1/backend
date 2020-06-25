@@ -4,8 +4,6 @@ const { compilerOptions } = require('./tsconfig')
 module.exports = {
   roots: ['<rootDir>'],
   preset: 'ts-jest',
-  globalSetup: '<rootDir>/src/test-utils/config/globalSetup.ts',
-  globalTeardown: '<rootDir>/src/test-utils/config/globalTeardown.ts',
   setupFiles: ['<rootDir>/src/test-utils/config/setupFiles.ts'],
   setupFilesAfterEnv: ['<rootDir>/src/test-utils/config/setupFilesAfterEnv.ts'],
   modulePaths: ['<rootDir>'],
