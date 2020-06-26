@@ -64,18 +64,12 @@ export class AccountResolver {
         return plainToClass(ExistsAlready, {
           message: `Cannot add duplicate accounts: an account with accountIdentifier '${options.accountIdentifier}' already exists.`,
           accountIdentifier: options.accountIdentifier,
-          account: account
+          account: account,
         })
       }
       return await Account.create(options).save()
     } catch (error) {
-      if (error.message.includes('Cannot insert duplicate key')) {
-        throw new Error(
-          `Failed adding account: the account with accountIdentifier '${options.accountIdentifier}' already exists.`
-        )
-      } else {
-        throw new Error(`Failed adding account: ${error}`)
-      }
+      throw new Error(`Failed adding account: ${error}`)
     }
   }
 
