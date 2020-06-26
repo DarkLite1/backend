@@ -8,7 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm'
 import { Field, Int, ObjectType } from 'type-graphql'
-import { MaxLength } from "class-validator";
+import { MaxLength } from 'class-validator'
 
 @ObjectType()
 @Entity()
@@ -24,11 +24,11 @@ export class Account extends BaseEntity {
   accountIdentifier: string
 
   @Field({ nullable: true })
-  @Column({ length: 100 })
+  @Column({ nullable: true, length: 100 })
   name?: string
 
   @Field({ nullable: true })
-  @Column({ length: 100 })
+  @Column({ nullable: true, length: 100 })
   userName?: string
 
   @CreateDateColumn()
