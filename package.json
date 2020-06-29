@@ -2,6 +2,7 @@
   "name": "graphql-backend",
   "version": "0.0.1",
   "devDependencies": {
+    "@types/faker": "^4.1.12",
     "@types/jest": "^26.0.3",
     "@types/node": "^12.12.47",
     "env-cmd": "^10.1.0",

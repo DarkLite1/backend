@@ -1,5 +1,6 @@
 import { clearTable, runQuery } from '@test-utils/helpers/database'
 import { callGraphql } from '@test-utils/helpers/graphql'
+import faker from 'faker'
 
 const tableName = 'Account'
 
@@ -10,11 +11,17 @@ beforeAll(async () => {
 describe('the addAccount Mutation', () => {
   describe('should create an account', () => {
     it('with only the property accountIdentifier', async () => {
+      const fakeAccount = {
+        accountIdentifier: faker.random.uuid(),
+        name: null,
+        userName: null,
+      }
+
       const source = `
       mutation {
         addAccount(
           options: {
-            accountIdentifier: "chuck-002"
+            accountIdentifier: "${fakeAccount.accountIdentifier}"
           }
         ) {
           __typename
@@ -33,23 +40,23 @@ describe('the addAccount Mutation', () => {
       )
 
       expect(errors).toBeUndefined()
-      expect(databaseResponse).toMatchObject([
-        {
-          accountIdentifier: 'chuck-002',
-          name: null,
-          userName: null,
-        },
-      ])
+      expect(databaseResponse).toMatchObject([fakeAccount])
     })
 
     it('with all possible properties', async () => {
+      const fakeAccount = {
+        accountIdentifier: faker.random.uuid(),
+        name: faker.name.findName(),
+        userName: faker.internet.email(),
+      }
+
       const source = `
       mutation {
         addAccount(
           options: {
-            accountIdentifier: "agent-007"
-            name: "James Bond"
-            userName: "James.Bond@contoso.com"
+            accountIdentifier: "${fakeAccount.accountIdentifier}"
+            name: "${fakeAccount.name}"
+            userName: "${fakeAccount.userName}"
           }
         ) {
           __typename
@@ -60,9 +67,7 @@ describe('the addAccount Mutation', () => {
       }    
       `
 
-      const { data, errors } = await callGraphql({
-        source,
-      })
+      const { data, errors } = await callGraphql({ source })
 
       const databaseResponse = await runQuery(
         `SELECT TOP 1 * FROM ${tableName} 
@@ -70,13 +75,7 @@ describe('the addAccount Mutation', () => {
       )
 
       expect(errors).toBeUndefined()
-      expect(databaseResponse).toMatchObject([
-        {
-          accountIdentifier: 'agent-007',
-          name: 'James Bond',
-          userName: 'James.Bond@contoso.com',
-        },
-      ])
+      expect(databaseResponse).toMatchObject([fakeAccount])
     })
   })
 
@@ -86,7 +85,7 @@ describe('the addAccount Mutation', () => {
       mutation {
         addAccount(
           options: {
-            accountIdentifier: "agent-007"
+            accountIdentifier: "${faker.random.uuid()}"
           }
         ){
           __typename
@@ -112,8 +111,8 @@ describe('the addAccount Mutation', () => {
       mutation {
         addAccount(
           options: {
-            name: "James Bond"
-            userName: "James.Bond@contoso.com"
+            name: "${faker.name}"
+            userName: "${faker.internet.email}"
           }
         ) {
           __typename
@@ -135,8 +134,6 @@ describe('the addAccount Mutation', () => {
         addAccount(
           options: {
             accountIdentifier: "123456789-123456789-123456789-123456789-123456789-1"
-            name: "James Bond"
-            userName: "James.Bond@contoso.com"
           }
         ) {
           __typename
