@@ -130,5 +130,28 @@ describe('the addAccount Mutation', () => {
         },
       ])
     })
+    it('when the accountIdentifier has more than 50 characters', async () => {
+      const query = `
+      mutation {
+        addAccount(
+          options: {
+            accountIdentifier: "123456789-123456789-123456789-123456789-123456789-1"
+            name: "James Bond"
+            userName: "James.Bond@contoso.com"
+          }
+        ) {
+          __typename
+        }
+      }    
+    `
+      const { data, errors } = await graphql(schema, query)
+
+      expect(data).toBeNull()
+      expect(errors).toMatchObject([
+        {
+          message: `Argument Validation Error`,
+        },
+      ])
+    })
   })
 })

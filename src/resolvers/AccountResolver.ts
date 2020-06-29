@@ -10,6 +10,7 @@ import {
 } from 'type-graphql'
 import { Account } from '@it-portal/entity/Account'
 import { plainToClass } from 'class-transformer'
+import { MaxLength } from 'class-validator'
 
 @ObjectType()
 class ExistsAlready {
@@ -25,21 +26,26 @@ class ExistsAlready {
 
 @InputType()
 class AccountInput {
+  @MaxLength(50)
   @Field()
   accountIdentifier: string
 
+  @MaxLength(100)
   @Field({ nullable: true })
   name?: string
 
+  @MaxLength(100)
   @Field({ nullable: true })
   userName?: string
 }
 
 @InputType()
 class AccountUpdateInput {
+  @MaxLength(100)
   @Field(() => String, { nullable: true })
   name?: string
 
+  @MaxLength(100)
   @Field(() => String, { nullable: true })
   userName?: string
 }
