@@ -1,19 +1,16 @@
 import { clearTable, runQuery } from '@test-utils/helpers/database'
-import { getSchema } from '@utils/apollo'
-import { graphql, GraphQLSchema } from 'graphql'
+import { callGraphql } from '@test-utils/helpers/graphql'
 
 const tableName = 'Account'
-let schema: GraphQLSchema
 
 beforeAll(async () => {
   await clearTable(tableName)
-  schema = await getSchema()
 })
 
 describe('the addAccount Mutation', () => {
   describe('should create an account', () => {
     it('with only the property accountIdentifier', async () => {
-      const query = `
+      const source = `
       mutation {
         addAccount(
           options: {
@@ -28,7 +25,7 @@ describe('the addAccount Mutation', () => {
       }    
       `
 
-      const { data, errors } = await graphql(schema, query)
+      const { data, errors } = await callGraphql({ source })
 
       const databaseResponse = await runQuery(
         `SELECT TOP 1 * FROM ${tableName} 
@@ -46,7 +43,7 @@ describe('the addAccount Mutation', () => {
     })
 
     it('with all possible properties', async () => {
-      const query = `
+      const source = `
       mutation {
         addAccount(
           options: {
@@ -63,7 +60,9 @@ describe('the addAccount Mutation', () => {
       }    
       `
 
-      const { data, errors } = await graphql(schema, query)
+      const { data, errors } = await callGraphql({
+        source,
+      })
 
       const databaseResponse = await runQuery(
         `SELECT TOP 1 * FROM ${tableName} 
@@ -83,7 +82,7 @@ describe('the addAccount Mutation', () => {
 
   describe('should not create an account', () => {
     it('when the account already exists', async () => {
-      const query = `
+      const source = `
       mutation {
         addAccount(
           options: {
@@ -95,11 +94,11 @@ describe('the addAccount Mutation', () => {
       }      
       `
 
-      const response = await graphql(schema, query)
+      const response = await callGraphql({ source })
       expect(response.errors).toBeUndefined()
       expect(response.data).toBeDefined()
 
-      const { data, errors } = await graphql(schema, query)
+      const { data, errors } = await callGraphql({ source })
       expect(errors).toBeUndefined()
       expect(data).toMatchObject({
         addAccount: { __typename: 'ExistsAlready' },
@@ -109,7 +108,7 @@ describe('the addAccount Mutation', () => {
 
   describe('should throw an error', () => {
     it('when the accountIdentifier argument is missing', async () => {
-      const query = `
+      const source = `
       mutation {
         addAccount(
           options: {
@@ -121,7 +120,7 @@ describe('the addAccount Mutation', () => {
         }
       }    
     `
-      const { data, errors } = await graphql(schema, query)
+      const { data, errors } = await callGraphql({ source })
 
       expect(data).toBeUndefined()
       expect(errors).toMatchObject([
@@ -131,7 +130,7 @@ describe('the addAccount Mutation', () => {
       ])
     })
     it('when the accountIdentifier has more than 50 characters', async () => {
-      const query = `
+      const source = `
       mutation {
         addAccount(
           options: {
@@ -144,7 +143,7 @@ describe('the addAccount Mutation', () => {
         }
       }    
     `
-      const { data, errors } = await graphql(schema, query)
+      const { data, errors } = await callGraphql({ source })
 
       expect(data).toBeNull()
       expect(errors).toMatchObject([
