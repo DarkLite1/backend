@@ -12,4 +12,4 @@ export const ENVIRONMENT = {
   },
 }
 
-console.dir(ENVIRONMENT)
+// console.dir(ENVIRONMENT)

@@ -2,13 +2,65 @@ import { clearTable, runQuery } from '@test-utils/helpers/database'
 import { callGraphql } from '@test-utils/helpers/graphql'
 import faker from 'faker'
 
-const tableName = 'Account'
+const tableName = 'account'
 
-beforeAll(async () => {
-  await clearTable(tableName)
+describe('the Query', () => {
+  const fakeAccountIdentifier = [
+    faker.random.uuid(),
+    faker.random.uuid(),
+    faker.random.uuid(),
+  ]
+
+  beforeAll(async () => {
+    await clearTable(tableName)
+
+    await runQuery(`INSERT INTO ${tableName}(accountIdentifier)
+    VALUES 
+    ('${fakeAccountIdentifier[0]}'), 
+    ('${fakeAccountIdentifier[1]}'), 
+    ('${fakeAccountIdentifier[2]}')`)
+  })
+
+  it('accounts should return all accounts', async () => {
+    const source = `
+    query {
+      accounts {
+        accountIdentifier
+      }
+    }
+    `
+    const { data, errors } = await callGraphql({ source })
+    expect(errors).toBeUndefined()
+    expect(data).toEqual({
+      accounts: [
+        { accountIdentifier: fakeAccountIdentifier[0] },
+        { accountIdentifier: fakeAccountIdentifier[1] },
+        { accountIdentifier: fakeAccountIdentifier[2] },
+      ],
+    })
+  })
+
+  it('account should return a single account', async () => {
+    const source = `
+    query {
+      account(accountIdentifier: "${fakeAccountIdentifier[0]}") {
+        accountIdentifier
+      }
+    }
+    `
+    const { data, errors } = await callGraphql({ source })
+    expect(errors).toBeUndefined()
+    expect(data).toEqual({
+      account: { accountIdentifier: fakeAccountIdentifier[0] },
+    })
+  })
 })
 
 describe('the addAccount Mutation', () => {
+  beforeAll(async () => {
+    await clearTable(tableName)
+  })
+  
   describe('should create an account', () => {
     it('with only the property accountIdentifier', async () => {
       const fakeAccount = {

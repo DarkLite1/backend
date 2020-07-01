@@ -1,12 +1,13 @@
 import { ApolloServer } from 'apollo-server'
 import { buildSchema } from 'type-graphql'
 import { AccountResolver } from '@resolvers/AccountResolver'
+import { PreferenceResolver } from '@resolvers/PreferenceResolver'
 
 export const getSchema = async () => {
   return await buildSchema({
     // validate: false,
     validate: true,
-    resolvers: [AccountResolver],
+    resolvers: [AccountResolver, PreferenceResolver],
   })
 }
 

@@ -3,7 +3,6 @@ import {
   PrimaryGeneratedColumn,
   Column,
   BaseEntity,
-  Index,
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm'
@@ -17,13 +16,8 @@ export class Preference extends BaseEntity {
   id: number
 
   @Field()
-  @Column({ length: 50, unique: true })
-  @Index({ unique: true })
-  accountIdentifier: string
-
-  @Field({ nullable: true })
-  @Column({ nullable: true, length: 20 })
-  language?: string
+  @Column({ length: 20 })
+  language: string
 
   @CreateDateColumn()
   createdAt: Date
