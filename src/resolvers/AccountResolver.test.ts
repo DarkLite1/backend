@@ -131,7 +131,7 @@ describe('the addAccount Mutation', () => {
     })
   })
 
-  describe('should not create an account', () => {
+  describe('should report an error', () => {
     it('when the account already exists', async () => {
       const source = `
       mutation {
@@ -240,6 +240,34 @@ describe('the updateAccount Mutation', () => {
         name: fakeAccount.name,
         userName: fakeAccount.userName,
       },
+    })
+  })
+  describe('should report an error', () => {
+    it('when  the account is not found', async () => {
+      const fakeAccount = {
+        accountIdentifier: faker.random.uuid(),
+        name: faker.name.findName(),
+        userName: faker.internet.email(),
+      }
+
+      const source = `
+      mutation {
+        updateAccount(
+          accountIdentifier: "${fakeAccount.accountIdentifier}"
+          input: { 
+            name: "${fakeAccount.name}" 
+            userName: "${fakeAccount.userName}" 
+          }
+        ) {
+          __typename
+        }
+      }
+      `
+      const { data, errors } = await callGraphql({ source })
+      expect(errors).toBeUndefined()
+      expect(data).toEqual({
+        updateAccount: { __typename: 'NotFound' },
+      })
     })
   })
 })
