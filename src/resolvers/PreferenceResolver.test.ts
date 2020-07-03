@@ -1,6 +1,6 @@
-import { clearTable, runQuery } from '@test-utils/helpers/database'
+import { clearTable } from '@test-utils/helpers/database'
 import { callGraphql } from '@test-utils/helpers/graphql'
-import faker from 'faker'
+// import faker from 'faker'
 
 const tableName = 'preference'
 

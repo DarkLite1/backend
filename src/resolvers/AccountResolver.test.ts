@@ -60,7 +60,7 @@ describe('the addAccount Mutation', () => {
   beforeAll(async () => {
     await clearTable(tableName)
   })
-  
+
   describe('should create an account', () => {
     it('with only the property accountIdentifier', async () => {
       const fakeAccount = {
@@ -200,6 +200,46 @@ describe('the addAccount Mutation', () => {
           message: `Argument Validation Error`,
         },
       ])
+    })
+  })
+})
+
+describe('the updateAccount Mutation', () => {
+  it('should return the account when it is updated', async () => {
+    const fakeAccount = {
+      accountIdentifier: faker.random.uuid(),
+      name: faker.name.findName(),
+      userName: faker.internet.email(),
+    }
+
+    await runQuery(`INSERT INTO ${tableName}(accountIdentifier)
+    VALUES ('${fakeAccount.accountIdentifier}')`)
+
+    const source = `
+    mutation {
+      updateAccount(
+        accountIdentifier: "${fakeAccount.accountIdentifier}"
+        input: { 
+          name: "${fakeAccount.name}" 
+          userName: "${fakeAccount.userName}" 
+        }
+      ) {
+        __typename
+        ... on Account {
+          name
+          userName
+        }
+      }
+    }
+    `
+    const { data, errors } = await callGraphql({ source })
+    expect(errors).toBeUndefined()
+    expect(data).toEqual({
+      updateAccount: {
+        __typename: 'Account',
+        name: fakeAccount.name,
+        userName: fakeAccount.userName,
+      },
     })
   })
 })

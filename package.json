@@ -10,8 +10,8 @@
     "graphql-request": "^2.0.0",
     "jest": "^26.1.0",
     "ts-jest": "^26.1.1",
-    "ts-node-dev": "^1.0.0-pre.49",
-    "typescript": "^3.9.5"
+    "ts-node-dev": "^1.0.0-pre.50",
+    "typescript": "^3.9.6"
   },
   "dependencies": {
     "apollo-server": "^2.15.1",
@@ -27,7 +27,7 @@
   },
   "scripts": {
     "start": "ts-node --transpile-only src/index.ts",
-    "test": "env-cmd -e dev jest --runInBand",
+    "test": "env-cmd -e dev jest",
     "test-watch": "jest --coverage --watchAll",
     "view-coverage": "serve coverage/lcov-report",
     "dev": "env-cmd -e dev ts-node-dev --log-error --type-check --respawn src/index.ts",
