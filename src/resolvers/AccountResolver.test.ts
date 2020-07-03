@@ -176,7 +176,7 @@ describe('the addAccount Mutation', () => {
       expect(data).toBeUndefined()
       expect(errors).toMatchObject([
         {
-          message: `Field \"AccountInput.accountIdentifier\" of required type \"String!\" was not provided.`,
+          message: `Field \"AccountAddInput.accountIdentifier\" of required type \"String!\" was not provided.`,
         },
       ])
     })
@@ -267,6 +267,56 @@ describe('the updateAccount Mutation', () => {
       expect(errors).toBeUndefined()
       expect(data).toEqual({
         updateAccount: { __typename: 'NotFound' },
+      })
+    })
+  })
+})
+
+describe('the removeAccount Mutation', () => {
+  it('should remove an account', async () => {
+    const fakeAccount = {
+      accountIdentifier: faker.random.uuid(),
+    }
+
+    await runQuery(`INSERT INTO ${tableName}(accountIdentifier)
+    VALUES ('${fakeAccount.accountIdentifier}')`)
+
+    const source = `
+    mutation {
+      removeAccount(
+        accountIdentifier: "${fakeAccount.accountIdentifier}"
+      ) {
+        __typename
+      }
+    }
+    `
+    const { data, errors } = await callGraphql({ source })
+    expect(errors).toBeUndefined()
+    expect(data).toEqual({
+      removeAccount: {
+        __typename: 'Success',
+      },
+    })
+  })
+  describe('should report an error', () => {
+    it('when  the account is not found', async () => {
+      const fakeAccount = {
+        accountIdentifier: faker.random.uuid(),
+      }
+
+      const source = `
+      mutation {
+        removeAccount(
+          accountIdentifier: "${fakeAccount.accountIdentifier}"
+        ) {
+          __typename
+        }
+      }
+      `
+      const { data, errors } = await callGraphql({ source })
+      expect(errors).toBeUndefined()
+      expect(data).toEqual({
+        removeAccount: { __typename: 'NotFound' },
       })
     })
   })

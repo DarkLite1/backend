@@ -13,28 +13,28 @@ import { plainToClass } from 'class-transformer'
 import { MaxLength } from 'class-validator'
 
 @ObjectType()
-class ExistsAlready {
+class Error {
   @Field()
   message: string
+}
 
+@ObjectType()
+class NotFound extends Error {}
+
+@ObjectType()
+class Success {
   @Field()
-  accountIdentifier: string
+  message: string
+}
 
+@ObjectType()
+class ExistsAlready extends Error {
   @Field()
   account: Account
 }
 
-@ObjectType()
-class NotFound {
-  @Field()
-  message: string
-
-  @Field()
-  accountIdentifier: string
-}
-
 @InputType()
-class AccountInput {
+class AccountAddInput {
   @MaxLength(50)
   @Field()
   accountIdentifier: string
@@ -51,11 +51,11 @@ class AccountInput {
 @InputType()
 class AccountUpdateInput {
   @MaxLength(100)
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   name?: string
 
   @MaxLength(100)
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   userName?: string
 }
 
@@ -69,11 +69,16 @@ const AccountUpdateResultUnion = createUnionType({
   types: () => [Account, NotFound] as const,
 })
 
+const AccountRemoveResultUnion = createUnionType({
+  name: 'AccountRemoveResult',
+  types: () => [Success, NotFound] as const,
+})
+
 @Resolver()
 export class AccountResolver {
   @Mutation(() => AccountAddResultUnion)
   async addAccount(
-    @Arg('options', () => AccountInput) options: AccountInput
+    @Arg('options', () => AccountAddInput) options: AccountAddInput
   ): Promise<typeof AccountAddResultUnion> {
     try {
       const account = await Account.findOne({
@@ -82,8 +87,7 @@ export class AccountResolver {
 
       if (account) {
         return plainToClass(ExistsAlready, {
-          message: `Cannot add duplicate accounts: an account with accountIdentifier '${options.accountIdentifier}' already exists.`,
-          accountIdentifier: options.accountIdentifier,
+          message: `An account with accountIdentifier '${options.accountIdentifier}' already exists.`,
           account: account,
         })
       }
@@ -103,20 +107,28 @@ export class AccountResolver {
       const account = await Account.findOne({ accountIdentifier })
       if (account) return account
       return plainToClass(NotFound, {
-        message: 'Account not found',
-        accountIdentifier: accountIdentifier,
+        message: `No account found with accountIdentifier '${accountIdentifier}'`,
       })
     } catch (error) {
       throw new Error('account not found')
     }
   }
 
-  @Mutation(() => Boolean)
+  @Mutation(() => AccountRemoveResultUnion)
   async removeAccount(
     @Arg('accountIdentifier', () => String) accountIdentifier: string
   ) {
-    await Account.delete({ accountIdentifier })
-    return true
+    const account = await Account.findOne({ accountIdentifier })
+    if (account) {
+      await Account.delete({ accountIdentifier })
+      return plainToClass(Success, {
+        message: `Account with accountIdentifier '${accountIdentifier}' removed`,
+      })
+    } else {
+      return plainToClass(NotFound, {
+        message: `No account found with accountIdentifier '${accountIdentifier}'`,
+      })
+    }
   }
 
   @Query(() => [Account])
