@@ -93,7 +93,7 @@ export class AccountResolver {
       }
       return await Account.create(options).save()
     } catch (error) {
-      throw new Error(`Failed adding account: ${error}`)
+      throw `Failed adding account: ${error}`
     }
   }
 
@@ -110,7 +110,7 @@ export class AccountResolver {
         message: `No account found with accountIdentifier '${accountIdentifier}'`,
       })
     } catch (error) {
-      throw new Error('account not found')
+      throw 'account not found'
     }
   }
 

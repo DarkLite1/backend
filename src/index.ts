@@ -8,15 +8,16 @@ import { getApolloServer } from '@utils/apollo'
   try {
     await createConnections()
   } catch (error) {
-    console.log('Failed creating database connections: ', error)
+    console.error(`Failed creating database connections: ${error}`)
+    process.exit(1)
   }
 
   try {
     const server = await getApolloServer()
-
     const response = await server.listen({ port: ENVIRONMENT.port })
     console.log(`Server ready at ${response.url}`)
   } catch (error) {
-    console.log('Failed starting server: ', error)
+    console.error(`Failed starting server: ${error}`)
+    process.exit(1)
   }
 })()
