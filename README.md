@@ -6,7 +6,7 @@ This is a backend server that can be used with Graphql queries and mutations to 
 
 ### Install the dependencies
 ```bash
-npm install
+yarn
 ```
 
 ## Different modes
@@ -16,7 +16,7 @@ npm install
 Connect to the test database and run the graphql server in development mode.
 
 ```bash
-npm run dev
+yarn dev
 ```
 
 ### Start the app for production
@@ -24,7 +24,7 @@ npm run dev
 Start the application in production mode. This will read the environment variables and use them to start up the graphql server on the correct port and the connections to the production databases.
 
 ```bash
-npm run start
+yarn start
 ```
 
 ## Running tests
@@ -34,12 +34,12 @@ npm run start
 Run end-to-end tests against the graphql endpoints, aka resolvers. These tests will use the test database and directly consume the Graphql schema without the need to start a test server.
 
 ```bash
-npm run test
+yarn test
 ```
 
 ## Handle database changes
 
-When working in development mode with `npm run dev` changes to the database structure might be required. Every change to the database schema within the code needs to be applied to the database as well. 
+When working in development mode with `yarn dev` changes to the database structure might be required. Every change to the database schema within the code needs to be applied to the database as well. 
 
 As a first step, changes are applied to the test database only (step 1 & 2). When they seem to be correct they can then be applied to the production database (step 3).
 
@@ -50,19 +50,19 @@ It is best practice to run the procedure below for every single change to the da
 1. Generate a migration file with the name of the change
 
     ```bash
-    npm run typeorm-migration-generate -- --n="removeColumnTitle"
+    yarn typeorm-migration-generate -- --n="removeColumnTitle"
     ```
 
 2. Apply the changes to the test database
 
    ```bash
-   npm run typeorm-migration-run
+   yarn typeorm-migration-run
    ```
 
 3. Apply the changes to the production database
 
    ```bash
-   npm run typeorm-migration-run-prod
+   yarn typeorm-migration-run-prod
    ```
 
 ### Other database actions
@@ -70,11 +70,11 @@ It is best practice to run the procedure below for every single change to the da
 - Revert the last executed migration:
 
 ```bash
-npm run typeorm-migration-revert
+yarn typeorm-migration-revert
 ```
 
 - Show all migrations and whether they have been run or not
 
 ```bash
-npm run typeorm-migration-show
+yarn typeorm-migration-show
 ```
