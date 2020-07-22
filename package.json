@@ -1,5 +1,6 @@
 {
   "name": "graphql-backend",
+  "license": "UNLICENSED",
   "version": "0.0.1",
   "devDependencies": {
     "@types/faker": "^4.1.12",
