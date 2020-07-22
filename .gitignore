@@ -4,3 +4,4 @@ database.sqlite
 .env-cmdrc.json
 src/**/*.map
 coverage
+yarn.lock

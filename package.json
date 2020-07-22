@@ -14,9 +14,10 @@
     "typescript": "^3.9.6"
   },
   "dependencies": {
-    "apollo-server": "^2.15.1",
+    "apollo-server-express": "^2.16.0",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.12.2",
+    "express": "^4.17.1",
     "graphql": "^15.3.0",
     "mssql": "^6.2.0",
     "passport": "^0.4.1",

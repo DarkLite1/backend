@@ -1,4 +1,4 @@
-import { ApolloServer } from 'apollo-server'
+import { ApolloServer } from 'apollo-server-express'
 import { buildSchema } from 'type-graphql'
 import { AccountResolver } from '@resolvers/AccountResolver'
 import { PreferenceResolver } from '@resolvers/PreferenceResolver'
