@@ -16,7 +16,8 @@ const app = express()
     }
 
     const server = await getApolloServer()
-    server.applyMiddleware({ app, cors: false })
+    server.applyMiddleware({ app })
+
     app
       .listen({ port: ENVIRONMENT.port }, () => {
         console.log(
