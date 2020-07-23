@@ -850,6 +850,21 @@
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
   integrity sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==
 
+"@types/passport-azure-ad@^4.0.7":
+  version "4.0.7"
+  resolved "https://registry.yarnpkg.com/@types/passport-azure-ad/-/passport-azure-ad-4.0.7.tgz#39d9b4c5859b028cfedb13b762bfd1a6aae30dc4"
+  integrity sha512-5O0OspIhlOyQA20kZoEW+8/8zmFa1StkzshZ/+QDapcmfb3AJb3N9wUq3trpWRHwpXUSyZMsqTvc7bYtBIRcPg==
+  dependencies:
+    "@types/express" "*"
+    "@types/passport" "*"
+
+"@types/passport@*", "@types/passport@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@types/passport/-/passport-1.0.4.tgz#1b35c4e197560d3974fa5f71711b6e9cce0711f0"
+  integrity sha512-h5OfAbfBBYSzjeU0GTuuqYEk9McTgWeGQql9g3gUw2/NNCfD7VgExVRYJVVeU13Twn202Mvk9BT0bUrl30sEgA==
+  dependencies:
+    "@types/express" "*"
+
 "@types/prettier@^2.0.0":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.0.2.tgz#5bb52ee68d0f8efa9cc0099920e56be6cc4e37f3"
@@ -1873,7 +1888,7 @@ core-util-is@1.0.2:
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
 
-cors@^2.8.4:
+cors@^2.8.4, cors@^2.8.5:
   version "2.8.5"
   resolved "https://registry.yarnpkg.com/cors/-/cors-2.8.5.tgz#eac11da51592dd86b9f06f6e7ac293b3df875d29"
   integrity sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==
