@@ -2,13 +2,25 @@ import 'reflect-metadata'
 import 'tsconfig-paths/register'
 import express from 'express'
 import passport from 'passport'
-import { BearerStrategy } from 'passport-azure-ad'
+import {
+  BearerStrategy,
+  IBearerStrategyOptionWithRequest,
+} from 'passport-azure-ad'
 import { ENVIRONMENT } from '@environment'
 import { createConnections } from 'typeorm'
 import { getApolloServer } from '@utils/apollo'
 import cors from 'cors'
 
 const app = express()
+
+// const config: IBearerStrategyOptionWithRequest = {
+//   identityMetadata:
+//     'https://login.microsoftonline.com/57952406-af28-43c8-b4de-a4e06f57476d/v2.0/.well-known/openid-configuration',
+//   clientID: '0e01a2d8-64bb-4c3b-a75d-939aa5d8d361',
+//   validateIssuer: false,
+//   loggingLevel: 'info',
+//   passReqToCallback: false,
+// }
 
 const bearerStrategy = new BearerStrategy(
   {
@@ -33,21 +45,6 @@ app.use(
   (req, res, next) => {
     console.log('User info: ', req.user)
     console.log('Validated claims: ', req.authInfo)
-
-    // if (req.authInfo['scp'].split(' ').indexOf('demo.read') >= 0) {
-    //   // Service relies on the name claim.
-    //   res.status(200).json({
-    //     'request-for': 'access_token',
-    //     'requested-by': req.authInfo['name'],
-    //     'issued-by': req.authInfo['iss'],
-    //     'issued-for': req.authInfo['aud'],
-    //     scope: req.authInfo['scp'],
-    //   })
-    //   // next()
-    // } else {
-    //   console.log('Invalid Scope, 403')
-    //   res.status(403).json({ error: 'insufficient_scope' })
-    // }
     next()
   }
 )

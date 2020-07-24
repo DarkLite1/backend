@@ -37,7 +37,7 @@
     "test": "env-cmd -e dev jest",
     "test-watch": "env-cmd -e dev jest --coverage --watchAll",
     "view-coverage": "serve coverage/lcov-report",
-    "dev": "env-cmd -e dev ts-node-dev --log-error --respawn src/index.ts",
+    "dev": "env-cmd -e dev ts-node-dev --no-notify --log-error --respawn src/index.ts",
     "prod": "env-cmd -e prod ts-node --transpile-only src/index.ts",
     "typeorm-migration-generate": "env-cmd -e dev ts-node ./node_modules/typeorm/cli.js migration:generate",
     "typeorm-migration-run": "env-cmd -e dev ts-node ./node_modules/typeorm/cli.js migration:run",
