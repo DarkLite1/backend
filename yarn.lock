@@ -826,9 +826,9 @@
     form-data "^3.0.0"
 
 "@types/node@*", "@types/node@^14.0.11":
-  version "14.0.25"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.25.tgz#7ad8b00a1206d6c9e94810e49f3115f0bcc30456"
-  integrity sha512-okMqUHqrMlGOxfDZliX1yFX5MV6qcd5PpRz96XYtjkM0Ws/hwg23FMUqt6pETrVRZS+EKUB5HY19mmo54EuQbA==
+  version "14.0.26"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.26.tgz#22a3b8a46510da8944b67bfc27df02c34a35331c"
+  integrity sha512-W+fpe5s91FBGE0pEa0lnqGLL4USgpLgs4nokw16SrBBco/gQxuua7KnArSEOd5iaMqbbSHV10vUDkJYJJqpXKA==
 
 "@types/node@^10.1.0":
   version "10.17.28"
@@ -836,9 +836,9 @@
   integrity sha512-dzjES1Egb4c1a89C7lKwQh8pwjYmlOAG9dW1pBgxEk57tMrLnssOfEthz8kdkNaBd7lIqQx7APm5+mZ619IiCQ==
 
 "@types/node@^12.12.17", "@types/node@^12.12.50":
-  version "12.12.52"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.52.tgz#ed7a845116bf496a9937228cb9c2a0f74092aeb1"
-  integrity sha512-oNJSI5bzuAH4f4I5JatPf4jytM6vQPWMw8JDOH68mNMyOmSqBkctHBfsyaBU3Su+dhYd8E+tDtPJWUXsyO5Msg==
+  version "12.12.53"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.53.tgz#be0d375933c3d15ef2380dafb3b0350ea7021129"
+  integrity sha512-51MYTDTyCziHb70wtGNFRwB4l+5JNvdqzFSkbDvpbftEgVUBEE+T5f7pROhWMp/fxp07oNIEQZd5bbfAH22ohQ==
 
 "@types/node@^8.0.47":
   version "8.10.62"
@@ -871,9 +871,9 @@
   integrity sha512-IkVfat549ggtkZUthUzEX49562eGikhSYeVGX97SkMFn+sTZrgRewXjQ4tPKFPCykZHkX1Zfd9OoELGqKU2jJA==
 
 "@types/qs@*":
-  version "6.9.3"
-  resolved "https://registry.yarnpkg.com/@types/qs/-/qs-6.9.3.tgz#b755a0934564a200d3efdf88546ec93c369abd03"
-  integrity sha512-7s9EQWupR1fTc2pSMtXRQ9w9gLOcrJn+h7HOXw4evxyvVqMi4f+q7d2tnFe3ng3SNHjtK+0EzGMGFUQX4/AQRA==
+  version "6.9.4"
+  resolved "https://registry.yarnpkg.com/@types/qs/-/qs-6.9.4.tgz#a59e851c1ba16c0513ea123830dd639a0a15cb6a"
+  integrity sha512-+wYo+L6ZF6BMoEjtf8zB2esQsqdV6WsjRK/GP9WOgLPrq87PbNWgIxS76dS5uvl/QXtHGakZmwTznIfcPXcKlQ==
 
 "@types/range-parser@*":
   version "1.2.3"
@@ -5482,9 +5482,9 @@ ts-jest@^26.1.1:
     yargs-parser "18.x"
 
 ts-node-dev@^1.0.0-pre.51:
-  version "1.0.0-pre.55"
-  resolved "https://registry.yarnpkg.com/ts-node-dev/-/ts-node-dev-1.0.0-pre.55.tgz#2e98fd98ef74a79c72b2216dfdc816d7b09d6a89"
-  integrity sha512-neO1DMYZg4emFK9tj8mKZyv5OO9O/8wbxf302cQSSCe2JThEqCeoR+wp9JivtSbaWkJ5e9BPbYQzQFCRtrpj9g==
+  version "1.0.0-pre.56"
+  resolved "https://registry.yarnpkg.com/ts-node-dev/-/ts-node-dev-1.0.0-pre.56.tgz#b74c0d1db2d98f005ad73f9eaa0a3c0a231f14da"
+  integrity sha512-+2a3FAShOja+W5X6ZxKgf1PG3kOOkHCiYzSu6s3lwhLVxeMBusJudcv7W6cZKOTp7+L7hPkKW97t1CGw7bCDaA==
   dependencies:
     chokidar "^3.4.0"
     dateformat "~1.0.4-1.2.3"
@@ -5916,9 +5916,9 @@ xpath.js@~1.1.0:
   integrity sha512-jg+qkfS4K8E7965sqaUl8mRngXiKb3WZGfONgE18pr03FUQiuSV6G+Ej4tS55B+rIQSFEIw3phdVAQ4pPqNWfQ==
 
 xss@^1.0.6:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/xss/-/xss-1.0.7.tgz#a554cbd5e909324bd6893fb47fff441ad54e2a95"
-  integrity sha512-A9v7tblGvxu8TWXQC9rlpW96a+LN1lyw6wyhpTmmGW+FwRMactchBR3ROKSi33UPCUcUHSu8s9YP6F+K3Mw//w==
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/xss/-/xss-1.0.8.tgz#32feb87feb74b3dcd3d404b7a68ababf10700535"
+  integrity sha512-3MgPdaXV8rfQ/pNn16Eio6VXYPTkqwa0vc7GkiymmY/DqR1SE/7VPAAVZz1GJsJFrllMYO3RHfEaiUGjab6TNw==
   dependencies:
     commander "^2.20.3"
     cssfilter "0.0.10"

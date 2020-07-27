@@ -39,12 +39,13 @@ passport.use(bearerStrategy)
 
 app.use(
   passport.authenticate('oauth-bearer', { session: false }),
-  (req, res, next) => {
+  (req, _res, next) => {
     console.log('User info: ', req.user)
     console.log('Validated claims: ', req.authInfo)
     next()
   }
 )
+
 ;(async () => {
   try {
     try {
