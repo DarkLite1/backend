@@ -4,6 +4,7 @@ import {
   ITokenPayload,
 } from 'passport-azure-ad'
 import { ENVIRONMENT } from '@environment'
+import { Account } from '@it-portal/entity/Account'
 
 const config: IBearerStrategyOptionWithRequest = {
   identityMetadata: ENVIRONMENT.azure.identityMetadata,
@@ -15,11 +16,20 @@ const config: IBearerStrategyOptionWithRequest = {
 
 export const bearerStrategy = new BearerStrategy(
   config,
-  (token: ITokenPayload, done: CallableFunction) => {
-    // Send user info using the second argument
-    const user = {
-      name: 'bob',
-    }
-    return done(null, user, token)
+  async (token: ITokenPayload, done: CallableFunction) => {
+    if (!token.oid) return console.error('token oid missing')
+
+    let account
+
+    account = await Account.findOne({ accountIdentifier: token.oid })
+    if (account) return done(null, account, token)
+
+    account = new Account()
+    account.accountIdentifier = token.oid
+    account.name = token.name
+    account.userName = (token as any).preferred_username
+    const newAccount = await account.save()
+
+    return done(null, newAccount, token)
   }
 )
