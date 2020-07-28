@@ -15,8 +15,8 @@ import cors from 'cors'
 const config: IBearerStrategyOptionWithRequest = {
   identityMetadata: ENVIRONMENT.azure.identityMetadata,
   clientID: ENVIRONMENT.azure.clientID,
-  validateIssuer: false,
-  loggingLevel: 'info',
+  validateIssuer: ENVIRONMENT.mode === 'production',
+  loggingLevel: ENVIRONMENT.mode === 'production' ? 'warn' : 'info',
   passReqToCallback: false,
 }
 
