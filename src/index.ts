@@ -12,10 +12,6 @@ import { createConnections } from 'typeorm'
 import { getApolloServer } from '@utils/apollo'
 import cors from 'cors'
 
-const app = express()
-
-app.use(express.urlencoded({ extended: true }))
-
 const config: IBearerStrategyOptionWithRequest = {
   identityMetadata:
     'https://login.microsoftonline.com/57952406-af28-43c8-b4de-a4e06f57476d/v2.0/.well-known/openid-configuration',
@@ -29,10 +25,16 @@ const bearerStrategy = new BearerStrategy(
   config,
   (token: ITokenPayload, done: CallableFunction) => {
     // Send user info using the second argument
-    return done(null, {}, token)
+    const user = {
+      name: 'bob',
+    }
+    return done(null, user, token)
   }
 )
 
+const app = express()
+
+app.use(express.urlencoded({ extended: true }))
 app.use(cors({ origin: true }))
 app.use(passport.initialize())
 passport.use(bearerStrategy)
@@ -45,7 +47,6 @@ app.use(
     next()
   }
 )
-
 ;(async () => {
   try {
     try {
