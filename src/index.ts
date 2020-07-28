@@ -13,9 +13,8 @@ import { getApolloServer } from '@utils/apollo'
 import cors from 'cors'
 
 const config: IBearerStrategyOptionWithRequest = {
-  identityMetadata:
-    'https://login.microsoftonline.com/57952406-af28-43c8-b4de-a4e06f57476d/v2.0/.well-known/openid-configuration',
-  clientID: '0e01a2d8-64bb-4c3b-a75d-939aa5d8d361',
+  identityMetadata: ENVIRONMENT.azure.identityMetadata,
+  clientID: ENVIRONMENT.azure.clientID,
   validateIssuer: false,
   loggingLevel: 'info',
   passReqToCallback: false,

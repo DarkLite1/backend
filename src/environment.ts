@@ -10,6 +10,10 @@ export const ENVIRONMENT = {
       password: process.env.DB_IT_PORTAL_PASSWORD,
     },
   },
+  azure: {
+    clientID: process.env.AZURE_CLIENT_ID || '',
+    identityMetadata: process.env.AZURE_IDENTITY_METADATA || '',
+  },
 }
 
-// console.dir(ENVIRONMENT)
+console.dir(ENVIRONMENT)
