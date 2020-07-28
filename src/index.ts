@@ -2,34 +2,11 @@ import 'reflect-metadata'
 import 'tsconfig-paths/register'
 import express from 'express'
 import passport from 'passport'
-import {
-  BearerStrategy,
-  IBearerStrategyOptionWithRequest,
-  ITokenPayload,
-} from 'passport-azure-ad'
 import { ENVIRONMENT } from '@environment'
 import { createConnections } from 'typeorm'
 import { getApolloServer } from '@utils/apollo'
+import { bearerStrategy } from '@utils/passport'
 import cors from 'cors'
-
-const config: IBearerStrategyOptionWithRequest = {
-  identityMetadata: ENVIRONMENT.azure.identityMetadata,
-  clientID: ENVIRONMENT.azure.clientID,
-  validateIssuer: ENVIRONMENT.mode === 'production',
-  loggingLevel: ENVIRONMENT.mode === 'production' ? 'warn' : 'info',
-  passReqToCallback: false,
-}
-
-const bearerStrategy = new BearerStrategy(
-  config,
-  (token: ITokenPayload, done: CallableFunction) => {
-    // Send user info using the second argument
-    const user = {
-      name: 'bob',
-    }
-    return done(null, user, token)
-  }
-)
 
 const app = express()
 
