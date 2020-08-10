@@ -1,6 +1,7 @@
 import {
   Entity,
   PrimaryGeneratedColumn,
+  PrimaryColumn,
   Column,
   BaseEntity,
   Index,
@@ -20,7 +21,8 @@ export class Account extends BaseEntity {
   id: number
 
   @Field()
-  @Column({ length: 50, unique: true })
+  // @Column({ length: 50, unique: true })
+  @PrimaryColumn({ unique: true })
   @Index({ unique: true })
   accountIdentifier: string
 
