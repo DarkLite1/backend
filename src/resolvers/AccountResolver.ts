@@ -7,10 +7,12 @@ import {
   Field,
   ObjectType,
   createUnionType,
+  Ctx,
 } from 'type-graphql'
 import { Account } from '@it-portal/entity/Account'
 import { plainToClass } from 'class-transformer'
 import { MaxLength } from 'class-validator'
+import { Context } from 'vm'
 
 @ObjectType()
 class Error {
@@ -132,9 +134,16 @@ export class AccountResolver {
   }
 
   @Query(() => [Account])
-  accounts() {
+  accounts(@Ctx() ctx: Context) {
+    const user = ctx.getUser()
+    console.dir(user)
     return Account.find()
   }
+
+  // @Query(() => [Account])
+  // accounts() {
+  //   return Account.find()
+  // }
 
   @Query(() => Account)
   account(@Arg('accountIdentifier', () => String) accountIdentifier: string) {
