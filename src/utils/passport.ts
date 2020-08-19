@@ -5,12 +5,14 @@ import {
 } from 'passport-azure-ad'
 import { ENVIRONMENT } from '@environment'
 import { Account } from '@it-portal/entity/Account'
+import passport from 'passport'
 
 const config: IBearerStrategyOptionWithRequest = {
   identityMetadata: ENVIRONMENT.azure.identityMetadata,
   clientID: ENVIRONMENT.azure.clientID,
   validateIssuer: ENVIRONMENT.mode === 'production',
-  loggingLevel: ENVIRONMENT.mode === 'production' ? 'warn' : 'info',
+  loggingLevel: 'warn',
+  // loggingLevel: ENVIRONMENT.mode === 'production' ? 'warn' : 'info',
   passReqToCallback: false,
 }
 
@@ -36,3 +38,13 @@ export const bearerStrategy = new BearerStrategy(
     }
   }
 )
+
+export const getUser = (req: Express.Request, res: Express.Response) =>
+  new Promise((resolve, reject) => {
+    passport.authenticate('oauth-bearer', { session: false }, (err, user) => {
+      if (err) reject(err)
+      resolve(user)
+      // if (user) resolve(user)
+      // else reject('Unauthorized')
+    })(req, res)
+  })

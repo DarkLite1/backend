@@ -133,17 +133,15 @@ export class AccountResolver {
     }
   }
 
-  @Query(() => [Account])
-  accounts(@Ctx() ctx: Context) {
-    const user = ctx.getUser()
-    console.dir(user)
-    return Account.find()
+  @Query(() => Account)
+  currentUser(@Ctx() ctx: Context) {
+    return ctx.user
   }
 
-  // @Query(() => [Account])
-  // accounts() {
-  //   return Account.find()
-  // }
+  @Query(() => [Account])
+  accounts() {
+    return Account.find()
+  }
 
   @Query(() => Account)
   account(@Arg('accountIdentifier', () => String) accountIdentifier: string) {

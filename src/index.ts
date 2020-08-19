@@ -12,34 +12,9 @@ const app = express()
 
 app.use(express.urlencoded({ extended: true }))
 app.use(cors({ origin: true }))
-
 app.use(passport.initialize())
+
 passport.use(bearerStrategy)
-
-app.use(
-  passport.authenticate('oauth-bearer', { session: false }),
-  (req, _res, next) => {
-    console.log('User info: ', req.user)
-    console.log('Validated claims: ', req.authInfo)
-    next()
-  }
-)
-
-// if (ENVIRONMENT.mode === 'production') {
-//   app.use(passport.initialize())
-//   passport.use(bearerStrategy)
-
-//   app.use(
-//     passport.authenticate('oauth-bearer', { session: false }),
-//     (req, _res, next) => {
-//       console.log('User info: ', req.user)
-//       console.log('Validated claims: ', req.authInfo)
-//       next()
-//     }
-//   )
-// } else {
-//   console.warn('WARNING: Azure AD authentication disabled')
-// }
 ;(async () => {
   try {
     try {
