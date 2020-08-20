@@ -12,7 +12,6 @@ const config: IBearerStrategyOptionWithRequest = {
   clientID: ENVIRONMENT.azure.clientID,
   validateIssuer: ENVIRONMENT.mode === 'production',
   loggingLevel: 'warn',
-  // loggingLevel: ENVIRONMENT.mode === 'production' ? 'warn' : 'info',
   passReqToCallback: false,
 }
 
@@ -39,12 +38,14 @@ export const bearerStrategy = new BearerStrategy(
   }
 )
 
-export const getUser = (req: Express.Request, res: Express.Response) =>
+export const getUser = (
+  req: Express.Request,
+  res: Express.Response
+): Promise<Account> =>
   new Promise((resolve, reject) => {
     passport.authenticate('oauth-bearer', { session: false }, (err, user) => {
       if (err) reject(err)
-      resolve(user)
-      // if (user) resolve(user)
-      // else reject('Unauthorized')
+      if (user) resolve(user)
+      else reject('Access denied')
     })(req, res)
   })

@@ -24,20 +24,16 @@ export const getApolloServer = async () => {
   return new ApolloServer({
     schema: await getSchema(),
     context: async ({ req, res }) => {
-      // try {
-      const user = await getUser(req, res)
-      if (!user) throw new AuthenticationError('No user logged in')
-      console.log('User found', user)
-
-      return {
-        user,
+      try {
+        const user = await getUser(req, res)
+        // console.log('User found', user)
+        return {
+          user,
+        }
+      } catch (error) {
+        // console.log('Failed creating the context: ', error)
+        throw new AuthenticationError(error)
       }
-      // } catch (error) {
-      //   console.log('error detected: ', error);
-
-      //   throw new AuthenticationError(`Error detected: ${error}`)
-      // }
-      // if (!user) throw new AuthenticationError('No user logged in')
     },
     introspection: playgroundEnabled,
     playground: playgroundEnabled,
