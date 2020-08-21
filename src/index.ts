@@ -1,20 +1,14 @@
 import 'reflect-metadata'
 import 'tsconfig-paths/register'
 import express from 'express'
-import passport from 'passport'
 import { ENVIRONMENT } from '@environment'
 import { createConnections } from 'typeorm'
 import { getApolloServer } from '@utils/apollo'
-import { bearerStrategy } from '@utils/passport'
 import cors from 'cors'
 
 const app = express()
 
-app.use(express.urlencoded({ extended: true }))
 app.use(cors({ origin: true }))
-app.use(passport.initialize())
-
-passport.use(bearerStrategy)
 ;(async () => {
   try {
     try {

@@ -15,7 +15,7 @@ const config: IBearerStrategyOptionWithRequest = {
   passReqToCallback: false,
 }
 
-export const bearerStrategy = new BearerStrategy(
+const bearerStrategy = new BearerStrategy(
   config,
   async (token: ITokenPayload, done: CallableFunction) => {
     try {
@@ -49,3 +49,5 @@ export const getUser = (
       else reject('Access denied')
     })(req, res)
   })
+
+passport.use(bearerStrategy)
