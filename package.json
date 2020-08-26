@@ -9,7 +9,7 @@
     "@types/passport": "^1.0.4",
     "@types/passport-azure-ad": "^4.0.7",
     "env-cmd": "^10.1.0",
-    "faker": "^4.1.0",
+    "faker": "^5.0.0",
     "graphql-request": "^3.0.0",
     "jest": "^26.3.0",
     "ts-jest": "^26.1.4",

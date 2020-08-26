@@ -164,7 +164,7 @@ describe('the addAccount Mutation', () => {
         addAccount(
           options: {
             name: "${faker.name}"
-            userName: "${faker.internet.email}"
+            userName: "${faker.internet.email()}"
           }
         ) {
           __typename
