@@ -23,7 +23,7 @@ const corsOptionsDelegate = function (
   callback(null, corsOptions) // callback expects two parameters: error and options
 }
 
-app.use(cors(corsOptionsDelegate))
+app.use('*',cors(corsOptionsDelegate))
 
 // app.use((_, res, next) => {
 //     res.header('Access-Control-Allow-Origin', 'http://localhost:8080')
