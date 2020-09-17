@@ -9,6 +9,7 @@ import cors from 'cors'
 const app = express()
 
 app.use(cors({ origin: true }))
+app.options('*', cors()) 
 ;(async () => {
   try {
     try {
