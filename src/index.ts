@@ -15,7 +15,15 @@ const app = express()
 //     next()
 //   })
 
-app.use(cors())
+app.use(
+  cors({
+    // origin: 'http://localhost:8080',
+    origin: ['http://localhost:8080', /\.heidelbergcement\.com$/],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false,
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  })
+)
 // app.use(cors({ origin: true }))
 // app.options('*', cors({origin: true}))
 ;(async () => {
