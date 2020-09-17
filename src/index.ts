@@ -8,6 +8,23 @@ import cors from 'cors'
 
 const app = express()
 
+const allowList = ['http://localhost:8080', 'https://hip.heidelbergcement.com']
+
+const corsOptionsDelegate = function (
+  req: Express.Request,
+  callback: CallableFunction
+) {
+  var corsOptions
+  if (allowList.indexOf(req.header('Origin')) !== -1) {
+    corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+  } else {
+    corsOptions = { origin: false } // disable CORS for this request
+  }
+  callback(null, corsOptions) // callback expects two parameters: error and options
+}
+
+app.use(cors(corsOptionsDelegate))
+
 // app.use((_, res, next) => {
 //     res.header('Access-Control-Allow-Origin', 'http://localhost:8080')
 //     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
@@ -15,15 +32,15 @@ const app = express()
 //     next()
 //   })
 
-app.use(
-  cors({
-    // origin: 'http://localhost:8080',
-    origin: ['http://localhost:8080', /\.heidelbergcement\.com$/],
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    preflightContinue: false,
-    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-  })
-)
+// app.use(
+//   cors({
+//     // origin: 'http://localhost:8080',
+//     origin: ['http://localhost:8080', /\.heidelbergcement\.com$/],
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//     preflightContinue: false,
+//     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+//   })
+// )
 // app.use(cors({ origin: true }))
 // app.options('*', cors({origin: true}))
 ;(async () => {
