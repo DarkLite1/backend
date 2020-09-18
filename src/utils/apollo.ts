@@ -12,7 +12,8 @@ export const getSchema = async () => {
   })
 }
 
-const playgroundEnabled = ENVIRONMENT.mode !== 'production'
+// const playgroundEnabled = ENVIRONMENT.mode !== 'production'
+const playgroundEnabled = true
 
 if (!playgroundEnabled) {
   console.log(

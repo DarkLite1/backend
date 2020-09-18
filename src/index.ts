@@ -18,7 +18,7 @@ const corsOptionsDelegate = function (
   if (allowList.indexOf(req.header('Origin')) !== -1) {
     corsOptions = {
       origin: true,
-      allowedHeaders: ['Authorization', 'content-type'],
+      allowedHeaders: ['authorization', 'content-type'],
     } // reflect (enable) the requested origin in the CORS response
   } else {
     corsOptions = { origin: false } // disable CORS for this request
@@ -28,7 +28,7 @@ const corsOptionsDelegate = function (
 
 app.options('*', cors(corsOptionsDelegate))
 app.use(
-  cors({ origin: true, allowedHeaders: ['Authorization', 'content-type'] })
+  cors({ origin: true, allowedHeaders: ['authorization', 'content-type'] })
 )
 
 // app.use((_, res, next) => {
