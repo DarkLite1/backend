@@ -26,7 +26,7 @@ const corsOptionsDelegate = function (
   callback(null, corsOptions) // callback expects two parameters: error and options
 }
 
-app.use('*', cors(corsOptionsDelegate))
+app.options('*', cors(corsOptionsDelegate))
 app.use(
   cors({ origin: true, allowedHeaders: ['Authorization', 'content-type'] })
 )
