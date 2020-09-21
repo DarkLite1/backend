@@ -10,7 +10,11 @@ const app = express()
 
 const corsOptions: CorsOptions = {
   origin: function (origin, callback) {
-    if (ENVIRONMENT.corsWhiteList.indexOf(origin as string) !== -1) {
+    const allowApiCalls = !origin && ENVIRONMENT.mode !== 'production'
+    if (
+      ENVIRONMENT.corsWhiteList.indexOf(origin as string) !== -1 ||
+      allowApiCalls
+    ) {
       callback(null, true)
     } else {
       callback(

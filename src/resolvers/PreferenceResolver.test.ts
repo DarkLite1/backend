@@ -8,8 +8,8 @@ beforeAll(async () => {
   await clearTable(tableName)
 })
 
-describe('the preferences query', () => {
-  it('should return all preferences', async () => {
+describe('the query', () => {
+  it('preferences should return all preferences', async () => {
     const source = `
     query {
       preferences {
