@@ -10,10 +10,10 @@ const app = express()
 
 const corsOptions: CorsOptions = {
   origin: function (origin, callback) {
-    const allowApiCalls = !origin && ENVIRONMENT.mode !== 'production'
     if (
       ENVIRONMENT.corsWhiteList.indexOf(origin as string) !== -1 ||
-      allowApiCalls
+      // allow API calls in dev from Graphql Playground
+      (!origin && ENVIRONMENT.mode !== 'production') 
     ) {
       callback(null, true)
     } else {
