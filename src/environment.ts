@@ -1,5 +1,8 @@
 export const ENVIRONMENT = {
-  mode: process.env.mode === 'production' ? 'production' : 'development',
+  mode:
+    process.env.mode === 'production' || process.env.NODE_ENV === 'production'
+      ? 'production'
+      : 'development',
   port: process.env.PORT || 4000,
   database: {
     'it-portal': {
