@@ -8,7 +8,7 @@ import cors from 'cors'
 
 const app = express()
 
-const corsOptionsDelegate = function (
+const corsOptions = function (
   req: Express.Request,
   callback: CallableFunction
 ) {
@@ -17,17 +17,36 @@ const corsOptionsDelegate = function (
     corsOptions = {
       origin: true,
       allowedHeaders: ['authorization', 'content-type'],
-    } // reflect (enable) the requested origin in the CORS response
+    }
   } else {
-    corsOptions = { origin: false } // disable CORS for this request
+    corsOptions = { origin: false }
   }
   callback(null, corsOptions) // callback expects two parameters: error and options
 }
 
-app.options('*', cors(corsOptionsDelegate))
-app.use(
-  cors({ origin: true, allowedHeaders: ['authorization', 'content-type'] })
-)
+// app.options('*', cors(corsOptions))
+app.use(cors(corsOptions))
+
+// const corsOptionsDelegate = function (
+//   req: Express.Request,
+//   callback: CallableFunction
+// ) {
+//   let corsOptions
+//   if (ENVIRONMENT.corsWhiteList.indexOf(req.header('Origin')) !== -1) {
+//     corsOptions = {
+//       origin: true,
+//       allowedHeaders: ['authorization', 'content-type'],
+//     } // reflect (enable) the requested origin in the CORS response
+//   } else {
+//     corsOptions = { origin: false } // disable CORS for this request
+//   }
+//   callback(null, corsOptions) // callback expects two parameters: error and options
+// }
+
+// app.options('*', cors(corsOptionsDelegate))
+// app.use(
+//   cors({ origin: true, allowedHeaders: ['authorization', 'content-type'] })
+// )
 
 // app.use(
 //   cors({
