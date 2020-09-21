@@ -8,14 +8,12 @@ import cors from 'cors'
 
 const app = express()
 
-const allowList = ['http://localhost:8080', 'https://hip.heidelbergcement.com']
-
 const corsOptionsDelegate = function (
   req: Express.Request,
   callback: CallableFunction
 ) {
   let corsOptions
-  if (allowList.indexOf(req.header('Origin')) !== -1) {
+  if (ENVIRONMENT.corsWhiteList.indexOf(req.header('Origin')) !== -1) {
     corsOptions = {
       origin: true,
       allowedHeaders: ['authorization', 'content-type'],
@@ -30,13 +28,6 @@ app.options('*', cors(corsOptionsDelegate))
 app.use(
   cors({ origin: true, allowedHeaders: ['authorization', 'content-type'] })
 )
-
-// app.use((_, res, next) => {
-//     res.header('Access-Control-Allow-Origin', 'http://localhost:8080')
-//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-//     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-//     next()
-//   })
 
 // app.use(
 //   cors({

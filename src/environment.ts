@@ -14,6 +14,15 @@ export const ENVIRONMENT = {
     clientID: process.env.AZURE_CLIENT_ID || '',
     identityMetadata: process.env.AZURE_IDENTITY_METADATA || '',
   },
+  // corsWhiteList: (() =>
+  //   process.env.CORS_WHITELIST
+  //   ? process.env.CORS_WHITELIST.split(",").map((item: string) => item.trim)
+  //   : []
+  // )(),
+  corsWhiteList:
+    typeof process.env.CORS_WHITELIST !== 'undefined'
+      ? process.env.CORS_WHITELIST.split(',').map((item) => item.trim())
+      : [],
 }
 
 // console.dir(ENVIRONMENT)
