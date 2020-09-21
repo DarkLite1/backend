@@ -1,4 +1,4 @@
 {
-    "typescript.tsdk": "node_modules\\typescript\\lib",
+    "typescript.tsdk": "t:\\Test\\Brecht\\Node\\prod\\backend\\node_modules\\typescript\\lib",
     "typescript.preferences.importModuleSpecifier": "non-relative"
 }
