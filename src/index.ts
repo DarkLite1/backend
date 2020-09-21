@@ -4,61 +4,23 @@ import express from 'express'
 import { ENVIRONMENT } from '@environment'
 import { createConnections } from 'typeorm'
 import { getApolloServer } from '@utils/apollo'
-import cors from 'cors'
+import cors, { CorsOptions } from 'cors'
 
 const app = express()
 
-const corsOptions = function (
-  req: Express.Request,
-  callback: CallableFunction
-) {
-  let corsOptions
-  if (ENVIRONMENT.corsWhiteList.indexOf(req.header('Origin')) !== -1) {
-    corsOptions = {
-      origin: true,
-      allowedHeaders: ['authorization', 'content-type'],
+const corsOptions: CorsOptions = {
+  origin: function (origin, callback) {
+    if (ENVIRONMENT.corsWhiteList.indexOf(origin as string) !== -1) {
+      callback(null, true)
+    } else {
+      callback(
+        new Error('Not allowed by CORS, please update the CORS_WHITELIST')
+      )
     }
-  } else {
-    corsOptions = { origin: false }
-  }
-  callback(null, corsOptions) // callback expects two parameters: error and options
+  },
 }
 
-// app.options('*', cors(corsOptions))
 app.use(cors(corsOptions))
-
-// const corsOptionsDelegate = function (
-//   req: Express.Request,
-//   callback: CallableFunction
-// ) {
-//   let corsOptions
-//   if (ENVIRONMENT.corsWhiteList.indexOf(req.header('Origin')) !== -1) {
-//     corsOptions = {
-//       origin: true,
-//       allowedHeaders: ['authorization', 'content-type'],
-//     } // reflect (enable) the requested origin in the CORS response
-//   } else {
-//     corsOptions = { origin: false } // disable CORS for this request
-//   }
-//   callback(null, corsOptions) // callback expects two parameters: error and options
-// }
-
-// app.options('*', cors(corsOptionsDelegate))
-// app.use(
-//   cors({ origin: true, allowedHeaders: ['authorization', 'content-type'] })
-// )
-
-// app.use(
-//   cors({
-//     // origin: 'http://localhost:8080',
-//     origin: ['http://localhost:8080', /\.heidelbergcement\.com$/],
-//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//     preflightContinue: false,
-//     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-//   })
-// )
-// app.use(cors({ origin: true }))
-// app.options('*', cors({origin: true}))
 ;(async () => {
   try {
     try {
