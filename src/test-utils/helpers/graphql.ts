@@ -6,19 +6,16 @@ let schema: GraphQLSchema
 
 interface Options {
   source: string
-  variableValues?: Maybe<{
+  context?: {}
+  variables?: Maybe<{
     [key: string]: any
   }>
 }
 
-export const callGraphql = async ({ source, variableValues }: Options) => {
+export const callGraphql = async ({ source, context, variables }: Options) => {
   if (!schema) {
     schema = await getSchema()
   }
 
-  return await graphql({
-    schema,
-    source,
-    variableValues,
-  })
+  return await graphql(schema, source, null, context, variables)
 }

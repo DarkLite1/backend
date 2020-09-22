@@ -9,17 +9,17 @@ beforeAll(async () => {
 })
 
 describe('the query', () => {
-  it('preferences should return all preferences', async () => {
+  it('viewerPreference should return null when there are no preferences', async () => {
     const source = `
-    query {
-      preferences {
+    query viewerPreference {
+      viewerPreference {
         id
         language
       }
-    }
+    }    
     `
     const { data, errors } = await callGraphql({ source })
     expect(errors).toBeUndefined()
-    expect(data).toMatchObject({ preferences: [] })
+    expect(data).toBeNull()
   })
 })
