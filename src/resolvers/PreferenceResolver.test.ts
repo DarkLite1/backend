@@ -16,9 +16,15 @@ describe('the query', () => {
         id
         language
       }
-    }    
+    }
     `
-    const { data, errors } = await callGraphql({ source })
+    const context = {
+      user: {
+        id: 1,
+      },
+    }
+
+    const { data, errors } = await callGraphql({ source, context })
     expect(errors).toBeUndefined()
     expect(data).toBeNull()
   })
