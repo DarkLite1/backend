@@ -2,11 +2,13 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
+  OneToOne,
   BaseEntity,
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm'
 import { Field, Int, ObjectType } from 'type-graphql'
+import { Account } from '@it-portal/entity/Account'
 
 @ObjectType()
 @Entity()
@@ -15,8 +17,11 @@ export class Preference extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number
 
+  @OneToOne(() => Account, account => account.preference)
+  account: Account
+
   @Field()
-  @Column({ length: 20 })
+  @Column({ length: 5, default: 'en-us' })
   language: string
 
   @CreateDateColumn()
