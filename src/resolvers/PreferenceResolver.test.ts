@@ -5,10 +5,20 @@ import { callGraphql } from '@test-utils/helpers/graphql'
 const tableName = 'preference'
 
 beforeAll(async () => {
-  await clearTable(tableName)
+  await clearTable([tableName, 'account'])
 })
 
 describe('the query', () => {
+  // populate tables with data
+  // const fakeAccount = {
+  //   accountIdentifier: faker.random.uuid(),
+  //   name: faker.name.findName(),
+  //   userName: faker.internet.email(),
+  // }
+
+  // await runQuery(`INSERT INTO ${tableName}(accountIdentifier)
+  // VALUES ('${fakeAccount.accountIdentifier}')`)
+
   it('viewerPreference should return null when there are no preferences', async () => {
     const source = `
     query viewerPreference {
@@ -26,6 +36,6 @@ describe('the query', () => {
 
     const { data, errors } = await callGraphql({ source, context })
     expect(errors).toBeUndefined()
-    expect(data).toBeNull()
+    expect(data).toMatchObject({ viewerPreference: null })
   })
 })

@@ -30,6 +30,7 @@
         "frontends",
         "githubusercontent",
         "heidelbergcement",
+        "lcov",
         "mkdirp",
         "ormconfig",
         "respawn",

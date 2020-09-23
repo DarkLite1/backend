@@ -10,21 +10,28 @@ export const closeDatabaseConnection = async (connectionName = 'default') => {
 }
 
 export const clearTable = async (
-  tableName: string,
+  tableName: string | string[],
   connectionName = 'default'
 ) => {
   try {
     const connection = getConnection(connectionName)
-    await connection.query(`DELETE FROM ${tableName}`)
+
+    if (typeof tableName === 'string') {
+      tableName = [tableName]
+    }
+
+    const promises = tableName.map((table) =>
+      connection.query(`DELETE FROM ${table}`)
+    )
+    await Promise.all(promises)
   } catch (error) {
-    throw new Error(`Failed to clear table '${tableName}' on database '${connectionName}': ${error}`)
+    throw new Error(
+      `Failed to clear table '${tableName}' on database '${connectionName}': ${error}`
+    )
   }
 }
 
-export const runQuery = async (
-  query: string,
-  connectionName = 'default'
-) => {
+export const runQuery = async (query: string, connectionName = 'default') => {
   try {
     const connection = getConnection(connectionName)
     return await connection.query(query)
