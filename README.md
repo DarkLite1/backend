@@ -34,7 +34,8 @@ yarn start
 Run end-to-end tests against the graphql endpoints, aka resolvers. These tests will use the test database and directly consume the Graphql schema without the need to start a test server.
 
 ```bash
-yarn test
+yarn test // run all tests
+yarn test -- "src\\resolvers\\PreferenceResolver.test.ts" // specific file to test
 ```
 
 ## Handle database changes

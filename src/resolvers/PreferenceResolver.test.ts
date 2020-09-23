@@ -1,26 +1,25 @@
-import { clearTable } from '@test-utils/helpers/database'
+import { clearTable, runQuery } from '@test-utils/helpers/database'
 import { callGraphql } from '@test-utils/helpers/graphql'
-// import faker from 'faker'
+import faker from 'faker'
 
 const preferenceTable = 'preference'
 const accountTable = 'account'
 
-beforeAll(async () => {
-  await clearTable([preferenceTable, accountTable])
-})
+describe('the query viewerPreference', () => {
+  const fakeAccountIdentifier = [
+    faker.random.uuid(),
+    faker.random.uuid(),
+    faker.random.uuid(),
+  ]
 
-describe('the query', () => {
-  // populate tables with data
-  // const fakeAccount = {
-  //   accountIdentifier: faker.random.uuid(),
-  //   name: faker.name.findName(),
-  //   userName: faker.internet.email(),
-  // }
+  beforeAll(async () => {
+    await clearTable([preferenceTable, accountTable])
 
-  // await runQuery(`INSERT INTO ${preferenceTable}(accountIdentifier)
-  // VALUES ('${fakeAccount.accountIdentifier}')`)
+    // await runQuery(`INSERT INTO ${accountTable}(accountIdentifier)
+    // VALUES ('${fakeAccountIdentifier[0]}')`)
+  })
 
-  it('viewerPreference should return null when there are no preferences', async () => {
+  it('should return null when there are no preferences for the viewer', async () => {
     const source = `
     query viewerPreference {
       viewerPreference {
@@ -31,7 +30,7 @@ describe('the query', () => {
     `
     const context = {
       user: {
-        id: 1,
+        id: fakeAccountIdentifier[0],
       },
     }
 
