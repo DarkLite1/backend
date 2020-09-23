@@ -2,7 +2,7 @@ import { clearTable, runQuery } from '@test-utils/helpers/database'
 import { callGraphql } from '@test-utils/helpers/graphql'
 import faker from 'faker'
 
-const tableName = 'account'
+const accountTable = 'account'
 
 describe('the Query', () => {
   const fakeAccountIdentifier = [
@@ -12,9 +12,9 @@ describe('the Query', () => {
   ]
 
   beforeAll(async () => {
-    await clearTable(tableName)
+    await clearTable([accountTable])
 
-    await runQuery(`INSERT INTO ${tableName}(accountIdentifier)
+    await runQuery(`INSERT INTO ${accountTable}(accountIdentifier)
     VALUES 
     ('${fakeAccountIdentifier[0]}'), 
     ('${fakeAccountIdentifier[1]}'), 
@@ -58,7 +58,7 @@ describe('the Query', () => {
 
 describe('the addAccount Mutation', () => {
   beforeAll(async () => {
-    await clearTable(tableName)
+    await clearTable([accountTable])
   })
 
   describe('should create an account', () => {
@@ -87,7 +87,7 @@ describe('the addAccount Mutation', () => {
       const { data, errors } = await callGraphql({ source })
 
       const databaseResponse = await runQuery(
-        `SELECT TOP 1 * FROM ${tableName} 
+        `SELECT TOP 1 * FROM ${accountTable} 
       WHERE accountIdentifier = '${data!.addAccount.accountIdentifier}'`
       )
 
@@ -122,7 +122,7 @@ describe('the addAccount Mutation', () => {
       const { data, errors } = await callGraphql({ source })
 
       const databaseResponse = await runQuery(
-        `SELECT TOP 1 * FROM ${tableName} 
+        `SELECT TOP 1 * FROM ${accountTable} 
       WHERE accountIdentifier = '${data!.addAccount.accountIdentifier}'`
       )
 
@@ -212,7 +212,7 @@ describe('the updateAccount Mutation', () => {
       userName: faker.internet.email(),
     }
 
-    await runQuery(`INSERT INTO ${tableName}(accountIdentifier)
+    await runQuery(`INSERT INTO ${accountTable}(accountIdentifier)
     VALUES ('${fakeAccount.accountIdentifier}')`)
 
     const source = `
@@ -278,7 +278,7 @@ describe('the removeAccount Mutation', () => {
       accountIdentifier: faker.random.uuid(),
     }
 
-    await runQuery(`INSERT INTO ${tableName}(accountIdentifier)
+    await runQuery(`INSERT INTO ${accountTable}(accountIdentifier)
     VALUES ('${fakeAccount.accountIdentifier}')`)
 
     const source = `

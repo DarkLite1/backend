@@ -10,15 +10,11 @@ export const closeDatabaseConnection = async (connectionName = 'default') => {
 }
 
 export const clearTable = async (
-  tableName: string | string[],
+  tableName: string[],
   connectionName = 'default'
 ) => {
   try {
     const connection = getConnection(connectionName)
-
-    if (typeof tableName === 'string') {
-      tableName = [tableName]
-    }
 
     const promises = tableName.map((table) =>
       connection.query(`DELETE FROM ${table}`)

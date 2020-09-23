@@ -2,10 +2,11 @@ import { clearTable } from '@test-utils/helpers/database'
 import { callGraphql } from '@test-utils/helpers/graphql'
 // import faker from 'faker'
 
-const tableName = 'preference'
+const preferenceTable = 'preference'
+const accountTable = 'account'
 
 beforeAll(async () => {
-  await clearTable([tableName, 'account'])
+  await clearTable([preferenceTable, accountTable])
 })
 
 describe('the query', () => {
@@ -16,7 +17,7 @@ describe('the query', () => {
   //   userName: faker.internet.email(),
   // }
 
-  // await runQuery(`INSERT INTO ${tableName}(accountIdentifier)
+  // await runQuery(`INSERT INTO ${preferenceTable}(accountIdentifier)
   // VALUES ('${fakeAccount.accountIdentifier}')`)
 
   it('viewerPreference should return null when there are no preferences', async () => {
