@@ -21,7 +21,7 @@ yarn dev
 
 ### Start the app for production
 
-Start the application in production mode. This will read the environment variables and use them to start up the graphql server on the correct port and the connections to the production databases.
+Start the application in production mode. This will read the environment variables and use them to start up the graphql server on the correct port and opens the connections to the production databases.
 
 ```bash
 yarn start
@@ -36,6 +36,18 @@ Run end-to-end tests against the graphql endpoints, aka resolvers. These tests w
 ```bash
 yarn test // run all tests
 yarn test "src\\resolvers\\PreferenceResolver.test.ts" // specific file to test
+```
+
+## Developing
+
+Every commit to the GitHub master branch will trigger a new build on the OpenShift platform so the changes made will be in production when the OpenShift build finishes.
+
+### Working with git
+
+Commit changes to a single file, push them and have them deployed on OpenShift:
+```bash
+git commit -m 'updated readme' .\README.md
+git push
 ```
 
 ## Handle database changes
