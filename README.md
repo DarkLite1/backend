@@ -35,7 +35,7 @@ Run end-to-end tests against the graphql endpoints, aka resolvers. These tests w
 
 ```bash
 yarn test // run all tests
-yarn test -- "src\\resolvers\\PreferenceResolver.test.ts" // specific file to test
+yarn test "src\\resolvers\\PreferenceResolver.test.ts" // specific file to test
 ```
 
 ## Handle database changes
