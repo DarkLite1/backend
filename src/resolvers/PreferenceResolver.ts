@@ -38,22 +38,34 @@ export class PreferenceResolver {
     }
   }
 
-  @Query(() => Preference)
+  @Mutation(() => Preference)
   async setViewerPreference(
     @Arg('options') options: AddPreferenceInput,
     @Ctx() ctx: { user: Account }
   ): Promise<Preference> {
     try {
-      console.log('addPref')
-      console.log('ctx', ctx)
-      console.log('ctx.displayName', ctx.user.name)
-      console.log('ctx.userName', ctx.user.id)
+      const account = await Account.findOne(
+        { id: ctx.user.id },
+        { relations: ['preference'] }
+      )
 
-      const preference = Preference.create(options)
-      await preference.save()
+      if (!account) throw 'Account not found'
+
+      let preference: Preference
+
+      if (account.preference) {
+        preference = Object.assign(account.preference, options)
+        await preference.save()
+      } else {
+        preference = Preference.create(options)
+        await preference.save()
+        account.preference = preference
+        await account.save()
+      }
+
       return preference
     } catch (error) {
-      throw `Failed adding preference: ${error}`
+      throw `Failed setting the viewer preference: ${error}`
     }
   }
 
