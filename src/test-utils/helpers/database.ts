@@ -1,5 +1,10 @@
 import { createConnections, getConnection } from 'typeorm'
 
+export const tableName = {
+  account: 'account',
+  preference: 'preference',
+}
+
 export const openDatabaseConnection = async () => {
   await createConnections()
 }
@@ -9,20 +14,20 @@ export const closeDatabaseConnection = async (connectionName = 'default') => {
   await defaultConnection.close()
 }
 
-export const clearTable = async (
-  tableName: string[] = ['account', 'preference'],
+export const clearTables = async (
+  tableNames: string[] = [tableName.account, tableName.preference],
   connectionName = 'default'
 ) => {
   try {
     const connection = getConnection(connectionName)
 
-    const promises = tableName.map((table) =>
+    const promises = tableNames.map((table) =>
       connection.query(`DELETE FROM ${table}`)
     )
     await Promise.all(promises)
   } catch (error) {
     throw new Error(
-      `Failed to clear table '${tableName}' on database '${connectionName}': ${error}`
+      `Failed to clear table '${tableNames}' on database '${connectionName}': ${error}`
     )
   }
 }

@@ -4,6 +4,7 @@ const { compilerOptions } = require('./tsconfig')
 module.exports = {
   roots: ['<rootDir>'],
   preset: 'ts-jest',
+  testEnvironment: 'node',
   setupFiles: ['<rootDir>/src/test-utils/config/setupFiles.ts'],
   setupFilesAfterEnv: ['<rootDir>/src/test-utils/config/setupFilesAfterEnv.ts'],
   modulePaths: ['<rootDir>'],
