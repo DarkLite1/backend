@@ -1,7 +1,6 @@
 import {
   Entity,
   PrimaryGeneratedColumn,
-  // PrimaryColumn,
   Column,
   BaseEntity,
   Index,
@@ -9,7 +8,6 @@ import {
   UpdateDateColumn,
   OneToOne,
   JoinColumn,
-  // JoinColumn,
 } from 'typeorm'
 import { Field, Int, ObjectType } from 'type-graphql'
 import { Preference } from '@it-portal/entity/Preference'
@@ -23,7 +21,6 @@ export class Account extends BaseEntity {
 
   @Field()
   @Column({ length: 50, unique: true })
-  // @PrimaryColumn({ unique: true })
   @Index({ unique: true })
   accountIdentifier: string
 
@@ -35,9 +32,7 @@ export class Account extends BaseEntity {
   @Column({ nullable: true, length: 100 })
   userName?: string
 
-  // @Field({ unique: true })
-  // @OneToOne(() => Preference)
-  @OneToOne(() => Preference, preference => preference.account)
+  @OneToOne(() => Preference, (preference) => preference.account)
   @JoinColumn()
   preference: Preference
 
