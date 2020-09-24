@@ -10,7 +10,7 @@ export const closeDatabaseConnection = async (connectionName = 'default') => {
 }
 
 export const clearTable = async (
-  tableName: string[],
+  tableName: string[] = ['account', 'preference'],
   connectionName = 'default'
 ) => {
   try {
