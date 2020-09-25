@@ -32,9 +32,10 @@ export class Account extends BaseEntity {
   @Column({ nullable: true, length: 100 })
   userName?: string
 
+  @Field(() => Preference, { nullable: true })
   @OneToOne(() => Preference, (preference) => preference.account)
   @JoinColumn()
-  preference: Preference
+  preference?: Preference
 
   @CreateDateColumn()
   createdAt: Date

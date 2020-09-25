@@ -26,11 +26,11 @@ const bearerStrategy = new BearerStrategy(
       })
       if (knownAccount) return done(null, knownAccount, token)
 
-      const account = new Account()
-      account.accountIdentifier = token.oid
-      account.name = token.name
-      account.userName = (token as any).preferred_username
-      const newAccount = await account.save()
+      const newAccount = await Account.create({
+        accountIdentifier: token.oid,
+        name: token.name,
+        userName: (token as any).preferred_username,
+      }).save()
       return done(null, newAccount, token)
     } catch (error) {
       console.error(`Failed adding the user to the request object: ${error}`)

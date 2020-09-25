@@ -2,13 +2,14 @@ import { ApolloServer, AuthenticationError } from 'apollo-server-express'
 import { buildSchema } from 'type-graphql'
 import { AccountResolver } from '@resolvers/AccountResolver'
 import { PreferenceResolver } from '@resolvers/PreferenceResolver'
+import { ViewerResolver } from '@resolvers/ViewerResolver'
 import { getUser } from '@utils/passport'
 import { ENVIRONMENT } from '@environment'
 
 export const getSchema = async () => {
   return await buildSchema({
     validate: true,
-    resolvers: [AccountResolver, PreferenceResolver],
+    resolvers: [AccountResolver, PreferenceResolver, ViewerResolver],
   })
 }
 
@@ -38,7 +39,6 @@ const context = async ({
     throw new AuthenticationError(error)
   }
 }
-
 
 export const getApolloServer = async () => {
   return new ApolloServer({
