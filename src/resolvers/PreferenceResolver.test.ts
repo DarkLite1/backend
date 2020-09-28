@@ -2,51 +2,43 @@ import { Account } from '@it-portal/entity/Account'
 import { callGraphql } from '@test-utils/helpers/graphql'
 import faker from 'faker'
 
-describe('the query viewerPreference', () => {
-  it('should return null when there are no preferences for the viewer', async () => {
-    const user = new Account()
-    user.accountIdentifier = faker.random.uuid()
-    user.name = faker.name.findName()
-    user.userName = faker.internet.email()
-    const fakeAccountTableContent = await user.save()
+let context: { user: Account }
 
-    const source = `
-    query viewerPreference {
-      viewerPreference {
-        id
-        language
-      }
-    }
-    `
-    const context = {
-      user: fakeAccountTableContent,
-    }
-
-    const { data, errors } = await callGraphql({ source, context })
-    expect(errors).toBeUndefined()
-    expect(data).toMatchObject({ viewerPreference: null })
+describe('the mutation setViewerPreference', () => {
+  beforeAll(async () => {
+    const account = await Account.create({
+      accountIdentifier: faker.random.uuid(),
+      name: faker.name.findName(),
+      userName: faker.internet.email(),
+    }).save()
+    context = { user: account }
   })
-  it('should return the preferences of the viewer', async () => {
-    const user = new Account()
-    user.accountIdentifier = faker.random.uuid()
-    user.name = faker.name.findName()
-    user.userName = faker.internet.email()
-    const fakeAccountTableContent = await user.save()
-
+  it('should create new preferences if the viewer has none', async () => {
     const source = `
-    query viewerPreference {
-      viewerPreference {
-        id
+    mutation {
+      setViewerPreference(options: { language: "xx-xx" }) {
         language
       }
-    }
+    }    
     `
-    const context = {
-      user: fakeAccountTableContent,
-    }
-
     const { data, errors } = await callGraphql({ source, context })
     expect(errors).toBeUndefined()
-    expect(data).toMatchObject({ viewerPreference: null })
+    expect(data).toMatchObject({
+      setViewerPreference: { language: 'xx-xx' },
+    })
+  })
+  it('should update the preferences', async () => {
+    const source = `
+    mutation {
+      setViewerPreference(options: { language: "BB-BB" }) {
+        language
+      }
+    }    
+    `
+    const { data, errors } = await callGraphql({ source, context })
+    expect(errors).toBeUndefined()
+    expect(data).toMatchObject({
+      setViewerPreference: { language: 'BB-BB' },
+    })
   })
 })

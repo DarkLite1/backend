@@ -17,24 +17,24 @@ describe('the Query', () => {
     ('${fakeAccountIdentifier[2]}')`)
   })
 
-  it('accounts should return all accounts', async () => {
-    const source = `
-    query {
-      accounts {
-        accountIdentifier
-      }
-    }
-    `
-    const { data, errors } = await callGraphql({ source })
-    expect(errors).toBeUndefined()
-    expect(data).toEqual({
-      accounts: [
-        { accountIdentifier: fakeAccountIdentifier[0] },
-        { accountIdentifier: fakeAccountIdentifier[1] },
-        { accountIdentifier: fakeAccountIdentifier[2] },
-      ],
-    })
-  })
+  // it('accounts should return all accounts', async () => {
+  //   const source = `
+  //   query {
+  //     accounts {
+  //       accountIdentifier
+  //     }
+  //   }
+  //   `
+  //   const { data, errors } = await callGraphql({ source })
+  //   expect(errors).toBeUndefined()
+  //   expect(data).toEqual({
+  //     accounts: [
+  //       { accountIdentifier: fakeAccountIdentifier[0] },
+  //       { accountIdentifier: fakeAccountIdentifier[1] },
+  //       { accountIdentifier: fakeAccountIdentifier[2] },
+  //     ],
+  //   })
+  // })
 
   it('account should return a single account', async () => {
     const source = `

@@ -1,12 +1,12 @@
 import {
   openDatabaseConnection,
   closeDatabaseConnection,
-  // clearTables,
+  clearTables,
 } from '@test-utils/helpers/database'
 
 beforeAll(async () => {
   await openDatabaseConnection()
-  // await clearTables()
+  await clearTables()
 })
 
 afterAll(async () => {

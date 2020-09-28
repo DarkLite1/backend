@@ -3,15 +3,19 @@ import { Preference } from '@it-portal/entity/Preference'
 import { callGraphql } from '@test-utils/helpers/graphql'
 import faker from 'faker'
 
-describe('the Viewer query', () => {
-  describe('preference should', () => {
-    it('return null when there are no preferences for the viewer', async () => {
-      const account = await Account.create({
-        accountIdentifier: faker.random.uuid(),
-        name: faker.name.findName(),
-        userName: faker.internet.email(),
-      }).save()
+let context: { user: Account }
 
+describe('the Viewer query', () => {
+  beforeAll(async () => {
+    const account = await Account.create({
+      accountIdentifier: faker.random.uuid(),
+      name: faker.name.findName(),
+      userName: faker.internet.email(),
+    }).save()
+    context = { user: account }
+  })
+  describe('preference', () => {
+    it('should return null when there are no preferences for the viewer', async () => {
       const source = `
         query {
           viewer{
@@ -22,22 +26,15 @@ describe('the Viewer query', () => {
           }
         }
       `
-
-      const context = { user: account }
-
       const { data, errors } = await callGraphql({ source, context })
       expect(errors).toBeUndefined()
       expect(data).toMatchObject({ viewer: { preference: null } })
     })
     it('should return the preferences of the viewer', async () => {
-      const account = await Account.create({
-        accountIdentifier: faker.random.uuid(),
-        name: faker.name.findName(),
-        userName: faker.internet.email(),
+      context.user.preference = await Preference.create({
+        language: 'nl-nl',
       }).save()
-
-      account.preference = await Preference.create({ language: 'en-us' }).save()
-      await account.save()
+      await context.user.save()
 
       const source = `
         query {
@@ -49,13 +46,10 @@ describe('the Viewer query', () => {
           }
         }
       `
-
-      const context = { user: account }
-
       const { data, errors } = await callGraphql({ source, context })
       expect(errors).toBeUndefined()
       expect(data).toMatchObject({
-        viewer: { preference: { language: 'en-us' } },
+        viewer: { preference: { language: 'nl-nl' } },
       })
     })
   })
