@@ -8,6 +8,9 @@ class AddPreferenceInput implements Partial<Preference> {
   @MaxLength(5)
   @Field({ nullable: true })
   language?: string
+  
+  @Field({ nullable: true })
+  darkMode?: boolean
 }
 
 @Resolver()
@@ -36,6 +39,8 @@ export class PreferenceResolver {
         account.preference = preference
         await account.save()
       }
+
+      console.log('setViewerPreference: ', preference)
 
       return preference
     } catch (error) {

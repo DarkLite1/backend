@@ -17,12 +17,16 @@ export class Preference extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number
 
-  @OneToOne(() => Account, account => account.preference)
+  @OneToOne(() => Account, (account) => account.preference)
   account: Account
 
   @Field()
   @Column({ length: 5, default: 'en-us' })
   language: string
+
+  @Field()
+  @Column({ default: false })
+  darkMode: boolean
 
   @CreateDateColumn()
   createdAt: Date

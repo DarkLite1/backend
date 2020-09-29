@@ -19,15 +19,13 @@ describe('the mutation setViewerPreference', () => {
       setViewerPreference(options: { language: "xx-xx" }) {
         language
       }
-    }    
+    }
     `
     const { data, errors } = await callGraphql({ source, context })
     expect(errors).toBeUndefined()
-    expect(data).toMatchObject({
-      setViewerPreference: { language: 'xx-xx' },
-    })
+    expect(data).toMatchObject({ setViewerPreference: { language: 'xx-xx' } })
   })
-  it('should update the preferences', async () => {
+  it('should update the preference language', async () => {
     const source = `
     mutation {
       setViewerPreference(options: { language: "BB-BB" }) {
@@ -37,8 +35,18 @@ describe('the mutation setViewerPreference', () => {
     `
     const { data, errors } = await callGraphql({ source, context })
     expect(errors).toBeUndefined()
-    expect(data).toMatchObject({
-      setViewerPreference: { language: 'BB-BB' },
-    })
+    expect(data).toMatchObject({ setViewerPreference: { language: 'BB-BB' } })
+  })
+  it('should update the preference darkMode', async () => {
+    const source = `
+    mutation {
+      setViewerPreference(options: { darkMode: true }) {
+        darkMode
+      }
+    }    
+    `
+    const { data, errors } = await callGraphql({ source, context })
+    expect(errors).toBeUndefined()
+    expect(data).toMatchObject({ setViewerPreference: { darkMode: true } })
   })
 })
