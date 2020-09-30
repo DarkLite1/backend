@@ -31,9 +31,9 @@ export class Preference extends BaseEntity {
 
   @Field()
   @CreateDateColumn()
-  createdAt: Date
+  readonly createdAt: Date
 
   @Field()
   @UpdateDateColumn()
-  updatedAt: Date
+  readonly updatedAt: Date
 }
