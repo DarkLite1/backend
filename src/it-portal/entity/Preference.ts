@@ -7,16 +7,17 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm'
-import { Field, Int, ObjectType } from 'type-graphql'
+import { Field, ID, ObjectType } from 'type-graphql'
 import { Account } from '@it-portal/entity/Account'
 
 @ObjectType()
 @Entity()
 export class Preference extends BaseEntity {
-  @Field(() => Int)
+  @Field(() => ID)
   @PrimaryGeneratedColumn()
-  id: number
+  readonly id: number
 
+  @Field(() => Account)
   @OneToOne(() => Account, (account) => account.preference)
   account: Account
 
@@ -28,9 +29,11 @@ export class Preference extends BaseEntity {
   @Column({ default: false })
   darkMode: boolean
 
+  @Field()
   @CreateDateColumn()
   createdAt: Date
 
+  @Field()
   @UpdateDateColumn()
   updatedAt: Date
 }

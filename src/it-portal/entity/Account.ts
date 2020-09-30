@@ -9,15 +9,15 @@ import {
   OneToOne,
   JoinColumn,
 } from 'typeorm'
-import { Field, Int, ObjectType } from 'type-graphql'
+import { Field, ID, ObjectType } from 'type-graphql'
 import { Preference } from '@it-portal/entity/Preference'
 
 @ObjectType()
 @Entity()
 export class Account extends BaseEntity {
-  @Field(() => Int)
+  @Field(() => ID)
   @PrimaryGeneratedColumn()
-  id: number
+  readonly id: number
 
   @Field()
   @Column({ length: 50, unique: true })
@@ -37,9 +37,11 @@ export class Account extends BaseEntity {
   @JoinColumn()
   preference?: Preference
 
+  @Field()
   @CreateDateColumn()
   createdAt: Date
 
+  @Field()
   @UpdateDateColumn()
   updatedAt: Date
 }
