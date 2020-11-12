@@ -12,6 +12,7 @@ export const ENVIRONMENT = {
       password: process.env.DB_IT_PORTAL_PASSWORD,
     },
   },
+  sapTruckRosterUrl: process.env.SAP_REST_API_TRUCK_ROSTER_URL || '',
   azure: {
     clientID: process.env.AZURE_CLIENT_ID || '',
     identityMetadata: process.env.AZURE_IDENTITY_METADATA || '',
@@ -22,4 +23,4 @@ export const ENVIRONMENT = {
       : [],
 }
 
-// console.dir(ENVIRONMENT)
+console.dir(ENVIRONMENT)
