@@ -19,12 +19,18 @@ const bearerStrategy = new BearerStrategy(
   config,
   async (token: ITokenPayload, done: CallableFunction) => {
     try {
-      if (!token.oid) throw 'token oid missing'
+      if (!token.oid) return done(new Error('No oid found'), null)
 
+      console.log('find one user with token.oid: ', token.oid)
       const knownAccount = await Account.findOne({
         accountIdentifier: token.oid,
       })
+      console.log('knownAccount: ', knownAccount)
       if (knownAccount) return done(null, knownAccount, token)
+
+      console.log('create newAccount')
+      console.log('name', token.name)
+      console.log('userName', (token as any).preferred_username)
 
       const newAccount = await Account.create({
         accountIdentifier: token.oid,
@@ -34,6 +40,7 @@ const bearerStrategy = new BearerStrategy(
       return done(null, newAccount, token)
     } catch (error) {
       console.error(`Failed adding the user to the request object: ${error}`)
+      return done(new Error(`Failed adding the user to the request object: ${error}`), null)
     }
   }
 )
