@@ -12,7 +12,6 @@ import {
 import { Account } from '@it-portal/entity/Account'
 import { plainToClass } from 'class-transformer'
 import { MaxLength } from 'class-validator'
-import { Context } from 'vm'
 
 @ObjectType()
 class Error {
@@ -134,7 +133,7 @@ export class AccountResolver {
   }
 
   @Query(() => Account)
-  currentUser(@Ctx() ctx: Context) {
+  currentUser(@Ctx() ctx: {user: Account}) {
     return ctx.user
   }
 
