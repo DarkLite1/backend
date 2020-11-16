@@ -11,6 +11,7 @@ export = [
     synchronize: ENVIRONMENT.mode !== 'production',
     // dropSchema: ENVIRONMENT.mode !== 'production',
     logging: false,
+    // logging: ENVIRONMENT.mode !== 'production',
     options: {
       enableArithAbort: true,
       trustServerCertificate: true,

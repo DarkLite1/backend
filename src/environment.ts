@@ -14,9 +14,13 @@ export const ENVIRONMENT = {
       password: process.env.DB_IT_PORTAL_PASSWORD,
     },
   },
-  sapTruckRosterUrl: process.env.SAP_REST_API_TRUCK_ROSTER_URL
-    ? stripTrailingSlash(process.env.SAP_REST_API_TRUCK_ROSTER_URL)
-    : '',
+  sapTruckRoster: {
+    Url: process.env.SAP_REST_API_TRUCK_ROSTER_URL
+      ? stripTrailingSlash(process.env.SAP_REST_API_TRUCK_ROSTER_URL)
+      : '',
+    username: process.env.SAP_REST_API_TRUCK_ROSTER_USERNAME,
+    password: process.env.SAP_REST_API_TRUCK_ROSTER_PASSWORD,
+  },
   azure: {
     clientID: process.env.AZURE_CLIENT_ID || '',
     identityMetadata: process.env.AZURE_IDENTITY_METADATA || '',
@@ -27,4 +31,4 @@ export const ENVIRONMENT = {
       : [],
 }
 
-console.dir(ENVIRONMENT)
+// console.dir(ENVIRONMENT)

@@ -3,13 +3,20 @@ import { buildSchema } from 'type-graphql'
 import { AccountResolver } from '@resolvers/AccountResolver'
 import { PreferenceResolver } from '@resolvers/PreferenceResolver'
 import { ViewerResolver } from '@resolvers/ViewerResolver'
+import { RosterResolver } from '@resolvers/SAP/RosterResolver'
 import { getUser } from '@utils/passport'
 import { ENVIRONMENT } from '@environment'
+import { Roster } from '@it-portal/entity/SAP/Roster'
 
 export const getSchema = async () => {
   return await buildSchema({
     validate: true,
-    resolvers: [AccountResolver, PreferenceResolver, ViewerResolver],
+    resolvers: [
+      AccountResolver,
+      PreferenceResolver,
+      ViewerResolver,
+      RosterResolver,
+    ],
   })
 }
 
@@ -35,7 +42,7 @@ const context = async ({
       user,
     }
   } catch (error) {
-    // console.log('Failed creating the context: ', error)
+    console.log('Failed creating the context: ', error)
     throw new AuthenticationError(error)
   }
 }
@@ -44,6 +51,11 @@ export const getApolloServer = async () => {
   return new ApolloServer({
     schema: await getSchema(),
     context,
+    dataSources: () => {
+      return {
+        sapRosterApi: new Roster(),
+      }
+    },
     introspection: playgroundEnabled,
     playground: playgroundEnabled,
   })
