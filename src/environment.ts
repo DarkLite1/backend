@@ -1,3 +1,5 @@
+import { stripTrailingSlash } from '@utils/helpers'
+
 export const ENVIRONMENT = {
   mode:
     process.env.mode === 'production' || process.env.NODE_ENV === 'production'
@@ -12,7 +14,9 @@ export const ENVIRONMENT = {
       password: process.env.DB_IT_PORTAL_PASSWORD,
     },
   },
-  sapTruckRosterUrl: process.env.SAP_REST_API_TRUCK_ROSTER_URL || '',
+  sapTruckRosterUrl: process.env.SAP_REST_API_TRUCK_ROSTER_URL
+    ? stripTrailingSlash(process.env.SAP_REST_API_TRUCK_ROSTER_URL)
+    : '',
   azure: {
     clientID: process.env.AZURE_CLIENT_ID || '',
     identityMetadata: process.env.AZURE_IDENTITY_METADATA || '',
