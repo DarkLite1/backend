@@ -40,7 +40,7 @@ export class PreferenceResolver {
         await account.save()
       }
 
-      console.log('setViewerPreference: ', preference)
+      // console.log('setViewerPreference: ', preference)
 
       return preference
     } catch (error) {

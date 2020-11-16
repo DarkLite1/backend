@@ -21,16 +21,11 @@ const bearerStrategy = new BearerStrategy(
     try {
       if (!token.oid) return done(new Error('No oid found'), null)
 
-      // console.log('find one user with token.oid: ', token.oid)
       const knownAccount = await Account.findOne({
         accountIdentifier: token.oid,
       })
-      // console.log('knownAccount: ', knownAccount)
       if (knownAccount) return done(null, knownAccount, token)
 
-      // console.log('create newAccount')
-      // console.log('name', token.name)
-      // console.log('userName', (token as any).preferred_username)
       const newAccount = await Account.create({
         accountIdentifier: token.oid,
         name: token.name,
@@ -38,8 +33,7 @@ const bearerStrategy = new BearerStrategy(
       }).save()
       return done(null, newAccount, token)
     } catch (error) {
-      // console.error(`Failed adding the user to the request object: ${error}`)
-      return done(new Error(`Failed adding the user to the request object: ${error}`), null)
+      return done(new Error(`bearerStrategy failed: ${error}`), null)
     }
   }
 )
