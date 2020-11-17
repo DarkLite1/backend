@@ -12,6 +12,7 @@ import {
 import { Account } from '@it-portal/entity/Account'
 import { plainToClass } from 'class-transformer'
 import { MaxLength } from 'class-validator'
+import { Context } from '@shared/typings'
 import { Error } from '@shared/graphql'
 
 @ObjectType()
@@ -128,7 +129,7 @@ export class AccountResolver {
   }
 
   @Query(() => Account)
-  currentUser(@Ctx() ctx: {user: Account}) {
+  currentUser(@Ctx() ctx: Context) {
     return ctx.user
   }
 

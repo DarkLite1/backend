@@ -9,13 +9,8 @@ import {
 } from 'type-graphql'
 import { Roster } from '@sap-truck-roster/entity/Roster'
 import { plainToClass } from 'class-transformer'
-import { Account } from '@it-portal/entity/Account'
+import { Context } from '@shared/typings'
 import { Error } from '@shared/graphql'
-
-interface Context {
-  user: Account
-  dataSources: string
-}
 
 @ObjectType()
 class ApiError extends Error {
