@@ -1,12 +1,12 @@
+import { ENVIRONMENT } from '@environment'
 import { ApolloServer, AuthenticationError } from 'apollo-server-express'
 import { buildSchema } from 'type-graphql'
+import { getUser } from '@utils/passport'
 import { AccountResolver } from '@it-portal/resolver/AccountResolver'
 import { PreferenceResolver } from '@it-portal/resolver/PreferenceResolver'
 import { ViewerResolver } from '@it-portal/resolver/ViewerResolver'
-import { RosterResolver } from 'src/sap-truck-roster/resolver/RosterResolver'
-import { getUser } from '@utils/passport'
-import { ENVIRONMENT } from '@environment'
-import { Roster } from 'src/sap-truck-roster/entity/Roster'
+import { RosterResolver } from '@sap-truck-roster/resolver/RosterResolver'
+import { Roster } from '@sap-truck-roster/entity/Roster'
 
 export const getSchema = async () => {
   return await buildSchema({
