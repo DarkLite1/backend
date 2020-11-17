@@ -10,16 +10,7 @@ import {
 import { Roster } from '@sap-truck-roster/entity/Roster'
 import { plainToClass } from 'class-transformer'
 import { Context } from '@shared/typings'
-import { Error } from '@shared/graphql'
-
-@ObjectType()
-class ApiError extends Error {
-  @Field()
-  code: string
-
-  @Field()
-  message: string
-}
+import { ApiError } from '@shared/graphql'
 
 @ObjectType()
 class RosterArray {
