@@ -12,12 +12,7 @@ import {
 import { Account } from '@it-portal/entity/Account'
 import { plainToClass } from 'class-transformer'
 import { MaxLength } from 'class-validator'
-
-@ObjectType()
-class Error {
-  @Field()
-  message: string
-}
+import { Error } from '@resolvers/Shared/Helpers'
 
 @ObjectType()
 class NotFound extends Error {}
