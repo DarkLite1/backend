@@ -12,7 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      Run OpenShift build process
+      # Run OpenShift build process
        - name: Install oc
          uses: redhat-actions/oc-installer@v1
          with:
