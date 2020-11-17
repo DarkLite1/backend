@@ -33,7 +33,10 @@ export class DriverResolver {
     @Arg('id', { nullable: true }) id?: string,
     @Arg('country', { nullable: true }) country?: string
   ): Promise<typeof DriverQueryResultUnion> {
-    const response = await ctx.dataSources.sapDriverApi.getDriver(country, id)
+    const response = await ctx.dataSources.sapDriverApi.getDriver({
+      id,
+      country,
+    })
 
     if (response.returnCode === 'OK') {
       // console.log('response date: ', response.data)

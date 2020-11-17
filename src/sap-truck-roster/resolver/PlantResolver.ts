@@ -33,7 +33,10 @@ export class PlantResolver {
     @Arg('id', { nullable: true }) id?: string,
     @Arg('country', { nullable: true }) country?: string
   ): Promise<typeof PlantQueryResultUnion> {
-    const response = await ctx.dataSources.sapPlantApi.getPlant(country, id)
+    const response = await ctx.dataSources.sapPlantApi.getPlant({
+      country,
+      id,
+    })
 
     if (response.returnCode === 'OK') {
       // console.log('response date: ', response.data)

@@ -11,7 +11,7 @@ import { Roster } from '@sap-truck-roster/entity/Roster'
 import { PlantResolver } from '@sap-truck-roster/resolver/PlantResolver'
 import { Plant } from '@sap-truck-roster/entity/Plant'
 import { Driver } from '@sap-truck-roster/entity/Driver'
-import { DriverResolver } from '@sap-truck-roster/resolver/PlantResolver copy'
+import { DriverResolver } from '@sap-truck-roster/resolver/DriverResolver'
 
 export const getSchema = async () => {
   return await buildSchema({

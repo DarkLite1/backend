@@ -19,7 +19,15 @@ export class Roster extends RESTDataSource {
     request.headers.set('Authorization', sapTruckRosterBasicAuthString)
   }
 
-  async getRoster(date: string, driverId = '', truckId = '') {
+  async getRoster({
+    date,
+    driverId = '',
+    truckId = '',
+  }: {
+    date: string
+    driverId?: string
+    truckId?: string
+  }) {
     return await this.get(
       `/roster/?date=${date}&driverId=${driverId}&truckId=${truckId}`
     )

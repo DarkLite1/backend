@@ -19,11 +19,14 @@ export class Driver extends RESTDataSource {
     request.headers.set('Authorization', sapTruckRosterBasicAuthString)
   }
 
-  async getDriver(id = '', country = '') {
+  async getDriver({
+    id = '',
+    country = '',
+  }: { id?: string; country?: string } = {}) {
     return await this.get(`/driver?id=${id}&country=${country}`)
   }
 
-   @Field(() => ID)
+  @Field(() => ID)
   readonly id: string
 
   @Field()
@@ -64,7 +67,7 @@ export class Driver extends RESTDataSource {
 
   @Field()
   readonly createdOn: string
-  
+
   @Field()
   readonly deletionFlag: string
 }

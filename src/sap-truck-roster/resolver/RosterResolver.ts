@@ -34,11 +34,11 @@ export class RosterResolver {
     @Arg('truckId', { nullable: true }) truckId?: string,
     @Arg('driverId', { nullable: true }) driverId?: string
   ): Promise<typeof RosterQueryResultUnion> {
-    const response = await ctx.dataSources.sapRosterApi.getRoster(
+    const response = await ctx.dataSources.sapRosterApi.getRoster({
       date,
       driverId,
-      truckId
-    )
+      truckId,
+    })
 
     if (response.returnCode === 'OK') {
       // console.log('response date: ', response.data)

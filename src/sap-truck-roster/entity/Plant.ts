@@ -19,7 +19,10 @@ export class Plant extends RESTDataSource {
     request.headers.set('Authorization', sapTruckRosterBasicAuthString)
   }
 
-  async getPlant(id = '', country = '') {
+  async getPlant({
+    id = '',
+    country = '',
+  }: { id?: string; country?: string } = {}) {
     return await this.get(`/plant?country=${country}&id=${id}`)
   }
 
