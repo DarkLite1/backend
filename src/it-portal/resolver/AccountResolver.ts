@@ -12,7 +12,7 @@ import {
 import { Account } from '@it-portal/entity/Account'
 import { plainToClass } from 'class-transformer'
 import { MaxLength } from 'class-validator'
-import { Error } from '@resolvers/Shared/Helpers'
+import { Error } from '@shared/graphql'
 
 @ObjectType()
 class NotFound extends Error {}

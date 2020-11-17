@@ -5,8 +5,9 @@
       "@environment": ["src/environment"],
       "@test-utils/*": ["src/test-utils/*"],
       "@utils/*": ["src/utils/*"],
-      "@resolvers/*": ["src/resolvers/*"],
-      "@it-portal/*": ["src/it-portal/*"]
+      "@shared/*": ["src/shared/*"],
+      "@it-portal/*": ["src/it-portal/*"],
+      "@sap-truck-roster/*": ["src/sap-truck-roster/*"]
     },
     "rootDir": "./src",
     "outDir": "./dist",

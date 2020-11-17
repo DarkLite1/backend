@@ -7,10 +7,10 @@ import {
   ObjectType,
   createUnionType,
 } from 'type-graphql'
-import { Roster } from '@it-portal/entity/SAP/Roster'
+import { Roster } from '@sap-truck-roster/entity/Roster'
 import { plainToClass } from 'class-transformer'
 import { Account } from '@it-portal/entity/Account'
-import { Error } from '@resolvers/Shared/Helpers'
+import { Error } from '@shared/graphql'
 
 interface Context {
   user: Account
@@ -34,6 +34,8 @@ class RosterArray {
 
 const RosterQueryResultUnion = createUnionType({
   name: 'RosterQueryResult',
+  // types: () => [[Roster], ApiError] as const,
+  // an array is not supported by the Graphql spec in unions
   types: () => [RosterArray, ApiError] as const,
 })
 
@@ -53,7 +55,7 @@ export class RosterResolver {
     )
 
     if (response.returnCode === 'OK') {
-      console.log('response date: ', response.data)
+      // console.log('response date: ', response.data)
 
       return plainToClass(RosterArray, {
         data: response.data,
