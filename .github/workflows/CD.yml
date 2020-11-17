@@ -12,11 +12,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # Run OpenShift build process
-      #  - name: Install oc
-      #    uses: redhat-actions/oc-installer@v1
-      #    with:
-      #      oc_version: '3.11.230'         
+      Run OpenShift build process
+       - name: Install oc
+         uses: redhat-actions/oc-installer@v1
+         with:
+           oc_version: '3.11.230'         
      - name: Execute oc commands
        run: |
          oc login --insecure-skip-tls-verify --token ${{ secrets.OPENSHIFT_API_TOKEN }} ${{ secrets.OPENSHIFT_SERVER_URL }}
