@@ -27,15 +27,6 @@ export const getSchema = async () => {
   })
 }
 
-const playgroundEnabled = true
-// const playgroundEnabled = ENVIRONMENT.mode !== 'production'
-
-if (!playgroundEnabled) {
-  console.log(
-    'LOG: For security reasons the Playground is disabled in Production mode'
-  )
-}
-
 const context = async ({
   req,
   res,
@@ -66,7 +57,7 @@ export const getApolloServer = async () => {
         sapDriverApi: new Driver(),
       }
     },
-    introspection: playgroundEnabled,
-    playground: playgroundEnabled,
+    introspection: ENVIRONMENT.playground,
+    playground: ENVIRONMENT.playground,
   })
 }

@@ -13,7 +13,7 @@ const corsOptions: CorsOptions = {
     if (
       ENVIRONMENT.corsWhiteList.indexOf(origin as string) !== -1 ||
       // allow API calls in dev from Graphql Playground
-      (!origin && ENVIRONMENT.mode !== 'production') 
+      (!origin && ENVIRONMENT.playground) 
     ) {
       callback(null, true)
     } else {

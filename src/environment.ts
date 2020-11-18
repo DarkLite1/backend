@@ -6,6 +6,7 @@ export const ENVIRONMENT = {
       ? 'production'
       : 'development',
   port: process.env.PORT || 4000,
+  playground: process.env.PLAYGROUND === 'true',
   database: {
     'it-portal': {
       host: process.env.DB_IT_PORTAL_HOST,
