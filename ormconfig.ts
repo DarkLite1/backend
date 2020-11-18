@@ -8,7 +8,7 @@ export = [
     username: ENVIRONMENT.database['it-portal'].username,
     password: ENVIRONMENT.database['it-portal'].password,
     type: 'mssql',
-    synchronize: ENVIRONMENT.mode !== 'production',
+    synchronize: true,
     // dropSchema: ENVIRONMENT.mode !== 'production',
     logging: false,
     // logging: ENVIRONMENT.mode !== 'production',
