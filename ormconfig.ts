@@ -8,10 +8,8 @@ export = [
     username: ENVIRONMENT.database['it-portal'].username,
     password: ENVIRONMENT.database['it-portal'].password,
     type: 'mssql',
-    synchronize: true,
-    // dropSchema: ENVIRONMENT.mode !== 'production',
+    synchronize: false,
     logging: false,
-    // logging: ENVIRONMENT.mode !== 'production',
     options: {
       enableArithAbort: true,
       trustServerCertificate: true,
