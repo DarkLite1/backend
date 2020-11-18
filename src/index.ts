@@ -18,7 +18,7 @@ const corsOptions: CorsOptions = {
       callback(null, true)
     } else {
       callback(
-        new Error('Not allowed by CORS, please update the CORS_WHITELIST')
+        new Error(`Request from '${origin}' is not allowed by CORS, please update the CORS_WHITELIST`)
       )
     }
   },
