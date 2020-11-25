@@ -33,6 +33,7 @@ const bearerStrategy = new BearerStrategy(
       }).save()
       return done(null, newAccount, token)
     } catch (error) {
+      console.log(`bearerStrategy failed: ${error}`)
       return done(new Error(`bearerStrategy failed: ${error}`), null)
     }
   }

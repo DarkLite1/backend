@@ -8,6 +8,8 @@ import { ViewerResolver } from '@it-portal/resolver/ViewerResolver'
 
 import { RosterResolver } from '@sap-truck-roster/resolver/RosterResolver'
 import { Roster } from '@sap-truck-roster/entity/Roster'
+import { RosterDispatchGroupResolver } from '@sap-truck-roster/resolver/RosterDispatchGroupResolver'
+import { RosterDispatchGroup } from '@sap-truck-roster/entity/RosterDispatchGroup'
 import { PlantResolver } from '@sap-truck-roster/resolver/PlantResolver'
 import { Plant } from '@sap-truck-roster/entity/Plant'
 import { Driver } from '@sap-truck-roster/entity/Driver'
@@ -21,6 +23,7 @@ export const getSchema = async () => {
       PreferenceResolver,
       ViewerResolver,
       RosterResolver,
+      RosterDispatchGroupResolver,
       PlantResolver,
       DriverResolver,
     ],
@@ -53,6 +56,7 @@ export const getApolloServer = async () => {
     dataSources: () => {
       return {
         sapRosterApi: new Roster(),
+        sapRosterDispatchGroupApi: new RosterDispatchGroup(),
         sapPlantApi: new Plant(),
         sapDriverApi: new Driver(),
       }
