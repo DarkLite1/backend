@@ -34,22 +34,26 @@ export class RosterResolver {
     @Arg('truckId', { nullable: true }) truckId?: string,
     @Arg('driverId', { nullable: true }) driverId?: string
   ): Promise<typeof RosterQueryResultUnion> {
-    const response = await ctx.dataSources.sapRosterApi.getRoster({
-      date,
-      driverId,
-      truckId,
-    })
-
-    if (response.returnCode === 'OK') {
-      // console.log('response date: ', response.data)
-
-      return plainToClass(RosterArray, {
-        data: response.data,
+    try {
+      const response = await ctx.dataSources.sapRosterApi.getRoster({
+        date,
+        driverId,
+        truckId,
+      })
+      if (response.returnCode === 'OK') {
+        return plainToClass(RosterArray, {
+          data: response.data,
+        })
+      }
+      return plainToClass(ApiError, {
+        code: response.returnCode,
+        message: response.errorMessage,
+      })
+    } catch (error) {
+      return plainToClass(ApiError, {
+        code: 'API internal failure',
+        message: `The API request failed: ${error}`,
       })
     }
-    return plainToClass(ApiError, {
-      code: response.returnCode,
-      message: response.errorMessage,
-    })
   }
 }

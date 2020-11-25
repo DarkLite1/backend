@@ -35,6 +35,9 @@ export class Roster extends RESTDataSource {
 
   @Field(() => ID)
   readonly truckId: string
+  
+  @Field(() => ID)
+  readonly radioId: string
 
   @Field(() => ID)
   readonly driverId: string
@@ -70,5 +73,5 @@ export class Roster extends RESTDataSource {
   readonly plantCity: string
 
   @Field()
-  readonly startPlantLoadingDateTime: Date
+  readonly startPlantLoadingDateTime: string
 }

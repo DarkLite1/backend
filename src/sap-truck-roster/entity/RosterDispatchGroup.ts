@@ -32,7 +32,7 @@ export class RosterDispatchGroup extends RESTDataSource {
   }
 
   @Field()
-  readonly date: Date
+  readonly date: string
 
   @Field(() => [String])
   readonly dispatchGroup: string[]
