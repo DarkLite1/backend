@@ -30,16 +30,19 @@ export class RosterResolver {
   @Query(() => RosterQueryResultUnion)
   async roster(
     @Ctx() ctx: Context,
-    @Arg('date', () => String) date: string,
+    @Arg('date', { nullable: true }) date: string,
+    @Arg('fromDate', { nullable: true }) fromDate: string,
     @Arg('truckId', { nullable: true }) truckId?: string,
     @Arg('driverId', { nullable: true }) driverId?: string
   ): Promise<typeof RosterQueryResultUnion> {
     try {
       const response = await ctx.dataSources.sapTruckRosterAPI.getRoster({
         date,
+        fromDate,
         driverId,
         truckId,
       })
+
       if (response.returnCode === 'OK') {
         return plainToClass(RosterArray, {
           data: response.data,
@@ -56,4 +59,11 @@ export class RosterResolver {
       })
     }
   }
+
+  // @FieldResolver(() => Truck)
+  // truck(@Root() roster: Roster) {
+  //   return await ctx.dataSources.sapTruckRosterAPI.getTruck({
+  //     id: response.truckId,
+  //   })
+  // }
 }
