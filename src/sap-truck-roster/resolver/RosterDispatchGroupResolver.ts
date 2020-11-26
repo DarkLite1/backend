@@ -39,7 +39,7 @@ export class RosterDispatchGroupResolver {
     })
 
     if (response.returnCode === 'OK') {
-      // console.log('response date: ', response.data)
+      // console.log('response data: ', response.data)
 
       return plainToClass(RosterDispatchGroupArray, {
         data: response.data,
