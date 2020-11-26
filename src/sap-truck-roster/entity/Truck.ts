@@ -1,61 +1,49 @@
-import { Field, ID, ObjectType } from 'type-graphql'
+import { Field, Float, ID, ObjectType } from 'type-graphql'
 
 @ObjectType()
 export class Truck {
   @Field(() => ID)
   readonly id: string
 
-  @Field()
-  readonly category: string
+  @Field({ nullable: true })
+  readonly radioId?: string
 
-  @Field()
-  readonly status: string
+  @Field({ nullable: true })
+  readonly country?: string
 
-  @Field()
-  readonly country: string
+  @Field({ nullable: true })
+  readonly fleetNr?: string
 
-  @Field()
-  readonly description: string
+  @Field(() => Float, { nullable: true })
+  readonly maxLegalWeight?: number
 
-  @Field()
-  readonly fleetNr: string
+  @Field(() => Float, { nullable: true })
+  readonly maxCapacity?: number
 
-  @Field()
-  readonly resourceId: string
+  @Field(() => Float, { nullable: true })
+  readonly maxPumpCapacity?: number
 
-  @Field()
-  readonly maxLegalWeight: string
+  @Field({ nullable: true })
+  readonly tareDate?: string
 
-  @Field()
-  readonly maxCapacity: string
+  @Field({ nullable: true })
+  readonly tareTime?: string
 
-  @Field()
-  readonly maxPumpCapacity: string
+  @Field(() => Float, { nullable: true })
+  readonly tareWeight?: number
 
-  @Field()
-  readonly ownershipId: string
+  @Field(() => Float, { nullable: true })
+  readonly minLoadSize?: number
 
-  @Field()
-  readonly tareDate: string
+  @Field(() => Float, { nullable: true })
+  readonly emptySpeed?: number
 
-  @Field()
-  readonly tareTime: string
+  @Field({ nullable: true })
+  readonly speedUnit?: string
 
-  @Field()
-  readonly tareWeight: string
+  @Field(() => Float, { nullable: true })
+  readonly loadedSpeed?: number
 
-  @Field()
-  readonly minLoadSize: string
-
-  @Field()
-  readonly emptySpeed: string
-
-  @Field()
-  readonly speedUnit: string
-
-  @Field()
-  readonly loadedSpeed: string
-
-  @Field()
-  readonly haulerVendorId: string
+  @Field({ nullable: true })
+  readonly haulerVendorId?: string
 }
