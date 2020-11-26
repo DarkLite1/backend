@@ -1,51 +1,54 @@
-import { Truck } from '@sap-truck-roster/entity/Truck'
 import { Field, ID, ObjectType } from 'type-graphql'
 
 @ObjectType()
 export class Roster {
-  // @Field(() => Truck)
-  @Field(() => Truck, { nullable: true })
-  truck: Truck
+  // @Field(() => Truck, { nullable: true })
+  // truck: Truck
+
+  // @Field(() => Truck, { nullable: true })
+  // get truck(): Truck | null {
+  //   return // call API here with this.truckId ?
+  // }
+
+  @Field({ nullable: true })
+  readonly truckId?: string
+
+  @Field({ nullable: true })
+  readonly radioId?: string
+
+  @Field({ nullable: true })
+  readonly driverId?: string
+
+  @Field({ nullable: true })
+  readonly driverFirstName?: string
+
+  @Field({ nullable: true })
+  readonly driverLastName?: string
+
+  @Field({ nullable: true })
+  readonly driverEmail?: string
+
+  @Field({ nullable: true })
+  readonly despatchGroup?: string
 
   @Field(() => ID)
-  readonly truckId: string
+  readonly plantId?: string
 
-  @Field(() => ID)
-  readonly radioId: string
+  @Field({ nullable: true })
+  readonly plantName?: string
 
-  @Field(() => ID)
-  readonly driverId: string
+  @Field({ nullable: true })
+  readonly plantTimezone?: string
 
-  @Field()
-  readonly driverFirstName: string
+  @Field({ nullable: true })
+  readonly plantStreetHouse?: string
 
-  @Field()
-  readonly driverLastName: string
+  @Field({ nullable: true })
+  readonly plantCountry?: string
 
-  @Field()
-  readonly driverEmail: string
+  @Field({ nullable: true })
+  readonly plantCity?: string
 
-  @Field()
-  readonly despatchGroup: string
-
-  @Field(() => ID)
-  readonly plantId: string
-
-  @Field()
-  readonly plantName: string
-
-  @Field()
-  readonly plantTimezone: string
-
-  @Field()
-  readonly plantStreetHouse: string
-
-  @Field()
-  readonly plantCountry: string
-
-  @Field()
-  readonly plantCity: string
-
-  @Field()
-  readonly startPlantLoadingDateTime: string
+  @Field({ nullable: true })
+  readonly startPlantLoadingDateTime?: string
 }
