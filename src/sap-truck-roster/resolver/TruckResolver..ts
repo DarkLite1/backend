@@ -31,12 +31,14 @@ export class TruckResolver {
   async truck(
     @Ctx() ctx: Context,
     @Arg('id', { nullable: true }) id?: string,
-    @Arg('country', { nullable: true }) country?: string
+    @Arg('country', { nullable: true }) country?: string,
+    @Arg('radioId', { nullable: true }) radioId?: string
   ): Promise<typeof TruckQueryResultUnion> {
     try {
       const response = await ctx.dataSources.sapTruckRosterAPI.getTruck({
         id,
         country,
+        radioId,
       })
 
       if (response.returnCode === 'OK') {
