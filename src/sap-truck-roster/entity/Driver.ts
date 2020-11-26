@@ -1,4 +1,4 @@
-import { Field, ID, Int, ObjectType } from 'type-graphql'
+import { Field, ID, ObjectType } from 'type-graphql'
 
 @ObjectType()
 export class Driver {
@@ -23,7 +23,7 @@ export class Driver {
   @Field({ nullable: true })
   readonly country?: string
 
-  @Field( { nullable: true })
+  @Field({ nullable: true })
   readonly postCode?: string
 
   @Field({ nullable: true })
