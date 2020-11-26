@@ -34,6 +34,7 @@ export class RosterResolver {
     @Arg('fromDate', { nullable: true }) fromDate: string,
     @Arg('driverId', { nullable: true }) driverId?: string,
     @Arg('radioId', { nullable: true }) radioId?: string,
+    @Arg('dispatchGroup', { nullable: true }) dispatchGroup?: string,
     @Arg('truckId', { nullable: true }) truckId?: string
   ): Promise<typeof RosterQueryResultUnion> {
     try {
@@ -43,6 +44,7 @@ export class RosterResolver {
         driverId,
         radioId,
         truckId,
+        dispatchGroup,
       })
 
       if (response.returnCode === 'OK') {

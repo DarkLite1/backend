@@ -48,15 +48,17 @@ export class sapTruckRosterAPI extends RESTDataSource {
     driverId = '',
     radioId = '',
     truckId = '',
+    dispatchGroup = '',
   }: {
     date?: string
     fromDate?: string
     driverId?: string
     radioId?: string
     truckId?: string
+    dispatchGroup?: string
   }) {
     return await this.get(
-      `/roster/?date=${date}&fromDate=${fromDate}&driverId=${driverId}&truckId=${truckId}&radioId=${radioId}`
+      `/roster/?date=${date}&fromDate=${fromDate}&driverId=${driverId}&truckId=${truckId}&radioId=${radioId}&dispatchGroup=${dispatchGroup}`
     )
   }
 
