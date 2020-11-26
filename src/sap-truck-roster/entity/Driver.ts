@@ -1,31 +1,7 @@
-import { ENVIRONMENT } from '@environment'
-import { getBasicAuthString } from '@utils/helpers'
-import { RequestOptions, RESTDataSource } from 'apollo-datasource-rest'
 import { Field, ID, ObjectType } from 'type-graphql'
 
-const sapTruckRosterBasicAuthString = getBasicAuthString(
-  ENVIRONMENT.sapTruckRoster.username!,
-  ENVIRONMENT.sapTruckRoster.password!
-)
-
 @ObjectType()
-export class Driver extends RESTDataSource {
-  constructor() {
-    super()
-    this.baseURL = ENVIRONMENT.sapTruckRoster.Url
-  }
-
-  willSendRequest(request: RequestOptions) {
-    request.headers.set('Authorization', sapTruckRosterBasicAuthString)
-  }
-
-  async getDriver({
-    id = '',
-    country = '',
-  }: { id?: string; country?: string } = {}) {
-    return await this.get(`/driver?id=${id}&country=${country}`)
-  }
-
+export class Driver {
   @Field(() => ID)
   readonly id: string
 

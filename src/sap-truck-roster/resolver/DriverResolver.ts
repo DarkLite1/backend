@@ -33,7 +33,7 @@ export class DriverResolver {
     @Arg('id', { nullable: true }) id?: string,
     @Arg('country', { nullable: true }) country?: string
   ): Promise<typeof DriverQueryResultUnion> {
-    const response = await ctx.dataSources.sapDriverApi.getDriver({
+    const response = await ctx.dataSources.sapTruckRosterAPI.getDriver({
       id,
       country,
     })

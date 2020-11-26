@@ -33,7 +33,7 @@ export class PlantResolver {
     @Arg('id', { nullable: true }) id?: string,
     @Arg('country', { nullable: true }) country?: string
   ): Promise<typeof PlantQueryResultUnion> {
-    const response = await ctx.dataSources.sapPlantApi.getPlant({
+    const response = await ctx.dataSources.sapTruckRosterAPI.getPlant({
       country,
       id,
     })

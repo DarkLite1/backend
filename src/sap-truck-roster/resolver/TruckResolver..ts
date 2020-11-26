@@ -34,7 +34,7 @@ export class TruckResolver {
     @Arg('country', { nullable: true }) country?: string
   ): Promise<typeof TruckQueryResultUnion> {
     try {
-      const response = await ctx.dataSources.sapTruckApi.getTruck({
+      const response = await ctx.dataSources.sapTruckRosterAPI.getTruck({
         id,
         country,
       })

@@ -33,7 +33,7 @@ export class RosterDispatchGroupResolver {
     @Arg('date', { nullable: true }) date?: string,
     @Arg('fromDate', { nullable: true }) fromDate?: string
   ): Promise<typeof RosterDispatchGroupQueryResultUnion> {
-    const response = await ctx.dataSources.sapRosterDispatchGroupApi.getRosterDispatchGroup({
+    const response = await ctx.dataSources.sapTruckRosterAPI.getRosterDispatchGroup({
       date,
       fromDate,
     })

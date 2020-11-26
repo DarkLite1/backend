@@ -35,7 +35,7 @@ export class RosterResolver {
     @Arg('driverId', { nullable: true }) driverId?: string
   ): Promise<typeof RosterQueryResultUnion> {
     try {
-      const response = await ctx.dataSources.sapRosterApi.getRoster({
+      const response = await ctx.dataSources.sapTruckRosterAPI.getRoster({
         date,
         driverId,
         truckId,
