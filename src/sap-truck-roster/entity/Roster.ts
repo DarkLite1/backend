@@ -34,7 +34,8 @@ export class Roster extends RESTDataSource {
     )
   }
 
-  @Field(() => Truck)
+  // @Field(() => Truck)
+  @Field(() => Truck, { nullable: true })
   truck: Truck
 
   @Field(() => ID)

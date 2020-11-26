@@ -25,7 +25,7 @@ const TruckQueryResultUnion = createUnionType({
   types: () => [TruckArray, ApiError] as const,
 })
 
-@Resolver()
+@Resolver(() => Truck)
 export class TruckResolver {
   @Query(() => TruckQueryResultUnion)
   async truck(
@@ -40,8 +40,6 @@ export class TruckResolver {
       })
 
       if (response.returnCode === 'OK') {
-        // console.log('response date: ', response.data)
-
         return plainToClass(TruckArray, {
           data: response.data,
         })

@@ -25,7 +25,7 @@ const RosterQueryResultUnion = createUnionType({
   types: () => [RosterArray, ApiError] as const,
 })
 
-@Resolver()
+@Resolver(() => Roster)
 export class RosterResolver {
   @Query(() => RosterQueryResultUnion)
   async roster(

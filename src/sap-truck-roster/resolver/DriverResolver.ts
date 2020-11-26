@@ -25,7 +25,7 @@ const DriverQueryResultUnion = createUnionType({
   types: () => [DriverArray, ApiError] as const,
 })
 
-@Resolver()
+@Resolver(() => Driver)
 export class DriverResolver {
   @Query(() => DriverQueryResultUnion)
   async driver(

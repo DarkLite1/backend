@@ -25,7 +25,7 @@ const PlantQueryResultUnion = createUnionType({
   types: () => [PlantArray, ApiError] as const,
 })
 
-@Resolver()
+@Resolver(() => Plant)
 export class PlantResolver {
   @Query(() => PlantQueryResultUnion)
   async plant(
