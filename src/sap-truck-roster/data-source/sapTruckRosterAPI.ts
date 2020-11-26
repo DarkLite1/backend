@@ -1,6 +1,7 @@
 import { ENVIRONMENT } from '@environment'
 import { getBasicAuthString } from '@utils/helpers'
 import { RequestOptions, RESTDataSource } from 'apollo-datasource-rest'
+import { URLSearchParams } from 'url'
 
 const sapTruckRosterBasicAuthString = getBasicAuthString(
   ENVIRONMENT.sapTruckRoster.username!,
@@ -28,7 +29,13 @@ export class sapTruckRosterAPI extends RESTDataSource {
     email?: string
     dispatchGroup?: string
   } = {}) {
-    return await this.get(`/driver?id=${id}&country=${country}&email=${email}&dispatchGroup=${dispatchGroup}`)
+    const params = new URLSearchParams()
+    if (id) params.append('id', id)
+    if (country) params.append('country', country)
+    if (email) params.append('email', email)
+    if (dispatchGroup) params.append('dispatchGroup', dispatchGroup)
+
+    return await this.get('/driver', params)
   }
 
   async getTruck({
@@ -36,16 +43,23 @@ export class sapTruckRosterAPI extends RESTDataSource {
     country = '',
     radioId = '',
   }: { id?: string; country?: string; radioId?: string } = {}) {
-    return await this.get(
-      `/truck?id=${id}&country=${country}&radioId=${radioId}`
-    )
+    const params = new URLSearchParams()
+    if (id) params.append('id', id)
+    if (country) params.append('country', country)
+    if (radioId) params.append('radioId', radioId)
+
+    return await this.get('/truck', params)
   }
 
   async getPlant({
     id = '',
     country = '',
   }: { id?: string; country?: string } = {}) {
-    return await this.get(`/plant?country=${country}&id=${id}`)
+    const params = new URLSearchParams()
+    if (id) params.append('id', id)
+    if (country) params.append('country', country)
+
+    return await this.get('/plant', params)
   }
 
   async getRoster({
@@ -63,9 +77,15 @@ export class sapTruckRosterAPI extends RESTDataSource {
     truckId?: string
     dispatchGroup?: string
   }) {
-    return await this.get(
-      `/roster/?date=${date}&fromDate=${fromDate}&driverId=${driverId}&truckId=${truckId}&radioId=${radioId}&dispatchGroup=${dispatchGroup}`
-    )
+    const params = new URLSearchParams()
+    if (date) params.append('date', date)
+    if (fromDate) params.append('fromDate', fromDate)
+    if (driverId) params.append('driverId', driverId)
+    if (radioId) params.append('radioId', radioId)
+    if (truckId) params.append('truckId', truckId)
+    if (dispatchGroup) params.append('dispatchGroup', dispatchGroup)
+
+    return await this.get('/roster', params)
   }
 
   async getRosterDispatchGroup({
@@ -75,8 +95,10 @@ export class sapTruckRosterAPI extends RESTDataSource {
     date?: string
     fromDate?: string
   }) {
-    return await this.get(
-      `/rosterDispatchGroup/?date=${date}&fromDate=${fromDate}`
-    )
+    const params = new URLSearchParams()
+    if (date) params.append('date', date)
+    if (fromDate) params.append('fromDate', fromDate)
+
+    return await this.get('/rosterDispatchGroup', params)
   }
 }
