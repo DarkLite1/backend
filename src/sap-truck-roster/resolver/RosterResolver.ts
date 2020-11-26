@@ -32,14 +32,16 @@ export class RosterResolver {
     @Ctx() ctx: Context,
     @Arg('date', { nullable: true }) date: string,
     @Arg('fromDate', { nullable: true }) fromDate: string,
-    @Arg('truckId', { nullable: true }) truckId?: string,
-    @Arg('driverId', { nullable: true }) driverId?: string
+    @Arg('driverId', { nullable: true }) driverId?: string,
+    @Arg('radioId', { nullable: true }) radioId?: string,
+    @Arg('truckId', { nullable: true }) truckId?: string
   ): Promise<typeof RosterQueryResultUnion> {
     try {
       const response = await ctx.dataSources.sapTruckRosterAPI.getRoster({
         date,
         fromDate,
         driverId,
+        radioId,
         truckId,
       })
 
