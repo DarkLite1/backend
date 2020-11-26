@@ -32,12 +32,14 @@ export class DriverResolver {
     @Ctx() ctx: Context,
     @Arg('id', { nullable: true }) id?: string,
     @Arg('country', { nullable: true }) country?: string,
+    @Arg('dispatchGroup', { nullable: true }) dispatchGroup?: string,
     @Arg('email', { nullable: true }) email?: string
   ): Promise<typeof DriverQueryResultUnion> {
     const response = await ctx.dataSources.sapTruckRosterAPI.getDriver({
       id,
       country,
       email,
+      dispatchGroup,
     })
 
     if (response.returnCode === 'OK') {

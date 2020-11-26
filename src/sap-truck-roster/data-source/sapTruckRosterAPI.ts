@@ -21,8 +21,14 @@ export class sapTruckRosterAPI extends RESTDataSource {
     id = '',
     country = '',
     email = '',
-  }: { id?: string; country?: string; email?: string } = {}) {
-    return await this.get(`/driver?id=${id}&country=${country}&email=${email}`)
+    dispatchGroup = '',
+  }: {
+    id?: string
+    country?: string
+    email?: string
+    dispatchGroup?: string
+  } = {}) {
+    return await this.get(`/driver?id=${id}&country=${country}&email=${email}&dispatchGroup=${dispatchGroup}`)
   }
 
   async getTruck({
