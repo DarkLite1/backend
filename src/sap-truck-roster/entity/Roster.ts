@@ -1,4 +1,5 @@
 import { ENVIRONMENT } from '@environment'
+import { Truck } from '@sap-truck-roster/entity/Truck'
 import { getBasicAuthString } from '@utils/helpers'
 import { RequestOptions, RESTDataSource } from 'apollo-datasource-rest'
 import { Field, ID, ObjectType } from 'type-graphql'
@@ -33,9 +34,12 @@ export class Roster extends RESTDataSource {
     )
   }
 
+  @Field(() => Truck)
+  truck: Truck
+
   @Field(() => ID)
   readonly truckId: string
-  
+
   @Field(() => ID)
   readonly radioId: string
 

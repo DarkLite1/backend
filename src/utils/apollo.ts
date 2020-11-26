@@ -14,6 +14,8 @@ import { PlantResolver } from '@sap-truck-roster/resolver/PlantResolver'
 import { Plant } from '@sap-truck-roster/entity/Plant'
 import { Driver } from '@sap-truck-roster/entity/Driver'
 import { DriverResolver } from '@sap-truck-roster/resolver/DriverResolver'
+import { TruckResolver } from '@sap-truck-roster/resolver/TruckResolver.'
+import { Truck } from '@sap-truck-roster/entity/Truck'
 
 export const getSchema = async () => {
   return await buildSchema({
@@ -26,6 +28,7 @@ export const getSchema = async () => {
       RosterDispatchGroupResolver,
       PlantResolver,
       DriverResolver,
+      TruckResolver,
     ],
   })
 }
@@ -59,6 +62,7 @@ export const getApolloServer = async () => {
         sapRosterDispatchGroupApi: new RosterDispatchGroup(),
         sapPlantApi: new Plant(),
         sapDriverApi: new Driver(),
+        sapTruckApi: new Truck(),
       }
     },
     introspection: ENVIRONMENT.playground,
