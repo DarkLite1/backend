@@ -1,5 +1,5 @@
 import { ENVIRONMENT } from '@environment'
-import { getBasicAuthString } from '@utils/helpers'
+import { formatDate, getBasicAuthString } from '@utils/helpers'
 import { RequestOptions, RESTDataSource } from 'apollo-datasource-rest'
 import { URLSearchParams } from 'url'
 
@@ -67,16 +67,16 @@ export class sapTruckRosterAPI extends RESTDataSource {
     truckId,
     dispatchGroup,
   }: {
-    date?: string
-    fromDate?: string
+    date?: Date
+    fromDate?: Date
     driverId?: string
     radioId?: string
     truckId?: string
     dispatchGroup?: string
   }) {
     const params = new URLSearchParams()
-    if (date) params.append('date', date)
-    if (fromDate) params.append('fromDate', fromDate)
+    if (date) params.append('date', formatDate(date))
+    if (fromDate) params.append('fromDate', formatDate(fromDate))
     if (driverId) params.append('driverId', driverId)
     if (radioId) params.append('radioId', radioId)
     if (truckId) params.append('truckId', truckId)
@@ -89,12 +89,12 @@ export class sapTruckRosterAPI extends RESTDataSource {
     date,
     fromDate,
   }: {
-    date?: string
-    fromDate?: string
+    date?: Date
+    fromDate?: Date
   }) {
     const params = new URLSearchParams()
-    if (date) params.append('date', date)
-    if (fromDate) params.append('fromDate', fromDate)
+    if (date) params.append('date', formatDate(date))
+    if (fromDate) params.append('fromDate', formatDate(fromDate))
 
     return await this.get('/rosterDispatchGroup', params)
   }

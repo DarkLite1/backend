@@ -30,8 +30,8 @@ export class RosterDispatchGroupResolver {
   @Query(() => RosterDispatchGroupQueryResultUnion)
   async rosterDispatchGroup(
     @Ctx() ctx: Context,
-    @Arg('date', { nullable: true }) date?: string,
-    @Arg('fromDate', { nullable: true }) fromDate?: string
+    @Arg('date', { nullable: true }) date?: Date,
+    @Arg('fromDate', { nullable: true }) fromDate?: Date
   ): Promise<typeof RosterDispatchGroupQueryResultUnion> {
     const response = await ctx.dataSources.sapTruckRosterAPI.getRosterDispatchGroup({
       date,

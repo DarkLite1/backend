@@ -33,8 +33,8 @@ export class RosterResolver {
   @Query(() => RosterQueryResultUnion)
   async roster(
     @Ctx() ctx: Context,
-    @Arg('date', { nullable: true }) date: string,
-    @Arg('fromDate', { nullable: true }) fromDate: string,
+    @Arg('date', { nullable: true }) date: Date,
+    @Arg('fromDate', { nullable: true }) fromDate: Date,
     @Arg('driverId', { nullable: true }) driverId?: string,
     @Arg('radioId', { nullable: true }) radioId?: string,
     @Arg('dispatchGroup', { nullable: true }) dispatchGroup?: string,
