@@ -1,8 +1,5 @@
-// cSpell Settings
 {
-    // Version of the setting file.  Always 0.1
     "version": "0.1",
-    // language - current active spelling language
     "language": "en",
     "enabledLanguageIds": [
         "asciidoc",
@@ -24,7 +21,6 @@
         "yml",
         "vue"
     ],
-    // words - list of words to be always considered correct
     "words": [
         "API's",
         "datasource",
@@ -33,7 +29,9 @@
         "heidelbergcement",
         "lcov",
         "mkdirp",
+        "OPENSHIFT",
         "ormconfig",
+        "redhat",
         "respawn",
         "SSSD",
         "streetsidesoftware",
@@ -42,9 +40,6 @@
         "visualstudio",
         "vsmarketplacebadge"
     ],
-    // flagWords - list of words to be always considered incorrect
-    // This is useful for offensive words and common spelling errors.
-    // For example "hte" should be "the"
     "flagWords": [
         "hte"
     ],
