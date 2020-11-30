@@ -2,8 +2,10 @@ import { Field, Float, ID, ObjectType } from 'type-graphql'
 
 @ObjectType()
 export class Truck {
-  @Field(() => ID)
-  readonly id: string
+  @Field({ nullable: true })
+  readonly id?: string
+  // @Field(() => ID)
+  // readonly id: string
 
   @Field({ nullable: true })
   readonly radioId?: string

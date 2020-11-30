@@ -3,7 +3,7 @@ import { Field, ID, ObjectType } from 'type-graphql'
 @ObjectType()
 export class Roster {
   // @Field(() => Truck, { nullable: true })
-  // truck: Truck
+  // truck?: Truck
 
   // @Field(() => Truck, { nullable: true })
   // get truck(): Truck | null {

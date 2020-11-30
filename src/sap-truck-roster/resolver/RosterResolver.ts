@@ -6,11 +6,14 @@ import {
   Field,
   ObjectType,
   createUnionType,
+  FieldResolver,
+  Root,
 } from 'type-graphql'
 import { Roster } from '@sap-truck-roster/entity/Roster'
 import { plainToClass } from 'class-transformer'
 import { Context } from '@shared/typings'
 import { ApiError } from '@shared/graphql'
+import { Truck } from '@sap-truck-roster/entity/Truck'
 
 @ObjectType()
 class RosterArray {
@@ -64,10 +67,16 @@ export class RosterResolver {
     }
   }
 
-  // @FieldResolver(() => Truck)
-  // truck(@Root() roster: Roster) {
-  //   return await ctx.dataSources.sapTruckRosterAPI.getTruck({
-  //     id: response.truckId,
-  //   })
-  // }
+  @FieldResolver(() => Truck, { nullable: true })
+  async truck(@Root() roster: Roster, @Ctx() ctx: Context) {
+    console.log('roster.truckId: ', roster.truckId)
+
+    const response = await ctx.dataSources.sapTruckRosterAPI.getTruck({
+      id: roster.truckId,
+    })
+
+    console.log('response: ', response)
+
+    return response
+  }
 }
