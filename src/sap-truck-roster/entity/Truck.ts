@@ -1,4 +1,4 @@
-import { Field, Float, ID, ObjectType } from 'type-graphql'
+import { Field, Float, ObjectType } from 'type-graphql'
 
 @ObjectType()
 export class Truck {
