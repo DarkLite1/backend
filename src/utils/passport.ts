@@ -10,7 +10,7 @@ import passport from 'passport'
 const config: IBearerStrategyOptionWithRequest = {
   identityMetadata: ENVIRONMENT.azure.identityMetadata,
   clientID: ENVIRONMENT.azure.clientID,
-  validateIssuer: ENVIRONMENT.mode === 'production',
+  validateIssuer: true,
   loggingLevel: 'warn',
   passReqToCallback: false,
 }
