@@ -19,10 +19,10 @@ export class sapTruckRosterAPI extends RESTDataSource {
   }
 
   async getDriver({
-    id = '',
-    country = '',
-    email = '',
-    dispatchGroup = '',
+    id,
+    country,
+    email,
+    dispatchGroup,
   }: {
     id?: string
     country?: string
@@ -39,9 +39,9 @@ export class sapTruckRosterAPI extends RESTDataSource {
   }
 
   async getTruck({
-    id = '',
-    country = '',
-    radioId = '',
+    id,
+    country,
+    radioId,
   }: { id?: string; country?: string; radioId?: string } = {}) {
     const params = new URLSearchParams()
     if (id) params.append('id', id)
@@ -51,10 +51,7 @@ export class sapTruckRosterAPI extends RESTDataSource {
     return await this.get('/truck', params)
   }
 
-  async getPlant({
-    id = '',
-    country = '',
-  }: { id?: string; country?: string } = {}) {
+  async getPlant({ id, country }: { id?: string; country?: string } = {}) {
     const params = new URLSearchParams()
     if (id) params.append('id', id)
     if (country) params.append('country', country)
@@ -63,12 +60,12 @@ export class sapTruckRosterAPI extends RESTDataSource {
   }
 
   async getRoster({
-    date = '',
-    fromDate = '',
-    driverId = '',
-    radioId = '',
-    truckId = '',
-    dispatchGroup = '',
+    date,
+    fromDate,
+    driverId,
+    radioId,
+    truckId,
+    dispatchGroup,
   }: {
     date?: string
     fromDate?: string
@@ -89,8 +86,8 @@ export class sapTruckRosterAPI extends RESTDataSource {
   }
 
   async getRosterDispatchGroup({
-    date = '',
-    fromDate = '',
+    date,
+    fromDate,
   }: {
     date?: string
     fromDate?: string
