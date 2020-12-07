@@ -29,7 +29,7 @@ export class Roster {
   readonly driverEmail?: string
 
   @Field({ nullable: true })
-  readonly despatchGroup?: string
+  readonly dispatchGroup?: string
 
   @Field(() => ID)
   readonly plantId?: string
