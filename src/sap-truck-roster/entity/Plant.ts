@@ -1,37 +1,37 @@
-import { Field, ID, ObjectType } from 'type-graphql'
+import { Field, ObjectType } from 'type-graphql'
 
 @ObjectType()
 export class Plant {
-  @Field(() => ID)
-  readonly id: string
+  @Field({ nullable: true })
+  readonly id?: string
 
-  @Field()
-  readonly name: string
+  @Field({ nullable: true })
+  readonly name?: string
 
-  @Field()
-  readonly customerNrPlant: string
+  @Field({ nullable: true })
+  readonly customerNrPlant?: string
 
-  @Field()
-  readonly vendorNrPlant: string
+  @Field({ nullable: true })
+  readonly vendorNrPlant?: string
 
-  @Field()
-  readonly factoryCalendar: string
+  @Field({ nullable: true })
+  readonly factoryCalendar?: string
 
-  @Field()
-  readonly streetHouse: string
+  @Field({ nullable: true })
+  readonly streetHouse?: string
 
-  @Field()
-  readonly country: string
+  @Field({ nullable: true })
+  readonly country?: string
 
-  @Field()
-  readonly postCode: string
+  @Field({ nullable: true })
+  readonly postCode?: string
 
-  @Field()
-  readonly city: string
+  @Field({ nullable: true })
+  readonly city?: string
 
-  @Field()
-  readonly purchasingOrg: string
+  @Field({ nullable: true })
+  readonly purchasingOrg?: string
 
-  @Field()
-  readonly region: string
+  @Field({ nullable: true })
+  readonly region?: string
 }
