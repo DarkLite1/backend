@@ -1,9 +1,9 @@
-import { Field, ID, ObjectType } from 'type-graphql'
+import { Field, ObjectType } from 'type-graphql'
 
 @ObjectType()
 export class Driver {
-  @Field(() => ID)
-  readonly id: string
+  @Field({ nullable: true })
+  readonly id?: string
 
   @Field({ nullable: true })
   readonly firstName?: string
