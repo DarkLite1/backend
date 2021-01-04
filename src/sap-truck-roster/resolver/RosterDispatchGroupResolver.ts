@@ -33,21 +33,25 @@ export class RosterDispatchGroupResolver {
     @Arg('date', { nullable: true }) date?: Date,
     @Arg('fromDate', { nullable: true }) fromDate?: Date
   ): Promise<typeof RosterDispatchGroupQueryResultUnion> {
-    const response = await ctx.dataSources.sapTruckRosterAPI.getRosterDispatchGroup({
-      date,
-      fromDate,
-    })
+    try {
+      const response = await ctx.dataSources.sapTruckRosterAPI.getRosterDispatchGroup(
+        { date, fromDate }
+      )
 
-    if (response.returnCode === 'OK') {
-      // console.log('response data: ', response.data)
-
-      return plainToClass(RosterDispatchGroupArray, {
-        data: response.data,
+      if (response.returnCode === 'OK') {
+        return plainToClass(RosterDispatchGroupArray, {
+          data: response.data,
+        })
+      }
+      return plainToClass(ApiError, {
+        code: response.returnCode,
+        message: response.errorMessage,
+      })
+    } catch (error) {
+      return plainToClass(ApiError, {
+        code: 'SAP API failure',
+        message: `${error}`,
       })
     }
-    return plainToClass(ApiError, {
-      code: response.returnCode,
-      message: response.errorMessage,
-    })
   }
 }

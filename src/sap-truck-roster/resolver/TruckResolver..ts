@@ -52,8 +52,8 @@ export class TruckResolver {
       })
     } catch (error) {
       return plainToClass(ApiError, {
-        code: 'API internal failure',
-        message: `The API request failed: ${error}`,
+        code: 'SAP API failure',
+        message: `${error}`,
       })
     }
   }

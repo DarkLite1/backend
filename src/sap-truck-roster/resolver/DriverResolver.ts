@@ -35,23 +35,28 @@ export class DriverResolver {
     @Arg('dispatchGroup', { nullable: true }) dispatchGroup?: string,
     @Arg('email', { nullable: true }) email?: string
   ): Promise<typeof DriverQueryResultUnion> {
-    const response = await ctx.dataSources.sapTruckRosterAPI.getDriver({
-      id,
-      country,
-      email,
-      dispatchGroup,
-    })
+    try {
+      const response = await ctx.dataSources.sapTruckRosterAPI.getDriver({
+        id,
+        country,
+        email,
+        dispatchGroup,
+      })
 
-    if (response.returnCode === 'OK') {
-      // console.log('response date: ', response.data)
-
-      return plainToClass(DriverArray, {
-        data: response.data,
+      if (response.returnCode === 'OK') {
+        return plainToClass(DriverArray, {
+          data: response.data,
+        })
+      }
+      return plainToClass(ApiError, {
+        code: response.returnCode,
+        message: response.errorMessage,
+      })
+    } catch (error) {
+      return plainToClass(ApiError, {
+        code: 'SAP API failure',
+        message: `${error}`,
       })
     }
-    return plainToClass(ApiError, {
-      code: response.returnCode,
-      message: response.errorMessage,
-    })
   }
 }

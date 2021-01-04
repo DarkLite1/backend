@@ -33,21 +33,26 @@ export class PlantResolver {
     @Arg('id', { nullable: true }) id?: string,
     @Arg('country', { nullable: true }) country?: string
   ): Promise<typeof PlantQueryResultUnion> {
-    const response = await ctx.dataSources.sapTruckRosterAPI.getPlant({
-      country,
-      id,
-    })
+    try {
+      const response = await ctx.dataSources.sapTruckRosterAPI.getPlant({
+        country,
+        id,
+      })
 
-    if (response.returnCode === 'OK') {
-      // console.log('response date: ', response.data)
-
-      return plainToClass(PlantArray, {
-        data: response.data,
+      if (response.returnCode === 'OK') {
+        return plainToClass(PlantArray, {
+          data: response.data,
+        })
+      }
+      return plainToClass(ApiError, {
+        code: response.returnCode,
+        message: response.errorMessage,
+      })
+    } catch (error) {
+      return plainToClass(ApiError, {
+        code: 'SAP API failure',
+        message: `${error}`,
       })
     }
-    return plainToClass(ApiError, {
-      code: response.returnCode,
-      message: response.errorMessage,
-    })
   }
 }
