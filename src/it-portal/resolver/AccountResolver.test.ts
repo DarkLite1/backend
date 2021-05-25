@@ -4,9 +4,9 @@ import faker from 'faker'
 
 describe('the Query', () => {
   const fakeAccountIdentifier = [
-    faker.random.uuid(),
-    faker.random.uuid(),
-    faker.random.uuid(),
+    faker.datatype.uuid(),
+    faker.datatype.uuid(),
+    faker.datatype.uuid(),
   ]
 
   beforeAll(async () => {
@@ -56,7 +56,7 @@ describe('the addAccount Mutation', () => {
   describe('should create an account', () => {
     it('with only the property accountIdentifier', async () => {
       const fakeAccount = {
-        accountIdentifier: faker.random.uuid(),
+        accountIdentifier: faker.datatype.uuid(),
         name: null,
         userName: null,
       }
@@ -89,7 +89,7 @@ describe('the addAccount Mutation', () => {
 
     it('with all possible properties', async () => {
       const fakeAccount = {
-        accountIdentifier: faker.random.uuid(),
+        accountIdentifier: faker.datatype.uuid(),
         name: faker.name.findName(),
         userName: faker.internet.email(),
       }
@@ -129,7 +129,7 @@ describe('the addAccount Mutation', () => {
       mutation {
         addAccount(
           options: {
-            accountIdentifier: "${faker.random.uuid()}"
+            accountIdentifier: "${faker.datatype.uuid()}"
           }
         ){
           __typename
@@ -199,7 +199,7 @@ describe('the addAccount Mutation', () => {
 describe('the updateAccount Mutation', () => {
   it('should return the account when it is updated', async () => {
     const fakeAccount = {
-      accountIdentifier: faker.random.uuid(),
+      accountIdentifier: faker.datatype.uuid(),
       name: faker.name.findName(),
       userName: faker.internet.email(),
     }
@@ -237,7 +237,7 @@ describe('the updateAccount Mutation', () => {
   describe('should report an error', () => {
     it('when  the account is not found', async () => {
       const fakeAccount = {
-        accountIdentifier: faker.random.uuid(),
+        accountIdentifier: faker.datatype.uuid(),
         name: faker.name.findName(),
         userName: faker.internet.email(),
       }
@@ -267,7 +267,7 @@ describe('the updateAccount Mutation', () => {
 describe('the removeAccount Mutation', () => {
   it('should remove an account', async () => {
     const fakeAccount = {
-      accountIdentifier: faker.random.uuid(),
+      accountIdentifier: faker.datatype.uuid(),
     }
 
     await runQuery(`INSERT INTO ${tableName.account}(accountIdentifier)
@@ -293,7 +293,7 @@ describe('the removeAccount Mutation', () => {
   describe('should report an error', () => {
     it('when  the account is not found', async () => {
       const fakeAccount = {
-        accountIdentifier: faker.random.uuid(),
+        accountIdentifier: faker.datatype.uuid(),
       }
 
       const source = `

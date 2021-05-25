@@ -8,7 +8,7 @@ let context: { user: Account }
 describe('the Viewer query', () => {
   beforeAll(async () => {
     const account = await Account.create({
-      accountIdentifier: faker.random.uuid(),
+      accountIdentifier: faker.datatype.uuid(),
       name: faker.name.findName(),
       userName: faker.internet.email(),
     }).save()

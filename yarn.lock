@@ -873,10 +873,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.17.51.tgz#639538575befbcf3d3861f95c41de8e47124d674"
   integrity sha512-KANw+MkL626tq90l++hGelbl67irOJzGhUJk6a1Bt8QHOeh9tztJx+L0AqttraWKinmZn7Qi5lJZJzx45Gq0dg==
 
-"@types/node@^15.3.0":
-  version "15.3.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-15.3.0.tgz#d6fed7d6bc6854306da3dea1af9f874b00783e26"
-  integrity sha512-8/bnjSZD86ZfpBsDlCIkNXIvm+h6wi9g7IqL+kmFkQ+Wvu3JrasgLElfiPgoo8V8vVfnEi0QVS12gbl94h9YsQ==
+"@types/node@^15.6.1":
+  version "15.6.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-15.6.1.tgz#32d43390d5c62c5b6ec486a9bc9c59544de39a08"
+  integrity sha512-7EIraBEyRHEe7CH+Fm1XvgqU6uwZN8Q7jppJGcqjROMT29qhAuuOxYB1uEY5UMYQKEmA5D+5tBnhdaPXSsLONA==
 
 "@types/node@^8.0.47":
   version "8.10.66"
@@ -888,10 +888,10 @@
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
   integrity sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==
 
-"@types/passport-azure-ad@^4.0.8":
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/@types/passport-azure-ad/-/passport-azure-ad-4.0.8.tgz#f08b71d4c4e1be0a0c53add553591514cb98275e"
-  integrity sha512-hsrA1Zjsc4lfE1VKsFvwN3lIVfJuippJI738JUBEA2kROfafdvrU5r5xkExwOhc1CmwxxAY2zS/TpUi6jOYUVg==
+"@types/passport-azure-ad@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@types/passport-azure-ad/-/passport-azure-ad-4.3.0.tgz#f146eccd319acc29138bd9238d1394d26c255037"
+  integrity sha512-NO8wp4Tsvs1ySrQzJM36qF6cxXozoHD25DTCB3lHgI/eRDs4ZTz2yN6vmhC9rcjt+kKI6HIB2TZ0HiJ8GKHygw==
   dependencies:
     "@types/express" "*"
     "@types/passport" "*"
